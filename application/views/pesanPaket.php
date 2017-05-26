@@ -76,9 +76,12 @@
       </nav>
       <!-- End Navigation panel-->
       <!-- breadcrumbs start-->
-      <section style="background-image:url('../assets/pic/breadcrumbs/bg1.jpg');" class="breadcrumbs">
+      <section style="background-image:url(<?php echo base_url();?>/assets/pic/breadcrumbs/bg1.jpg);" class="breadcrumbs">
         <div class="container">
-          <div class="text-left breadcrumbs-item"><a href="<?php echo base_url();?>">home</a><i>/</i><a href="<?php echo site_url("Paket");?>">Paket</a><i>/</i><a href="<?php echo site_url("Paket/pesan");?>" class="last"><span>pesan</span></a>
+          <div class="text-left breadcrumbs-item">
+          <a href="<?php echo base_url();?>">home</a><i>/</i>
+          <a href="<?php echo site_url("Paket");?>">Paket</a><i>/</i>
+          <a href="#" class="last"><span>pesan</span></a>
             <h2><span>Pesan</span> Paket</h2>
           </div>
         </div>
@@ -87,89 +90,114 @@
     </header>
     <!-- ! header page-->
     <div class="content-body">
-      <div class="container page">
-        <div class="row">
-          <!-- content-->
-          <div class="col-md-12">
-            <div class="main single-product">
-              <!-- images of product-->
-              <div class="images">
-                <!-- picture--><a href="<?php echo base_url();?>assets/pic/shop/gambar.jpg" class="fancy">
-                  <div class="pic"><img src="<?php echo base_url();?>assets/pic/shop/gambar.jpg" data-at2x="<?php echo base_url();?>assets/pic/shop/gambar.jpg" alt>
-                    <div class="links"><i class="fa fa-expand"></i></div>
-                  </div></a>
-                <div class="thumbnails clearfix"><a href="<?php echo base_url();?>assets/pic/shop/gambar.jpg" class="fancy">
-                    <div class="pic thumbnail"><img src="<?php echo base_url();?>assets/pic/shop/gambar.jpg" data-at2x="<?php echo base_url();?>assets/pic/shop/gambar.jpg" alt>
-                      <div class="links"><i class="fa fa-expand"></i></div>
-                    </div></a><a href="<?php echo base_url();?>assets/pic/shop/gambar2.jpg" class="fancy">
-                    <div class="pic thumbnail"><img src="<?php echo base_url();?>assets/pic/shop/gambar2.jpg" data-at2x="<?php echo base_url();?>assets/pic/shop/gambar2.jpg" alt>
-                      <div class="links"><i class="fa fa-expand"></i></div>
-                    </div></a><a href="<?php echo base_url();?>assets/pic/shop/gambar2.jpg" class="fancy">
-                    <div class="pic thumbnail"><img src="<?php echo base_url();?>assets/pic/shop/gambar2.jpg" data-at2x="<?php echo base_url();?>assets/pic/shop/gambar2.jpg" alt>
-                      <div class="links"><i class="fa fa-expand"></i></div>
-                    </div></a></div>
-                <!-- ! picture-->
-              </div>
-              <!-- ! images of product-->
-              <!-- main description product-->
-              <div class="summary clearfix">
-                <!-- title product-->
-                <h2 class="product-title mt-0">Alun - alun Batu</h2>
-                <!-- ! title product-->
-                <div class="review-status">
-                  <div class="status-product in-stock">Available</div>
-                  <div class="count-review"><span>4</span> Reviews</div>
-                  <div class="status-product">Add Your Review</div>
-                </div>
-                <div class="shop-price"><span class="font-4">Rp. 150 Rb</span> Rp. 90 Rb</div>
-                <div class="cws_divider mb-10"></div>
-                <p class="description-product">Dapet fasilitas lengkap.</p>
-                <div class="price-review"><a href="#" class="cws-button small alt add-to-cart">add to cart</a><a href="shop-cart.html" class="cws-button small alt added-to-cart">View cart</a></div>
-                <div class="mb-0 mt-10 category-line">Category: <a href="#">Dress</a></div>
-                <div class="mb-0 post-number">Product Code: <span>1E8A76-E1879R</span></div>
-                <div class="mb-0 tags-line">Product Tags: <a href="#">Dress</a>, <a href="#">Clothing</a>, <a href="#">Sale</a>, <a href="#">Women’s Dress</a></div>
-              </div>
-              <!-- ! main description product-->
+      <section class="page-section pt-0 pb-50">
+        <div class="container">
+          <div class="menu-widget with-switch mt-30 mb-30">
+            <ul class="magic-line">
+              <li class="current_item"><a href="#overview" class="scrollto">Overview</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="container">
+          <div id="flex-slider" class="flexslider">
+            <ul class="slides">
+            <?php
+                foreach ($foto->result() as $row) {
+                  if ($row->typeFoto_paket == 'destinasi') {
+            ?>
+                    <li><img style="max-width: 1170px;max-height: 480px;" src="<?php echo base_url(); echo $row->foto_paket;?>" alt="Foto Travellover"></li>
+            <?php
+                  }  
+                 }
+            ?>
+            </ul>
+          </div>
+          <div id="flex-carousel" class="flexslider">
+            <ul class="slides">
+            <?php
+                foreach ($foto->result() as $row) {
+                  if ($row->typeFoto_paket == 'destinasi') {
+            ?>
+                    <li><img style="width: 162px;height: 112px;" src="<?php echo base_url(); echo $row->foto_paket;?>" data-at2x="<?php echo base_url(); echo $row->foto_paket;?>" alt="foto travellovertour"></li>
+            <?php
+                  }  
+                 }
+            ?>
+            </ul>
+          </div>
+        </div>
+        <div class="container mt-30">
+          <div class="row">
+            <div class="col-md-8">
               <!-- tabs-->
               <div class="tabs mt-30 mb-50">
                 <div class="block-tabs-btn clearfix">
-                  <div data-tabs-id="tabs1" class="tabs-btn active">Description</div>
-                  <div data-tabs-id="tabs2" class="tabs-btn">Reviews</div>
-                  <div data-tabs-id="tabs3" class="tabs-btn">Add info</div>
+                  <div data-tabs-id="tabs1" class="tabs-btn active">Itenary</div>
+                  <div data-tabs-id="tabs2" class="tabs-btn">Syarat dan ketentuan</div>
+                  <div data-tabs-id="tabs3" class="tabs-btn">Booking Paket</div>
                 </div>
                 <!-- tabs keeper-->
                 <div class="tabs-keeper">
                   <!-- tabs container-->
                   <div data-tabs-id="cont-tabs1" class="container-tabs active">
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. </p>
-                    <ul>
-                      <li>Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris </li>
-                      <li>Bin enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo doesi</li>
-                      <li>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim</li>
-                    </ul>
-                    <p>Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>
+                    <?php foreach ($paket->result() as $row) {
+                        echo $row->itenary_paket;
+                    }?>
                   </div>
                   <!-- /tabs container-->
                   <!-- tabs container-->
                   <div data-tabs-id="cont-tabs2" class="container-tabs">
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. </p>
-                    <ul>
-                      <li>Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris </li>
-                      <li>Bin enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo doesi</li>
-                      <li>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim</li>
-                    </ul>
-                    <p>Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>
+                      <?php foreach ($paket->result() as $row) {
+                        echo $row->syarat_paket;
+                            }
+                      ?>
                   </div>
                   <!-- /tabs container-->
                   <!-- tabs container-->
-                  <div data-tabs-id="cont-tabs3" class="container-tabs">
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. </p>
-                    <ul>
-                      <li>Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris </li>
-                      <li>Bin enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo doesi</li>
-                      <li>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim</li>
-                    </ul>
-                    <p>Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. </p>
+                  <div data-tabs-id="cont-tabs3" class="woocommerce container-tabs">
+                    <form action="<?php echo site_url('Paket/konfirmasi');?>" method="post" enctype="multipart/form-data">
+                      <h4>Berapa Orang?</h4>
+                      <p>Masukkan jumlah orang yang ikut dalam perjalanan ini</p>
+                      <table class="shop_table cart">
+                        <thead>
+                          <tr>
+                            <th>Harga</th>
+                            <th>Jumlah</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="cart_item">
+                            <td>
+                              <span class="amount" style="padding-left: 20px;">Rp. <?php 
+                                   //$row->harga_paket;
+                                  $harga = number_format($row->harga_paket, 0, ',', '.');
+                                  echo $harga;
+                              ?>
+                              <input class="form-control" type="hidden" name="id_paket" id="id_paket" value="<?php foreach ($paket->result() as $row) {echo $row->id_paket;}?>">
+                                <input class="form-control" id="harga_paket" name="harga_paket" type="hidden" value="<?php echo $row->harga_paket?>"> 
+                              </span>
+                            </td>
+                            <td>
+                              <div class="quantity buttons_added">
+                                <input type="number" onkeyup="sum();" id="jumlah_orang" name="jumlah_orang" step="1" min="0" value="1" title="Qty" class="input-text qty text">
+                              </div>
+                            </td>
+                            <td>
+                            <span class="amount">Rp.<input style="margin-left: -3px;border: none;" type="text" name="total" id="total" value="<?php echo number_format($row->harga_paket, 0, ',', '.');?>" disabled>
+                            <input type="hidden" name="total_harga" id="total_harga" value="<?php echo $row->harga_paket;?>">
+                            </span>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="3" class="actions">
+                              <input type="submit" name="proceed" value="Pesan" class="cws-button">
+                              <!--<a href="#" onclick="proceed()" type="submit" id="proceed" name="proceed" class="cws-button">Pesan</a>-->
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </form>
                   </div>
                   <!-- /tabs container-->
                 </div>
@@ -177,85 +205,92 @@
               </div>
               <!-- /tabs-->
             </div>
-            <div class="cws_divider"></div>
-            <!-- post carousel-->
-            <div class="carousel-container mt-50 mb-50">
-              <div class="title-carousel clearfix">
-                <h1 class="carousel-heading">Related products</h1>
-                <div class="carousel-nav">
-                  <div class="prev"><i class="fa fa-angle-left"></i></div>
-                  <div class="next"><i class="fa fa-angle-right"></i></div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="owl-two-item">
-                  <!-- product-->
-                  <div class="shop-item">
-                    <!-- Shop Image-->
-                    <div class="shop-media">
-                      <div class="pic"><img src="<?php echo base_url();?>assets/pic/recomended/gambar.jpg" data-at2x="<?php echo base_url();?>assets/pic/recomended/gambar.jpg" alt></div>
-                      <div class="location">Tour Alun-alun</div>
-                    </div>
-                    <!-- Shop Content-->
-                    <div class="shop-item-body"><a href="#">
-                        <h6 class="shop-title">Tour Alun-alun</h6></a>
-                      <div class="stars stars-4"></div>
-                      <div class="shop-price"><span class="font-4">Rp. 100 Rb</span> Rp. 100 Rb </div>
-                      <p class="mb-30">Deskripsi.</p><a href="#" class="shop-button">Read more</a>
-                      <div class="price-review"><a href="#" class="cws-button small alt add-to-cart">add to cart</a><a href="shop-cart.html" class="cws-button small alt added-to-cart">View cart</a></div>
-                      <div class="action font-2">Rp. 100K</div>
-                      <div class="action sale font-2">SALE</div>
-                    </div>
-                    <div class="link"> <a href="<?php echo base_url();?>assets/pic/recomended/gambar.jpg" class="fancy"><i class="fa fa-expand"></i></a></div>
-                  </div>
-                  <!-- ! product-->
-                  <!-- product-->
-                  <div class="shop-item">
-                    <!-- Shop Image-->
-                    <div class="shop-media">
-                      <div class="pic"><img src="<?php echo base_url();?>assets/pic/recomended/gambar.jpg" data-at2x="<?php echo base_url();?>assets/pic/recomended/gambar.jpg" alt></div>
-                      <div class="location">Tour Alun-alun</div>
-                    </div>
-                    <!-- Shop Content-->
-                    <div class="shop-item-body"><a href="#">
-                        <h6 class="shop-title">Tour Alun-alun</h6></a>
-                      <div class="stars stars-4"></div>
-                      <div class="shop-price"><span class="font-4">Rp. 100 Rb</span> Rp. 100 Rb </div>
-                      <p class="mb-30">Deskripsi.</p><a href="#" class="shop-button">Read more</a>
-                      <div class="price-review"><a href="#" class="cws-button small alt add-to-cart">add to cart</a><a href="shop-cart.html" class="cws-button small alt added-to-cart">View cart</a></div>
-                      <div class="action font-2">Rp. 100K</div>
-                      <div class="action sale font-2">SALE</div>
-                    </div>
-                    <div class="link"> <a href="<?php echo base_url();?>assets/pic/recomended/gambar.jpg" class="fancy"><i class="fa fa-expand"></i></a></div>
-                  </div>
-                  <!-- ! product-->
-                  <!-- product-->
-                  <div class="shop-item">
-                    <!-- Shop Image-->
-                    <div class="shop-media">
-                      <div class="pic"><img src="<?php echo base_url();?>assets/pic/recomended/gambar.jpg" data-at2x="<?php echo base_url();?>assets/pic/recomended/gambar.jpg" alt></div>
-                      <div class="location">Tour Alun-alun</div>
-                    </div>
-                    <!-- Shop Content-->
-                    <div class="shop-item-body"><a href="#">
-                        <h6 class="shop-title">Tour Alun-alun</h6></a>
-                      <div class="stars stars-4"></div>
-                      <div class="shop-price"><span class="font-4">Rp. 100 Rb</span> Rp. 100 Rb </div>
-                      <p class="mb-30">Deskripsi.</p><a href="#" class="shop-button">Read more</a>
-                      <div class="price-review"><a href="#" class="cws-button small alt add-to-cart">add to cart</a><a href="shop-cart.html" class="cws-button small alt added-to-cart">View cart</a></div>
-                      <div class="action font-2">Rp. 100K</div>
-                      <div class="action sale font-2">SALE</div>
-                    </div>
-                    <div class="link"> <a href="<?php echo base_url();?>assets/pic/recomended/gambar.jpg" class="fancy"><i class="fa fa-expand"></i></a></div>
-                  </div>
-                  <!-- ! product-->
-                </div>
+            <div class="col-md-4">
+              <div class="bg-gray-3 p-30-40" style="margin-top: 28px;" >
+                <?php 
+                foreach ($paket->result() as $row) {
+                ?>
+                  <!-- title product-->
+                  <h2 class="product-title mt-0"><?php echo $row->nama_paket?></h2>
+                  <div class="cws_divider mb-10"></div>
+                  <!-- ! title product-->
+                  <h5>
+                    <i class="fa fa-map-marker"></i> <?php echo $row->lokasi_paket?>
+                  </h5>
+                  <h5>Rp. <?php $harga = number_format($row->harga_paket, 0, ',', '.');
+                                  echo $harga;?></h5>
+                  <p class="description-product"><?php echo $row->deskripsi_paket;?></p>
+                <?php
+                }
+                ?>
               </div>
             </div>
-            <!-- ! post carousel-->
           </div>
-          <!-- ! content-->
         </div>
+        <div class="container">
+          <div class="row">
+            <!-- content-->
+            <div class="col-md-12">
+              <!-- /Main Single Produk-->
+              <div class="cws_divider"></div>
+              <!-- post carousel-->
+              <div class="carousel-container mt-50 mb-50">
+                <div class="title-carousel clearfix">
+                  <h1 class="carousel-heading">Rekomendasi Paket</h1>
+                  <div class="carousel-nav">
+                    <div class="prev"><i class="fa fa-angle-left"></i></div>
+                    <div class="next"><i class="fa fa-angle-right"></i></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="owl-four-item">
+                    <?php
+                      foreach ($popular_paket->result() as $row) {
+                    ?>
+                      <!-- product-->
+                      <div class="shop-item">
+                        <!-- Shop Image-->
+                        <div class="shop-media">
+                          <div class="pic">
+                            <img width="100%" height="100%" src="<?php foreach($fotoPopular_paket->result() as $row2){if ($row2->typeFoto_paket == 'destinasi' && $row2->id_paket == $row->id_paket){echo base_url();echo $row2->foto_paket;break;}};?>" data-at2x="<?php foreach($fotoPopular_paket->result() as $row2){if ($row2->typeFoto_paket == 'destinasi' && $row2->id_paket == $row->id_paket){echo base_url();echo $row2->foto_paket;break;}};?>" alt="foto paket">
+                          </div>
+                          <div class="location"><?php echo $row->lokasi_paket;?></div>
+                        </div>
+                        <!-- Shop Content-->
+                        <div class="shop-item-body">
+                          <a href="#">
+                            <h6 class="shop-title"><?php echo $row->lokasi_paket;?></h6>
+                          </a>
+                          <div class="stars stars-4"></div>
+                          <div class="shop-price">Rp. <?php echo number_format($row->harga_paket, 0, ',', '.');?></div>
+                          <p class="mb-30"><?php echo $row->deskripsi_paket;?></p>
+                          <div class="price-review">
+                    <?php
+                            echo "<a href='http://localhost/travellovertour/Paket/pesan/$row->id_paket' class='cws-button small alt'>Lihat Paket</a>";
+                    ?>
+                          </div>
+                          <div class="action font-2">Rp. <?php echo number_format($row->harga_paket, 0, ',', '.');?></div>
+                          <div class="action sale font-2">OPEN</div>
+                        </div>
+                        <div class="link"> <a href="<?php foreach($fotoPopular_paket->result() as $row2){if ($row2->typeFoto_paket == 'destinasi' && $row2->id_paket == $row->id_paket){echo base_url();echo $row2->foto_paket;break;}};?>" class="fancy"><i class="fa fa-expand"></i></a>
+                        </div>
+                      </div>
+                      <!-- ! product-->
+                    <?php
+                      }
+                    ?>
+                  </div>
+                </div>
+                <!-- Row -->
+              </div>
+              <!-- ! post carousel-->
+            </div>
+            <!-- ! content-->
+          </div>
+          <!-- /Row -->
+        </div>
+        <!-- /Container Row-->
+        </section>
       </div>
     </div>
      <!-- footer-->
@@ -300,5 +335,32 @@
     <!-- ! footer-->
     
     <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script><script src="<?php echo base_url();?>assets/js/jquery-ui.min.js"></script><script src="<?php echo base_url();?>assets/js/bootstrap.js"></script><script src="<?php echo base_url();?>assets/js/owl.carousel.js"></script><script src="<?php echo base_url();?>assets/js/jquery.sticky.js"></script><script src="<?php echo base_url();?>assets/js/TweenMax.min.js"></script><script src="<?php echo base_url();?>assets/js/cws_parallax.js"></script><script src="<?php echo base_url();?>assets/js/jquery.fancybox.pack.js"></script><script src="<?php echo base_url();?>assets/js/jquery.fancybox-media.js"></script><script src="<?php echo base_url();?>assets/js/isotope.pkgd.min.js"></script><script src="<?php echo base_url();?>assets/js/imagesloaded.pkgd.min.js"></script><script src="<?php echo base_url();?>assets/js/masonry.pkgd.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/jquery.themepunch.tools.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/jquery.themepunch.revolution.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.parallax.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.video.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.kenburn.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.migration.min.js"></script><script src="<?php echo base_url();?>assets/js/jquery.validate.min.js"></script><script src="<?php echo base_url();?>assets/js/jquery.form.min.js"></script><script src="<?php echo base_url();?>assets/js/script.js"></script><script src="<?php echo base_url();?>assets/js/bg-video/cws_self_vimeo_bg.js"></script><script src="<?php echo base_url();?>assets/js/bg-video/jquery.vimeo.api.min.js"></script><script src="<?php echo base_url(); ?>assets/js/bg-video/cws_YT_bg.js"></script><script src="<?php echo base_url(); ?>assets/js/jquery.tweet.js"></script><script src="<?php echo base_url();?>assets/js/jquery.scrollTo.min.js"></script><script src="<?php echo base_url();?>assets/js/jquery.flexslider.js"></script><script src="<?php echo base_url();?>assets/js/retina.min.js"></script>
+    <script>
+      function sum() {
+        var harga_paket = $('#harga_paket').val();
+        var jumlah_orang = $('#jumlah_orang').val();
+        document.getElementById('total_harga').value = jumlah_orang * harga_paket ;
+        var result = parseInt(harga_paket) * parseInt(jumlah_orang);
+
+        var angkaInt = parseInt(result, 10);
+        var angkaStr = angkaInt.toString();
+        var angkaStrRev = angkaStr.split('').reverse().join('');
+        var angkaStrRevTitik = '';
+        for(var i = 0; i < angkaStrRev.length; i++){
+            angkaStrRevTitik += angkaStrRev[i];
+            if((i+1) % 3 === 0 && i !== (angkaStrRev.length-1)){
+                angkaStrRevTitik += '.';
+            }
+        }
+        var angkaRp = angkaStrRevTitik.split('').reverse().join('');
+        var harga_paket2 = angkaRp;
+
+
+        if (!isNaN(result)) {
+           document.getElementById('total').value = harga_paket2;
+
+        }
+      }
+    </script>
   </body>
 </html>

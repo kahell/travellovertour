@@ -28,22 +28,10 @@
               <li class="slash">/</li>
               <!-- Item With Sub-->
               <li>
-                  <a href="#" class="mn-has-sub">Hotels <i class="button_open"></i></a>
-              </li>
-              <!-- End Item With Sub-->
-              <li class="slash">/</li>
-              <!-- Item With Sub-->
-              <li>
                   <a href="#" class="mn-has-sub">Kendaraan <i class="button_open"></i></a>
               </li>
               <!-- End Item With Sub-->
               <!-- span /-->
-              <li class="slash">/</li>
-              <!-- Item With Sub-->
-              <li>
-                  <a href="#" class="mn-has-sub">Private <i class="button_open"></i></a>
-              </li>
-              <!-- End Item With Sub-->
               <li class="slash">/</li>
               <!-- Item-->
               <li>
@@ -80,6 +68,19 @@
       <div class="tp-banner-container">
         <div class="tp-banner-slider">
           <ul>
+          <?php 
+            foreach ($slider->result() as $row) {?>
+              <li data-masterspeed="700" data-slotamount="7" data-transition="fade"><img src="<?php echo base_url();?><?php echo $row->pic;?>" data-lazyload="<?php echo base_url();?><?php echo $row->pic;?>" data-bgposition="center" alt="" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10">
+              <div data-x="['center','center','center','center']" data-y="center" data-transform_in="x:-150px;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="x:150px;opacity:0;s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-start="400" class="tp-caption sl-content">
+                <div class="sl-title-top">Welcome to</div>
+                <div class="sl-title"><?php echo $row->namePic?></div>
+                <div class="sl-title-bot">Starting <span><?php echo $row->pricePic?></span> per night</div>
+              </div>
+            </li>
+          <?php  
+            }
+          ?>
+          <!--
             <li data-masterspeed="700" data-slotamount="7" data-transition="fade"><img src="<?php echo base_url();?>assets/rs-plugin/assets/loader.gif" data-lazyload="<?php echo base_url();?>assets/images/destinasi/malang/batu1.jpg" data-bgposition="center" alt="" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10">
               <div data-x="['center','center','center','center']" data-y="center" data-transform_in="x:-150px;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="x:150px;opacity:0;s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-start="400" class="tp-caption sl-content">
                 <div class="sl-title-top">Welcome to</div>
@@ -100,161 +101,71 @@
                 <div class="sl-title">Musium Angkut</div>
                 <div class="sl-title-bot">Starting <span>Rp. 50 K</span> per night</div>
               </div>
-            </li>
+            </li>-->
           </ul>
         </div>
-        <!-- search tours form-->
-        <div class="search-tours-form">
-          <div class="container">
-            <div class="search-tours-wrap">
-              <div class="search-tours-tabs">
-                <div class="search-tabs-wrap">
-                  <div data-tours-cat="tab-cat-1" class="tours-tab-btn active"><span>Paket</span><i class="tours-tab-icon flaticon-suntour-world"></i></div>
-                  <div data-tours-cat="tab-cat-2" class="tours-tab-btn"> <span>Private</span><i class="tours-tab-icon flaticon-suntour-fireworks"></i></div>
-                  <div data-tours-cat="tab-cat-3" class="tours-tab-btn"> <span>Hotels</span><i class="tours-tab-icon flaticon-suntour-hotel"></i></div>
-                  <div data-tours-cat="tab-cat-4" class="tours-tab-btn"> <span>Kendaraan</span><i class="tours-tab-icon flaticon-suntour-car"></i></div>
+        <!-- slider info-->
+        <div class="slider-info-wrap clearfix">
+          <div class="slider-info-content">
+            <div class="slider-info-item">
+              <div class="info-item-media"><img src="<?php echo base_url();?>assets/pic/slider-info-4.jpg" data-at2x="<?php echo base_url();?>assets/pic/slider-info-4@2x.jpg" alt>
+                <div class="info-item-text">
+                  <div class="info-price font-4"><span>Hanya Rp.</span> 80 K</div>
+                  <p class="info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet.</p>
                 </div>
               </div>
-              <div class="search-tours-content">
-                <div data-tours-cat="tab-cat-1" class="tours-container active">
-                  <div class="tours-box">
-                    <div class="tours-search">
-                      <form method="post" class="form search divider-skew">
-                        <div class="search-wrap">
-                          <input type="text" placeholder="Destination" class="form-control search-field"><i class="flaticon-suntour-map search-icon"></i>
-                        </div>
-                      </form>
-                      <div class="tours-calendar divider-skew"> 
-                        <input placeholder="Depart date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="calendar-default textbox-n"><i class="flaticon-suntour-calendar calendar-icon"></i>
-                      </div>
-                      <div class="tours-calendar divider-skew"> 
-                        <input placeholder="Return date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="calendar-default textbox-n"><i class="flaticon-suntour-calendar calendar-icon"></i>
-                      </div>
-                      <div class="selection-box divider-skew"><i class="flaticon-suntour-adult box-icon"></i>
-                        <select>
-                          <option>Adult</option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                      </div>
-                      <div class="selection-box"><i class="flaticon-suntour-children box-icon"></i>
-                        <select>
-                          <option>Child</option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                      </div>
-                      <div class="button-search">Search</div>
-                    </div>
-                  </div>
+              <div class="info-item-content">
+                <div class="main-title">
+                  <h3 class="title"><span class="font-4">Batu</span> Indonesia</h3>
+                  <div class="price"><span>Rp.80K</span> private</div><a href="#" class="button">Details</a>
                 </div>
-                <div data-tours-cat="tab-cat-2" style="display: none;" class="tours-container">
-                  <div class="holidays-box">
-                    <div class="holidays-search">
-                      <form method="post" class="form search divider-skew">
-                        <div class="search-wrap">
-                          <input type="text" placeholder="Destination" class="form-control search-field"><i class="flaticon-suntour-map search-icon"></i>
-                        </div>
-                      </form>
-                      <div class="tours-calendar divider-skew"> 
-                        <input placeholder="Depart date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="calendar-default textbox-n"><i class="flaticon-suntour-calendar calendar-icon"></i>
-                      </div>
-                      <div class="tours-calendar divider-skew"> 
-                        <input placeholder="Return date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="calendar-default textbox-n"><i class="flaticon-suntour-calendar calendar-icon"></i>
-                      </div>
-                      <div class="selection-box divider-skew"><i class="flaticon-suntour-adult box-icon"></i>
-                        <select>
-                          <option>Adult</option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                      </div>
-                      <div class="selection-box"><i class="flaticon-suntour-children box-icon"></i>
-                        <select>
-                          <option>Child</option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                      </div>
-                      <div class="button-search">Search</div>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div class="slider-info-item">
+              <div class="info-item-media"><img src="<?php echo base_url();?>assets/pic/slider-info-4.jpg" data-at2x="<?php echo base_url();?>assets/pic/slider-info-4@2x.jpg" alt>
+                <div class="info-item-text">
+                  <div class="info-price font-4"><span>Hanya Rp.</span> 80 K</div>
+                  <p class="info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet.</p>
                 </div>
-                <div data-tours-cat="tab-cat-3" style="display: none;" class="tours-container">
-                  <div class="hotels-box">
-                    <div class="hotels-search">
-                      <form method="post" class="form search">
-                        <div class="search-wrap">
-                          <input type="text" placeholder="Destination, hotel name, airport, train station, landmark or address" class="form-control search-field"><i class="flaticon-suntour-map search-icon"></i>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="hotels-select">
-                      <div class="tours-calendar divider-skew"> 
-                        <input placeholder="Check in" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="calendar-default textbox-n"><i class="flaticon-suntour-calendar calendar-icon"></i>
-                      </div>
-                      <div class="tours-calendar divider-skew"> 
-                        <input placeholder="Check out" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="calendar-default textbox-n"><i class="flaticon-suntour-calendar calendar-icon"></i>
-                      </div>
-                      <div class="selection-box divider-skew"><i class="flaticon-suntour-bed box-icon"></i>
-                        <select>
-                          <option>Rooms</option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                      </div>
-                      <div class="selection-box divider-skew"><i class="flaticon-suntour-adult box-icon"></i>
-                        <select>
-                          <option>Adults</option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                      </div>
-                      <div class="selection-box"><i class="flaticon-suntour-children box-icon"></i>
-                        <select>
-                          <option>Children</option>
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                      </div>
-                      <div class="button-search">Search</div>
-                    </div>
-                  </div>
+              </div>
+              <div class="info-item-content">
+                <div class="main-title">
+                  <h3 class="title"><span class="font-4">Batu</span> Indonesia</h3>
+                  <div class="price"><span>Rp.80K</span> private</div><a href="#" class="button">Details</a>
                 </div>
-                <div data-tours-cat="tab-cat-4" style="display: none;" class="tours-container">
-                  <div class="cruise-box">
-                    <div class="cruise-search"> 
-                      <form method="post" class="form search divider-skew">
-                        <div class="search-wrap">
-                          <input type="text" placeholder="Destination" class="form-control search-field"><i class="flaticon-suntour-map search-icon"></i>
-                        </div>
-                      </form>
-                      <div class="tours-calendar"> 
-                        <input placeholder="Depart date" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="calendar-default textbox-n"><i class="flaticon-suntour-calendar calendar-icon"></i>
-                      </div>
-                      <div class="button-search">Search</div>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div class="slider-info-item">
+              <div class="info-item-media"><img src="<?php echo base_url();?>assets/pic/slider-info-4.jpg" data-at2x="<?php echo base_url();?>assets/pic/slider-info-4@2x.jpg" alt>
+                <div class="info-item-text">
+                  <div class="info-price font-4"><span>Hanya Rp.</span> 80 K</div>
+                  <p class="info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet.</p>
+                </div>
+              </div>
+              <div class="info-item-content">
+                <div class="main-title">
+                  <h3 class="title"><span class="font-4">Batu</span> Indonesia</h3>
+                  <div class="price"><span>Rp.80K</span> private</div><a href="#" class="button">Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="slider-info-item">
+              <div class="info-item-media"><img src="<?php echo base_url();?>assets/pic/slider-info-4.jpg" data-at2x="<?php echo base_url();?>assets/pic/slider-info-4@2x.jpg" alt>
+                <div class="info-item-text">
+                  <div class="info-price font-4"><span>Hanya Rp.</span> 80 K</div>
+                  <p class="info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet.</p>
+                </div>
+              </div>
+              <div class="info-item-content">
+                <div class="main-title">
+                  <h3 class="title"><span class="font-4">Batu</span> Indonesia</h3>
+                  <div class="price"><span>Rp.80K</span> private</div><a href="#" class="button">Details</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- ! search tours form-->
+        <!-- ! slider-info-->
       </div>
       <!-- page section-->
       <section class="page-section pb-0">
@@ -363,46 +274,45 @@
         </div>
       </section>
       <!-- ! page section-->
-      <!-- counter section -->
-      <section class="small-section">
+       <!-- page services-->
+      <section class="page-section cws_prlx_section pb-100 bg-gray-60" id="cws_prlx_section_993030094111"><img src="<?php echo base_url();?>pic/parallax-5.jpg" alt="" class="cws_prlx_layer" id="cws_prlx_layer_639447629024" style="transform: translate(-50%, 0px);">
         <div class="container">
           <div class="row">
-            <div class="col-md-3 col-xs-6 mb-md-30">
-              <div class="counter-block"><i class="counter-icon flaticon-suntour-world"></i>
-                <div class="counter-name-wrap">
-                  <div data-count="345" class="counter">0</div>
-                  <div class="counter-name">Tours</div>
-                </div>
+            <div class="col-md-8">
+              <h2 class="title-section alt"><span>Our</span> Services</h2>
+              <div class="cws_divider mb-25 mt-5"></div>
+              <p class="color-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet. </p>
+            </div>
+          </div>
+          <div class="row">
+            <!-- ! service item-->
+            <div class="col-md-4 col-sm-6 mb-40">
+              <div class="service-item icon-center color-icon border"><i class="flaticon-suntour-hotel cws-icon type-1 color-2"></i>
+                <h3>Info &amp; Guides</h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet.</p>
               </div>
             </div>
-            <div class="col-md-3 col-xs-6 mb-md-30">
-              <div class="counter-block with-divider"><i class="counter-icon flaticon-suntour-fireworks"></i>
-                <div class="counter-name-wrap">
-                  <div data-count="438" class="counter">0</div>
-                  <div class="counter-name">Holidays</div>
-                </div>
+            <!-- ! service item-->
+            <!-- ! service item-->
+            <div class="col-md-4 col-sm-6 mb-40">
+              <div class="service-item icon-center color-icon border"><i class="flaticon-suntour-car cws-icon type-1 color-2"></i>
+                <h3>Sewa Mobil</h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet.</p>
               </div>
             </div>
-            <div class="col-md-3 col-xs-6 mb-md-30">
-              <div class="counter-block with-divider"><i class="counter-icon flaticon-suntour-hotel"></i>
-                <div class="counter-name-wrap">
-                  <div data-count="526" class="counter">0</div>
-                  <div class="counter-name">Hotels</div>
-                </div>
+            <!-- ! service item-->
+            <!-- ! service item-->
+            <div class="col-md-4 col-sm-6 mb-40">
+              <div class="service-item icon-center color-icon border"><i class="flaticon-suntour-fireworks cws-icon type-1 color-2"></i>
+                <h3>Paket Tour</h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet.</p>
               </div>
             </div>
-            <div class="col-md-3 col-xs-6">
-              <div class="counter-block with-divider"><i class="counter-icon flaticon-suntour-car"></i>
-                <div class="counter-name-wrap">
-                  <div data-count="675" class="counter">0</div>
-                  <div class="counter-name">Kendaraan</div>
-                </div>
-              </div>
-            </div>
+            <!-- ! service item-->
           </div>
         </div>
       </section>
-      <!-- ! counter section-->
+      <!-- ! page services-->
       <!-- page section parallax-->
       <section class="small-section cws_prlx_section bg-gray-40"><img src="<?php echo base_url();?>assets/pic/parallax-1.jpg" alt class="cws_prlx_layer">
         <div class="container">
@@ -410,7 +320,7 @@
             <div class="col-md-5">
               <h2 class="title-section-top alt">About</h2>
               <h2 class="title-section alt mb-20"><span>Travel</span>lovertour</h2>
-              <p class="color-white">Travellover tour adalah salah satu agen travel terbesar di Jawa Timur.</p>
+              <p class="color-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet. Mauris mi tortor, mattis sed dignissim quis, posuere ut orci. Duis lorem mi, varius et augue ut, pellentesque porta ligula. Aenean mollis neque ut mi ultricies, id pulvinar urna tristique. Proin ut commodo eros. Suspendisse laoreet velit ante, eu feugiat enim posuere ut. Quisque aliquet ipsum a felis fringilla egestas. Maecenas sit amet velit id metus auctor suscipit id non diam.</p>
               <div class="cws_divider short mb-30 mt-30"></div>
               <h3 class="font-5 color-white font-medium">Pasca</h3>
             </div>
@@ -438,116 +348,88 @@
           <div class="row">
             <!-- Recomended item-->
             <div class="col-md-6">
-              <div class="recom-item">
-                <div class="recom-media"><a href="#">
-                    <div class="pic"><img src="<?php echo base_url();?>assets/pic/recomended/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/recomended/1@2x.jpg" alt></div></a>
-                  <div class="location"><i class="flaticon-suntour-map"></i> Malang, Indonesia</div>
+              <!-- Blog item-->
+                <div class="blog-item clearfix">
+                  <!-- Blog Image-->
+                  <div class="blog-media"><a href="blog-single.html">
+                      <div class="pic"><img src="<?php echo base_url();?>assets/pic/blog/270x270/1.jpg" data-at2x="pic/blog/270x270/1@2x.jpg" alt></div></a>
+                  </div>
+                  <!-- blog body-->
+                  <div class="blog-item-body clearfix">
+                    <!-- title-->
+                    <a href="blog-single.html">
+                      <h6 class="blog-title">Sed semper lacus et enim sodales</h6></a>
+                    <div class="blog-item-data">Mon, 03-23-2016</div>
+                    <!-- Text Intro-->
+                    <p>Etiam maximus molestie accumsan. Sed metus sapien, fermentum nec lorem ac, tempor gravida arcu.</p><a href="blog-single.html" class="blog-button">Read more</a>
+                  </div>
                 </div>
-                <!-- Recomended Content-->
-                <div class="recom-item-body"><a href="#">
-                    <h6 class="blog-title">Hotel UB</h6></a>
-                  <div class="stars stars-4"></div>
-                  <div class="recom-price"><span class="font-4">Rp. 150 K</span> per night</div>
-                  <p class="mb-30">Fasilitas sangat lengkap.</p><a href="#" class="recom-button">Read more</a><a href="#" class="cws-button small alt">Book now</a>
-                  <div class="action font-2">20%</div>
-                </div>
-                <!-- Recomended Image-->
-              </div>
+                <!-- ! Blog item-->
             </div>
             <!-- ! Recomended item-->
             <!-- Recomended item-->
             <div class="col-md-6">
-              <div class="recom-item">
-                <div class="recom-media"><a href="#">
-                    <div class="pic"><img src="<?php echo base_url();?>assets/pic/recomended/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/recomended/1@2x.jpg" alt></div></a>
-                  <div class="location"><i class="flaticon-suntour-map"></i> Malang, Indonesia</div>
+              <!-- Blog item-->
+                <div class="blog-item clearfix">
+                  <!-- Blog Image-->
+                  <div class="blog-media"><a href="blog-single.html">
+                      <div class="pic"><img src="<?php echo base_url();?>assets/pic/blog/270x270/1.jpg" data-at2x="pic/blog/270x270/1@2x.jpg" alt></div></a>
+                  </div>
+                  <!-- blog body-->
+                  <div class="blog-item-body clearfix">
+                    <!-- title-->
+                    <a href="blog-single.html">
+                      <h6 class="blog-title">Sed semper lacus et enim sodales</h6></a>
+                    <div class="blog-item-data">Mon, 03-23-2016</div>
+                    <!-- Text Intro-->
+                    <p>Etiam maximus molestie accumsan. Sed metus sapien, fermentum nec lorem ac, tempor gravida arcu.</p><a href="blog-single.html" class="blog-button">Read more</a>
+                  </div>
                 </div>
-                <!-- Recomended Content-->
-                <div class="recom-item-body"><a href="#">
-                    <h6 class="blog-title">Hotel UB</h6></a>
-                  <div class="stars stars-4"></div>
-                  <div class="recom-price"><span class="font-4">Rp. 150 K</span> per night</div>
-                  <p class="mb-30">Fasilitas sangat lengkap.</p><a href="#" class="recom-button">Read more</a><a href="#" class="cws-button small alt">Book now</a>
-                  <div class="action font-2">20%</div>
+                <!-- ! Blog item-->
+            </div>
+            <!-- ! Recomended item-->
+          </div>
+            <div class="row">
+            <!-- Recomended item-->
+            <div class="col-md-6">
+              <!-- Blog item-->
+                <div class="blog-item clearfix">
+                  <!-- Blog Image-->
+                  <div class="blog-media"><a href="blog-single.html">
+                      <div class="pic"><img src="<?php echo base_url();?>assets/pic/blog/270x270/1.jpg" data-at2x="pic/blog/270x270/1@2x.jpg" alt></div></a>
+                  </div>
+                  <!-- blog body-->
+                  <div class="blog-item-body clearfix">
+                    <!-- title-->
+                    <a href="blog-single.html">
+                      <h6 class="blog-title">Sed semper lacus et enim sodales</h6></a>
+                    <div class="blog-item-data">Mon, 03-23-2016</div>
+                    <!-- Text Intro-->
+                    <p>Etiam maximus molestie accumsan. Sed metus sapien, fermentum nec lorem ac, tempor gravida arcu.</p><a href="blog-single.html" class="blog-button">Read more</a>
+                  </div>
                 </div>
-                <!-- Recomended Image-->
-              </div>
+                <!-- ! Blog item-->
             </div>
             <!-- ! Recomended item-->
             <!-- Recomended item-->
             <div class="col-md-6">
-              <div class="recom-item">
-                <div class="recom-media"><a href="#">
-                    <div class="pic"><img src="<?php echo base_url();?>assets/pic/recomended/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/recomended/1@2x.jpg" alt></div></a>
-                  <div class="location"><i class="flaticon-suntour-map"></i> Malang, Indonesia</div>
+              <!-- Blog item-->
+                <div class="blog-item clearfix">
+                  <!-- Blog Image-->
+                  <div class="blog-media"><a href="blog-single.html">
+                      <div class="pic"><img src="<?php echo base_url();?>assets/pic/blog/270x270/1.jpg" data-at2x="pic/blog/270x270/1@2x.jpg" alt></div></a>
+                  </div>
+                  <!-- blog body-->
+                  <div class="blog-item-body clearfix">
+                    <!-- title-->
+                    <a href="blog-single.html">
+                      <h6 class="blog-title">Sed semper lacus et enim sodales</h6></a>
+                    <div class="blog-item-data">Mon, 03-23-2016</div>
+                    <!-- Text Intro-->
+                    <p>Etiam maximus molestie accumsan. Sed metus sapien, fermentum nec lorem ac, tempor gravida arcu.</p><a href="blog-single.html" class="blog-button">Read more</a>
+                  </div>
                 </div>
-                <!-- Recomended Content-->
-                <div class="recom-item-body"><a href="#">
-                    <h6 class="blog-title">Hotel UB</h6></a>
-                  <div class="stars stars-4"></div>
-                  <div class="recom-price"><span class="font-4">Rp. 150 K</span> per night</div>
-                  <p class="mb-30">Fasilitas sangat lengkap.</p><a href="#" class="recom-button">Read more</a><a href="#" class="cws-button small alt">Book now</a>
-                  <div class="action font-2">20%</div>
-                </div>
-                <!-- Recomended Image-->
-              </div>
-            </div>
-            <!-- ! Recomended item-->
-            <!-- Recomended item-->
-            <div class="col-md-6">
-              <div class="recom-item">
-                <div class="recom-media"><a href="#">
-                    <div class="pic"><img src="<?php echo base_url();?>assets/pic/recomended/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/recomended/1@2x.jpg" alt></div></a>
-                  <div class="location"><i class="flaticon-suntour-map"></i> Malang, Indonesia</div>
-                </div>
-                <!-- Recomended Content-->
-                <div class="recom-item-body"><a href="#">
-                    <h6 class="blog-title">Hotel UB</h6></a>
-                  <div class="stars stars-4"></div>
-                  <div class="recom-price"><span class="font-4">Rp. 150 K</span> per night</div>
-                  <p class="mb-30">Fasilitas sangat lengkap.</p><a href="#" class="recom-button">Read more</a><a href="#" class="cws-button small alt">Book now</a>
-                  <div class="action font-2">20%</div>
-                </div>
-                <!-- Recomended Image-->
-              </div>
-            </div>
-            <!-- ! Recomended item-->
-            <!-- Recomended item-->
-            <div class="col-md-6">
-              <div class="recom-item">
-                <div class="recom-media"><a href="#">
-                    <div class="pic"><img src="<?php echo base_url();?>assets/pic/recomended/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/recomended/1@2x.jpg" alt></div></a>
-                  <div class="location"><i class="flaticon-suntour-map"></i> Malang, Indonesia</div>
-                </div>
-                <!-- Recomended Content-->
-                <div class="recom-item-body"><a href="#">
-                    <h6 class="blog-title">Hotel UB</h6></a>
-                  <div class="stars stars-4"></div>
-                  <div class="recom-price"><span class="font-4">Rp. 150 K</span> per night</div>
-                  <p class="mb-30">Fasilitas sangat lengkap.</p><a href="#" class="recom-button">Read more</a><a href="#" class="cws-button small alt">Book now</a>
-                  <div class="action font-2">20%</div>
-                </div>
-                <!-- Recomended Image-->
-              </div>
-            </div>
-            <!-- ! Recomended item-->
-            <!-- Recomended item-->
-            <div class="col-md-6">
-              <div class="recom-item">
-                <div class="recom-media"><a href="#">
-                    <div class="pic"><img src="<?php echo base_url();?>assets/pic/recomended/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/recomended/1@2x.jpg" alt></div></a>
-                  <div class="location"><i class="flaticon-suntour-map"></i> Malang, Indonesia</div>
-                </div>
-                <!-- Recomended Content-->
-                <div class="recom-item-body"><a href="#">
-                    <h6 class="blog-title">Hotel UB</h6></a>
-                  <div class="stars stars-4"></div>
-                  <div class="recom-price"><span class="font-4">Rp. 150 K</span> per night</div>
-                  <p class="mb-30">Fasilitas sangat lengkap.</p><a href="#" class="recom-button">Read more</a><a href="#" class="cws-button small alt">Book now</a>
-                  <div class="action font-2">20%</div>
-                </div>
-                <!-- Recomended Image-->
-              </div>
+                <!-- ! Blog item-->
             </div>
             <!-- ! Recomended item-->
           </div>

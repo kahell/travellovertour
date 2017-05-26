@@ -11673,7 +11673,7 @@ form.form .subscribe-submit {
     position: absolute;
     z-index: 1;
     top: 30px;
-    right: -68px;
+    right: 0px;
     color: #ffffff;
     background: #f91549;
     font-size: 16px;
@@ -11683,7 +11683,7 @@ form.form .subscribe-submit {
     -o-transition: all 0.3s;
     transition: all 0.3s;
     font-weight: 600;
-    width: 70px;
+    width: auto;
 }
 
 .shop-item .shop-item-body .action.sale {
@@ -11718,7 +11718,9 @@ form.form .subscribe-submit {
 }
 
 .shop-item .shop-media .pic img {
-    max-width: none;
+    max-width: auto;
+    height: 300px;
+    margin-left: 25%;
     -webkit-transform: translateX(-25%);
     -moz-transform: translateX(-25%);
     -ms-transform: translateX(-25%);
@@ -14637,3 +14639,10 @@ p.error:before {
         transform: translateX(-20%);
     }
 }
+
+/* CSS Untuk view Konfirmasi*/
+
+
+
+
+
