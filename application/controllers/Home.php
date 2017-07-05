@@ -17,6 +17,7 @@ class Home extends CI_Controller {
     public function index() {
         //Slider
         $data['slider'] = $this->Home_model->getData('home', '');
+        //
         //End of slider
        $this->load->view('Home' , $data);
     }

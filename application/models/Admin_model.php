@@ -28,14 +28,31 @@ Class Admin_model extends CI_Model{
     //2. Home - Model ----------------------------------------------------------
     // - Slider
     function getDataSlider(){
-        $this->db->select('*');
-        $this->db->from('home');
+        $this->db->select('id_paket, pict_paket, harga_paket, nama_paket, lokasi_paket, slider_paket, popular_paket');
+        $this->db->where("aktif_paket = 'aktif'");
+        $this->db->from('paket');
         $query = $this->db->get();
 	    if($query->num_rows() > 0){
 			return $query;
 	    }else{
 			return false;
 	    }
+	}
+
+	function sumDataSlider(){
+        $this->db->select("SUM(slider_paket = '1') as slider_paket");
+        $this->db->where("aktif_paket = 'aktif'");
+        $this->db->from('paket');
+        $query = $this->db->get();
+	    return $query->row()->slider_paket;
+	}
+
+	function sumDataPopular(){
+        $this->db->select("SUM(popular_paket = '1') as popular_paket");
+        $this->db->where("aktif_paket = 'aktif'");
+        $this->db->from('paket');
+        $query = $this->db->get();
+	    return $query->row()->popular_paket;
 	}
     
     // - Slider in Admin for CRUD
@@ -106,6 +123,36 @@ Class Admin_model extends CI_Model{
 	{
 		$this->db->where('foto_paket', $foto);
 		$this->db->delete($tableName);
+	}
+
+	// - Testimonial
+	public function getDataTesti(){
+		$query = $this->db->query("select * from testimonial where 1");
+	    if($query->num_rows() > 0){
+			return $query;
+	    }else{
+			return false;
+	    }
+	}
+
+	public function testi_update($tableName, $where, $data)
+	{
+		$this->db->update($tableName, $data, $where);
+		return $this->db->affected_rows();
+	}
+	// - Gallery
+	public function getGalleryById($id_gallery)
+	{	
+		$this->db->select("pict_gallery");
+		$this->db->from('gallery');
+		$this->db->where('id_gallery',$id_gallery);
+		$query = $this->db->get();
+		return $query->row()->pict_gallery;
+	}
+	public function gallery_add($tableName, $data)
+	{
+		$this->db->insert($tableName, $data);
+		return $this->db->insert_id();
 	}
     //End of Home-Model -------------------------------------------------------
 }

@@ -21,11 +21,107 @@ public function index() {
 		$data['namaAdmin']  = $inputNamePicadmin['username'];
 		//Select Slider
 		$data['slider'] = $this->admin->getDataSlider();
-
+		$data['sumSlider'] = $this->admin->sumDataSlider();
+		$data['sumPopularPost'] = $this->admin->sumDataPopular();
+		//Select Testimonial
+		$data['testimonial'] = $this->admin->getDataTesti();
+		//die(var_dump($data['testimonial']->result()));
 		$this->load->view('Admin' , $data); 
 	}else{
 		$this->load->view('Login'); 
 	}
+}
+
+public function sliderOn($id){
+	if (empty($id)) {
+		echo json_encode('error');
+	}else{
+		$data = array(
+			'slider_paket' => 1,
+			);
+		$insert = $this->admin->paket_update('paket',"id_paket = '$id'",$data);
+		echo json_encode($insert);
+	}
+}
+
+public function sliderOff($id){
+	if (empty($id)) {
+		echo json_encode('error');
+	}else{
+		$data = array(
+			'slider_paket' => 0,
+			);
+		$insert = $this->admin->paket_update('paket',"id_paket = '$id'",$data);
+		echo json_encode($insert);
+	}
+}
+
+public function popularOn($id){
+	if (empty($id)) {
+		echo json_encode('error');
+	}else{
+		$data = array(
+			'popular_paket' => 1,
+			);
+		$insert = $this->admin->paket_update('paket',"id_paket = '$id'",$data);
+		echo json_encode($insert);
+	}
+}
+
+public function popularOff($id){
+	if (empty($id)) {
+		echo json_encode('error');
+	}else{
+		$data = array(
+			'popular_paket' => 0,
+			);
+		$insert = $this->admin->paket_update('paket',"id_paket = '$id'",$data);
+		echo json_encode($insert);
+	}
+}
+
+public function update_Testimonial(){
+	$id_testi = $this->input->post('id_testi');
+	$targetFile = '';
+	$file2 = $this->input->post('file2');
+	if (!empty($_FILES)) 
+	{
+		$tempFile = $_FILES['file']['tmp_name'];
+		$fileName = str_replace(' ', '', $_FILES['file']['name']);
+		$fileType = $_FILES['file']['type'];
+		$fileSize = $_FILES['file']['size'];
+		$targetPath = './assets/images/testimonial/';
+		$targetFile = $targetPath . $fileName ;
+		$config["upload_path"]   = "./assets/images/testimonial";
+		$config["allowed_types"] = "gif|jpg|png";
+		$config['max_size']= 1000;
+		$config['max_width']= 1024;
+		$config['max_height']= 768;
+		$config['overwrite']= TRUE;
+		$this->load->library('upload', $config);
+			//Insert to database
+		if (!$this->upload->do_upload("file")) {
+				//MAKE FOLDER
+			if (!file_exists('./assets/images/testimonial')) {
+				mkdir('./assets/images/testimonial', 0777, true);
+			}
+				//Mindah foto ke folder
+			if (!empty($_FILES['file']["name"])) {
+				move_uploaded_file($tempFile,"./assets/images/testimonial/$fileName");
+				unlink($file2);
+			}
+		}
+	}else{
+		$targetFile = $this->input->post('file2');
+	}
+
+	$data = array(
+		'name_testi' => $this->input->post('name_testi'),
+		'pict_testi' => $targetFile,
+		'desc_testi' => $this->input->post('desc_testi'),
+		);
+	$insert = $this->admin->testi_update('testimonial',"id_testi = '$id_testi'",$data);
+	echo json_encode($insert);
 }
 
 public function ajax_edit($id)

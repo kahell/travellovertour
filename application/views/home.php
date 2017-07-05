@@ -1,7 +1,70 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="canonical" href="http://www.travellovertour.com"><link rel="alternate" href="http://www.travellovertour.com" hreflang="en-id"><meta name="robots" content="index,nofollow" /><meta name="copyright" content="Copyright © 2017" /><title>Travellovertour</title><meta name="google" content="notranslate" /><meta name="google-site-verification" content=""><meta name="keywords" content="cari travel, pesan travel, cari tempat wisata, pesan tempat wisata" /><meta name="url" content="http://travellovertour.com" /><meta name="language" content="English"><meta name="description" content="Travellovertour jagonya travel" /><meta name="author" content="Helfi Pangestu"><meta name="csrf-token" content="" /><meta name="revisit-after" content="7"><meta name="webcrawlers" content="all"><meta name="rating" content="general"><meta name="spiders" content="all"><meta itemprop="name" content="Travellovertour"><meta itemprop="description" content="Travellovertour jagonya travel"><meta name="twitter:card" content="Travellovertour"><meta name="twitter:site" content="@travellovertour"><meta name="twitter:title" content="Travellovertour"><meta name="twitter:description" content="Travellovertour jagonya travel"><meta name="twitter:creator" content="@travellovertour"><meta property="og:url" content="http://travellovertour.com" /><meta property="og:type" content="article" /><meta property="og:title"content="Travellovertour jagonya travel" /><meta property="og:description" content="Travellovertour jagonya travel" /><meta property="og:site_name" content="Travellover jagonya travel"><meta property="og:title" content="Travellover jagonya travel"><meta property="og:type" content="Travellover jagonya travel"><meta property="og:url" content="http://www.travellovertour.com"><link rel="apple-touch-icon" sizes="57x57" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-57x57.png"><link rel="apple-touch-icon" sizes="72x72" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-180x180.png"><link rel="icon" type="image/png" sizes="192x192" href="<?php echo base_url(); ?>assets/ images/fav/android-icon-192x192.png"><link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>assets/images/fav/favicon-32x32.png"><link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/images/fav/favicon-96x96.png"><link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/images/fav/favicon-16x16.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#ffffff"><meta name="apple-mobile-web-app-title" content="Travellovertour"><meta name="application-name" content="Travellovertour"><link rel="stylesheet" href="<?php echo base_url();?>assets/css/reset.css"><link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.css"><link rel="stylesheet" href="<?php echo base_url();?>assets/css/font-awesome.css"><link rel="stylesheet" href="<?php echo base_url();?>assets/css/owl.carousel.css"><link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery.fancybox.css"><link rel="stylesheet" href="<?php echo base_url();?>assets/fonts/fi/flaticon.css"><link rel="stylesheet" href="<?php echo base_url();?>assets/css/flexslider.css"><link rel="stylesheet" href="<?php echo base_url();?>assets/css/travellovertour.css"><link rel="stylesheet" href="<?php echo base_url();?>assets/css/indent.css"><link rel="stylesheet" href="<?php echo base_url();?>assets/rs-plugin/css/settings.css"><link rel="stylesheet" href="<?php echo base_url();?>assets/rs-plugin/css/layers.css"><link rel="stylesheet" href="<?php echo base_url();?>assets/rs-plugin/css/navigation.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://www.travellovertour.com">
+    <link rel="alternate" href="http://www.travellovertour.com" hreflang="en-id">
+    <meta name="robots" content="index,nofollow" />
+    <meta name="copyright" content="Copyright © 2017" />
+    <title>Travellovertour</title>
+    <meta name="google" content="notranslate" />
+    <meta name="google-site-verification" content="">
+    <meta name="keywords" content="cari travel, pesan travel, cari tempat wisata, pesan tempat wisata" />
+    <meta name="url" content="http://travellovertour.com" />
+    <meta name="language" content="English">
+    <meta name="description" content="Travellovertour jagonya travel" />
+    <meta name="author" content="Helfi Pangestu">
+    <meta name="csrf-token" content="" />
+    <meta name="revisit-after" content="7">
+    <meta name="webcrawlers" content="all">
+    <meta name="rating" content="general">
+    <meta name="spiders" content="all">
+    <meta itemprop="name" content="Travellovertour">
+    <meta itemprop="description" content="Travellovertour jagonya travel">
+    <meta name="twitter:card" content="Travellovertour">
+    <meta name="twitter:site" content="@travellovertour">
+    <meta name="twitter:title" content="Travellovertour">
+    <meta name="twitter:description" content="Travellovertour jagonya travel">
+    <meta name="twitter:creator" content="@travellovertour">
+    <meta property="og:url" content="http://travellovertour.com" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Travellovertour jagonya travel" />
+    <meta property="og:description" content="Travellovertour jagonya travel" />
+    <meta property="og:site_name" content="Travellover jagonya travel">
+    <meta property="og:title" content="Travellover jagonya travel">
+    <meta property="og:type" content="Travellover jagonya travel">
+    <meta property="og:url" content="http://www.travellovertour.com">
+    <link rel="apple-touch-icon" sizes="57x57" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="<?php echo base_url(); ?>assets/ images/fav/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>assets/images/fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/images/fav/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/images/fav/favicon-16x16.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
+    <meta name="apple-mobile-web-app-title" content="Travellovertour">
+    <meta name="application-name" content="Travellovertour">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/reset.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/font-awesome.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/fonts/fi/flaticon.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/flexslider.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/travellovertour.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/indent.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/rs-plugin/css/layers.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/rs-plugin/css/navigation.css">
   </head>
   <body>
     <!-- header page-->
@@ -39,6 +102,7 @@
               </li>
               <!-- End Item-->
               <!-- Search-->
+              <!--
               <li class="search"><a href="#" class="mn-has-sub">Search</a>
                 <ul class="search-sub">
                   <li>
@@ -55,7 +119,9 @@
                   </li>
                 </ul>
               </li>
+              -->
               <!-- End Search-->
+
             </ul>
           </div>
           <!-- End Main Menu-->
@@ -80,28 +146,6 @@
           <?php  
             }
           ?>
-          <!--
-            <li data-masterspeed="700" data-slotamount="7" data-transition="fade"><img src="<?php echo base_url();?>assets/rs-plugin/assets/loader.gif" data-lazyload="<?php echo base_url();?>assets/images/destinasi/malang/batu1.jpg" data-bgposition="center" alt="" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10">
-              <div data-x="['center','center','center','center']" data-y="center" data-transform_in="x:-150px;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="x:150px;opacity:0;s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-start="400" class="tp-caption sl-content">
-                <div class="sl-title-top">Welcome to</div>
-                <div class="sl-title">Batu</div>
-                <div class="sl-title-bot">Starting <span>Rp. 500 Rb,-</span> per night</div>
-              </div>
-            </li>
-            <li data-masterspeed="700" data-transition="fade"><img src="<?php echo base_url();?>assets/rs-plugin/assets/loader.gif" data-lazyload="<?php echo base_url();?>assets/images/destinasi/malang/bromo.jpg" data-bgposition="center" alt="" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10">
-              <div data-x="['center','center','center','center']" data-y="center" data-transform_in="y:-150px;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="y:150px;opacity:0;s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-start="400" class="tp-caption sl-content">
-                <div class="sl-title-top">Welcome to</div>
-                <div class="sl-title">Bromo</div>
-                <div class="sl-title-bot">Starting <span>Rp. 150 Rb</span> per night</div>
-              </div>
-            </li>
-            <li data-masterspeed="700" data-transition="fade"><img src="<?php echo base_url();?>assets/rs-plugin/assets/loader.gif" data-lazyload="<?php echo base_url();?>assets/images/destinasi/malang/musiumAngkut.jpg" data-bgposition="center" alt="" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10">
-              <div data-x="['center','center','center','center']" data-y="center" data-transform_in="x:150px;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="x:-150px;opacity:0;s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-start="400" class="tp-caption sl-content">
-                <div class="sl-title-top">Welcome to</div>
-                <div class="sl-title">Musium Angkut</div>
-                <div class="sl-title-bot">Starting <span>Rp. 50 K</span> per night</div>
-              </div>
-            </li>-->
           </ul>
         </div>
         <!-- slider info-->
@@ -668,6 +712,37 @@
     <div id="scroll-top"><i class="fa fa-angle-up"></i></div>
     <!-- ! footer-->
     
-    <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script><script src="<?php echo base_url();?>assets/js/jquery-ui.min.js"></script><script src="<?php echo base_url();?>assets/js/bootstrap.js"></script><script src="<?php echo base_url();?>assets/js/owl.carousel.js"></script><script src="<?php echo base_url();?>assets/js/jquery.sticky.js"></script><script src="<?php echo base_url();?>assets/js/TweenMax.min.js"></script><script src="<?php echo base_url();?>assets/js/cws_parallax.js"></script><script src="<?php echo base_url();?>assets/js/jquery.fancybox.pack.js"></script><script src="<?php echo base_url();?>assets/js/jquery.fancybox-media.js"></script><script src="<?php echo base_url();?>assets/js/isotope.pkgd.min.js"></script><script src="<?php echo base_url();?>assets/js/imagesloaded.pkgd.min.js"></script><script src="<?php echo base_url();?>assets/js/masonry.pkgd.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/jquery.themepunch.tools.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/jquery.themepunch.revolution.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.parallax.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.video.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.kenburn.min.js"></script><script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.migration.min.js"></script><script src="<?php echo base_url();?>assets/js/jquery.validate.min.js"></script><script src="<?php echo base_url();?>assets/js/jquery.form.min.js"></script><script src="<?php echo base_url();?>assets/js/script.js"></script><script src="<?php echo base_url();?>assets/js/bg-video/cws_self_vimeo_bg.js"></script><script src="<?php echo base_url();?>assets/js/bg-video/jquery.vimeo.api.min.js"></script><script src="<?php echo base_url(); ?>assets/js/bg-video/cws_YT_bg.js"></script><script src="<?php echo base_url(); ?>assets/js/jquery.tweet.js"></script><script src="<?php echo base_url();?>assets/js/jquery.scrollTo.min.js"></script><script src="<?php echo base_url();?>assets/js/jquery.flexslider.js"></script><script src="<?php echo base_url();?>assets/js/retina.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery-ui.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>
+<script src="<?php echo base_url();?>assets/js/owl.carousel.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.sticky.js"></script>
+<script src="<?php echo base_url();?>assets/js/TweenMax.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/cws_parallax.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.fancybox.pack.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.fancybox-media.js"></script>
+<script src="<?php echo base_url();?>assets/js/isotope.pkgd.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/imagesloaded.pkgd.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/masonry.pkgd.min.js"></script>
+<script src="<?php echo base_url();?>assets/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="<?php echo base_url();?>assets/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
+<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.parallax.min.js"></script>
+<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
+<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
+<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.migration.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.validate.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.form.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/script.js"></script>
+<script src="<?php echo base_url();?>assets/js/bg-video/cws_self_vimeo_bg.js"></script>
+<script src="<?php echo base_url();?>assets/js/bg-video/jquery.vimeo.api.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/bg-video/cws_YT_bg.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.tweet.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.scrollTo.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/jquery.flexslider.js"></script>
+<script src="<?php echo base_url();?>assets/js/retina.min.js"></script>
   </body>
 </html>
