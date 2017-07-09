@@ -154,6 +154,15 @@ Class Admin_model extends CI_Model{
 		$this->db->insert($tableName, $data);
 		return $this->db->insert_id();
 	}
+
+
+	// Blogs
+	function getBlogs(){
+        $this->db->select("*");
+        $this->db->from('post');
+        $query = $this->db->get();
+	    return $query;
+	}
     //End of Home-Model -------------------------------------------------------
 }
 ?>

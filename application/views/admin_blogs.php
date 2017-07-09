@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <?php $this->load->view('layouts/header_admin');?>
 <body>
@@ -20,13 +21,13 @@
                     <li>
                         <a href="<?php echo site_url('Pasca_admin');?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="<?php echo site_url('Pasca_paket');?>"><i class="fa fa-diamond"></i> <span class="nav-label">Paket Wisata</span></a>
                     </li>
                     <li>
                         <a href="<?php echo site_url('Pasca_gallery');?>"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span></a>
                     </li>
-                    <li>
+                    <li  class="active">
                         <a href="<?php echo site_url('Pasca_blogs');?>"><i class="fa fa-rocket"></i> <span class="nav-label">Blogs</span></a>
                     </li>
                     <li>
@@ -109,138 +110,46 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5>Paket</h5>
-                                <div class="ibox-tools">
-                                    <a class="collapse-link">
-                                        <i class="fa fa-chevron-up"></i>
-                                    </a>
-                                </div>
-                            </div>
                             <div class="ibox-content table-responsive">
                                 <table id="table_id" class="table">
-                                    <a href="<?php echo site_url('Pasca_paket/add_paket');?>" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Tambah Paket</a>
                                     <thead>
                                         <tr>
-                                            <th>id</th>
-                                            <th>Type</th>
-                                            <th>Nama Paket</th>
-                                            <th>Lokasi Paket</th>
+                                            <th>Tanggal</th>
+                                            <th>Judul</th>
+                                            <th>Deskripsi</th>
                                             <th>Harga</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
-                                    <tbody style="text-align: left;">
+                                    <tbody>
 
-                                        <?php 
-                                        $count = 1;
-                                        foreach($paket->result() as $row){?>
-                                        <tr>
-                                           <td><?php echo $count++;?></td>
-                                           <td><?php
-                                                if ($row->typeTrip_paket == '1') {
-                                                    echo "<label class='label label-primary'>Open Trip</label>";
-                                                }else{
-                                                    echo "<label class='label label-success'>Private Trip</label>";
-                                                }
-                                            ?></td>
-                                           <td><?php echo $row->nama_paket;?></td>
-                                           <td><?php echo $row->lokasi_paket;?></td>
-                                           <td>Rp. <?php echo number_format($row->harga_paket);?></td>
-                                           <?php   echo "<td>";
-                                           echo "<a href='http://localhost/travellovertour/Pasca_paket/edit_paket/$row->id_paket' style='text-align: right;'class='btn btn-info' type='button'> <i class='glyphicon glyphicon-pencil'></i></a>";
-                                           echo "</td>";
-                                           echo "<td>";
-                                           echo "<a href='#' style='text-align: right;' class='btn btn-danger' onclick='delete_paket($row->id_paket)' type='button'> <i class='glyphicon glyphicon-remove'></i></a>";
-                                           echo "</td>";
-                                           ?>
-                                       </tr>
-                                       <?php }?>
-                                   </tbody>
-                               </table>
-                           </div>
-                       </div>
-                   </div>
-                   <!-- End Of Row-->
-               </div>
-           </div>
-           <div class="footer">
-            <div class="pull-right">
-                Travellover <strong>Indonesia</strong> 2017.
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Of Row-->
+                </div>
+                <!-- End of Box-->
             </div>
-            <div>
-                <strong>Copyright</strong> Travellover &copy; 2017
-            </div>
+            <?php $this->load->view('layouts/footer_admin');?>
         </div>
     </div>
-</div>
-
-
-<?php $this->load->view('layouts/javascript_admin');?>
+    
+    <?php $this->load->view('layouts/javascript_admin');?>
 
 <script>
     $(document).ready(function () {
         $('#table_id').DataTable({
           "paging": true,
-          "lengthChange": true,
+          "lengthChange": false,
           "searching": false,
-          "ordering": true,
+          "ordering": false,
           "info": false,
           "autoWidth": true
       });
     });
-
-    function delete_paket($id_paket){
-        $.confirm({
-            title: 'Delete Paket?',
-            content: 'Apakah kamu yakin menghapus paket?',
-            type: 'red',
-            typeAnimated: true,
-            buttons: {
-                deleteUser: {
-                    text: 'Delete',
-                    btnClass: 'btn-red',
-                    action: function () {
-                        var formData = new FormData();
-                        formData.append("id_paket", $id_paket);
-                        $.ajax({
-                            url: "<?php echo site_url("Pasca_paket/delete_paket")?>",
-                            type: 'post',
-                            data: formData,
-                            processData: false,
-                            contentType: false,
-                            success: function() {
-                                $.alert({
-                                    title: 'SUKSES!',
-                                    content: 'Data berhasil di hapus.',
-                                    type: 'green',
-                                    typeAnimated: true,
-                                    buttons: {
-                                        ok: {
-                                            text: 'OK',
-                                            btnClass: 'btn-green',
-                                            action: function () {
-                                                location.reload();
-                                            }
-                                        }
-                                    }
-                                });
-                            },
-                            error: function (jqXHR, textStatus, errorThrown)
-                            {
-                                onsole.log(data.responseText);
-                                console.log(data);
-                            }
-                        });
-                    }
-                },
-                cancel: function () {
-                    $.alert('Menghapus paket di batalkan');
-                }
-            }
-        });   
-    }
 </script>
 </body>
 </html>
