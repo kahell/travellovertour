@@ -111,19 +111,44 @@
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-content table-responsive">
+                                <a href="<?php echo base_url('Pasca_blogs/addBlogs');?>" class="btn btn-primary" style="width: 10%;">Add</a>
                                 <table id="table_id" class="table">
                                     <thead>
                                         <tr>
                                             <th>Tanggal</th>
-                                            <th>Judul</th>
-                                            <th>Deskripsi</th>
-                                            <th>Harga</th>
                                             <th>Status</th>
+                                            <th>Admin</th>
+                                            <th>Title</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
-
+                                        <?php
+                                            foreach ($blogs->result() as $row) {
+                                                echo "<tr>";
+                                                    echo "<td>$row->date_post</td>";
+                                                    if ($row->status_post == '1') {
+                                                        echo "<td><label class='label label-primary'>Published</label></td>";
+                                                    }else{
+                                                        echo "<td><label class='label label-danger'>Draft</label></td>";
+                                                    }
+                                                    echo "<td>$row->postedBy_post</td>";
+                                                    echo "<td>$row->title_post</td>";?>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Action <span class="caret"></span></button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a href="#" onclick="editPost(<?php echo $row->id_post;?>)">Edit</a>
+                                                                </li>
+                                                                <li><a href="#" onclick="deletePost(<?php echo $row->id_post;?>)">Delete</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                            <?php
+                                                echo "</tr>";
+                                            }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
