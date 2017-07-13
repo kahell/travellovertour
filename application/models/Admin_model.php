@@ -167,6 +167,11 @@ Class Admin_model extends CI_Model{
         $this->db->insert($tableName, $data);
 		return $this->db->insert_id();
 	}
+	function updateBlogs($tableName, $where, $data)
+	{
+		$this->db->update($tableName, $data, $where);
+		return $this->db->affected_rows();
+	}
     //End of Home-Model -------------------------------------------------------
 }
 ?>
