@@ -223,23 +223,34 @@
                                         <tbody>
                                             <?php 
                                             $count = 1;
-                                            foreach($testimonial->result() as $row){?>
+                                            if (empty($testimonial)) {?>
                                             <tr>
-                                                <td><?php echo $count++;?></td>
-                                                <td><?php echo $row->name_testi;?></td>
-                                                <td><img style="display: inline; height: 30px; width: 30px;" class='responsive-img' alt='<?php echo base_url();
-                                                    echo $row->pict_testi; ?>' src="<?php echo base_url($row->pict_testi);?>"></td>
-                                                    <td><?php echo $row->desc_testi;?></td>
-                                                    <td>
-                                                        <a id="btnEdit_testi" data-toggle="modal" data-target="#myModal" class="btn btn-info btnEdit_testi" href="#" ><i class="fa fa-edit"></i>
-                                                            <input type="hidden" name="id_testi" id="id_testi" value="<?php echo $row->id_testi?>">
-                                                            <input type="hidden" name="name_testi" id="name_testi" value="<?php echo $row->name_testi?>">
-                                                            <input type="hidden" name="pict_testi" id="pict_testi" value="<?php echo $row->pict_testi?>">
-                                                            <input type="hidden" name="desc_testi" id="desc_testi" value="<?php echo $row->desc_testi?>">
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <?php 
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <?php
+                                            }else{
+                                                foreach($testimonial->result() as $row){?>
+                                                <tr>
+                                                    <td><?php echo $count++;?></td>
+                                                    <td><?php echo $row->name_testi;?></td>
+                                                    <td><img style="display: inline; height: 30px; width: 30px;" class='responsive-img' alt='<?php echo base_url();
+                                                        echo $row->pict_testi; ?>' src="<?php echo base_url($row->pict_testi);?>"></td>
+                                                        <td><?php echo $row->desc_testi;?></td>
+                                                        <td>
+                                                            <a id="btnEdit_testi" data-toggle="modal" data-target="#myModal" class="btn btn-info btnEdit_testi" href="#" ><i class="fa fa-edit"></i>
+                                                                <input type="hidden" name="id_testi" id="id_testi" value="<?php echo $row->id_testi?>">
+                                                                <input type="hidden" name="name_testi" id="name_testi" value="<?php echo $row->name_testi?>">
+                                                                <input type="hidden" name="pict_testi" id="pict_testi" value="<?php echo $row->pict_testi?>">
+                                                                <input type="hidden" name="desc_testi" id="desc_testi" value="<?php echo $row->desc_testi?>">
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php 
+                                                }
                                             }?>
                                         </tbody>
                                     </table>

@@ -26,6 +26,88 @@
                             <a href="<?php echo site_url('Pasca_paket');?>"><i class="fa fa-diamond"></i> <span class="nav-label">Paket Wisata</span></a>
                         </li>
                         <li>
+<<<<<<< HEAD
+                            <a href="<?php echo site_url("Pasca/logout"); ?>">
+                             <i class="fa fa-sign-out"></i> Log out
+                         </a>
+                     </li>
+                 </ul>
+             </nav>
+         </div>
+         <!-- Judul -->
+         <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>Tambah Paket</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="<?php echo site_url('Pasca_admin');?>">Home</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('Pasca_blogs');?>">Blogs</a>
+                    </li>
+                    <li class="active">
+                        <strong>Tambah Post</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+        <!-- Wrapper -->
+        <div class="wrapper wrapper-content">
+            <!-- Row -->
+            <div class="row">
+            <input type="hidden" name="id_post" id="id_post" value="<?php echo $blogs;?>">
+                <!-- Col -->                
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 " control-label>Judul</label>
+                                    <div class="col-sm-10">
+                                        <input placeholder="Masukan judul" id="title_post" type="text" name="title_post" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 " control-label>Tags</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="tags_post" id="tags_post" class="tags_post">
+                                        <a href="#" onclick="addTags()" class="btn btn-sm btn-primary">Add</a>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2" control-label>Category</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="category_post" id="category_post" class="tags_post">
+                                        <a href="#" onclick="addCategory()" class="btn btn-sm btn-primary">Add</a>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 " control-label>Pict thumbnail</label>
+                                    <div class="col-sm-10">
+                                        <input id="pictThumb_blogs" name="pictThumb_blogs" type="file"  class="form-control">
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-2 ">
+                                        <label control-label">Konten</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div id="summernote" class="click2edit wrapper p-md"></div>
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-2 col-sm-offset-2">
+                                        <a style="width: 100%" href="#" type="submit" name="btnSave" id="btnSave"  onclick="save1()" class="btnSave btn btn-primary">Submit</a>
+
+=======
                             <a href="<?php echo site_url('Pasca_gallery');?>"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span></a>
                         </li>
                         <li class="active">
@@ -171,6 +253,7 @@
                                         <div class="col-sm-10">
                                             <div id="summernote" class="click2edit wrapper p-md"></div>
                                         </div>
+>>>>>>> refs/remotes/origin/master
                                     </div>
                                     <div class="hr-line-dashed"></div>
                                     <div class="form-group">
@@ -201,11 +284,18 @@
         </div>
     </div>
 
+<<<<<<< HEAD
+<?php $this->load->view('layouts/javascript_admin');?>
+<script>
+    $(document).ready(function (){
+     $('#summernote').summernote({
+=======
     <?php $this->load->view('layouts/javascript_admin');?>
 
     <script>
         $(document).ready(function (){
          $('#summernote').summernote({
+>>>>>>> refs/remotes/origin/master
                     height: 300, // set editor height
                     minHeight: null, // set minimum height of editor
                     maxHeight: null, // set maximum height of editor
@@ -215,6 +305,69 @@
                      }
                  }
              });
+<<<<<<< HEAD
+});
+    function save1(){
+        var inputFile = document.querySelector('#pictThumb_blogs');
+        var formData = new FormData();
+        formData.append('id_post', $("#id_post").val());
+        formData.append('title_post', $("#title_post").val());
+        formData.append("tags_post", $("#tags_post").val());
+        formData.append("category_post", $("#category_post").val());
+        formData.append('file2', '');
+        formData.append('file', inputFile.files[0]);
+        formData.append("body_post", $('.click2edit').summernote('code'));
+                //End of Foto
+                $.ajax({
+                    url: "<?php echo site_url("Pasca_blogs/addBlogs")?>",
+                    type: 'post',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        $.alert({
+                            title: 'SUKSES!',
+                            content: 'Data berhasil di tambahkan.',
+                            type: 'green',
+                            typeAnimated: true,
+                            buttons: {
+                                ok: {
+                                    text: 'OK',
+                                    btnClass: 'btn-green',
+                                    action: function () {
+                                        location.href = "<?php echo site_url('Pasca_blogs');?>"
+                                    }
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+            function sendFile(file){
+                data = new FormData();
+                data.append("file", file);
+                data.append("id_post", $("#id_post").val());
+                $.ajax({
+                    data: data,
+                    type: "POST",
+                    url: "<?php echo site_url("Pasca_blogs/upload_supernote")?>",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(url) {
+                        var imgNode = document.createElement("IMG");
+                        imgNode.setAttribute("src", url);
+                        $('#summernote').summernote('insertNode', imgNode);
+                    },
+                    error: function(data) {
+                        console.log(data.responseText);
+                    }
+                });
+            }
+        </script>
+    </body>
+    </html>
+=======
      });
 
         function save1(){
@@ -255,3 +408,4 @@
 </script>
 </body>
 </html>
+>>>>>>> refs/remotes/origin/master
