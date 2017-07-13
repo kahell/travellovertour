@@ -48,5 +48,100 @@ class Pasca_blogs extends CI_Controller {
 			$this->load->view('Login'); 
 		}
 	}
+
+	public function upload_supernote()
+	{	
+		if (!empty($_FILES)) 
+		{	
+			$tempFile = $_FILES['file']['tmp_name'];
+			$fileName = str_replace(' ', '', $_FILES['file']['name']);
+			$fileType = $_FILES['file']['type'];
+			$fileSize = $_FILES['file']['size'];
+			$targetPath = './assets/images/supernote/';
+			$targetFile = $targetPath . $fileName ;
+			$config["upload_path"]   = "./assets/images/supernote";
+			$config["allowed_types"] = "gif|jpg|png";
+			$config['max_size']= 1000;
+			$config['max_width']= 1024;
+			$config['max_height']= 768;
+			$config['overwrite']= TRUE;
+			$this->load->library('upload', $config);
+			//Insert to database
+			if (!$this->upload->do_upload("file")) {
+				//MAKE FOLDER
+				if (!file_exists('./assets/images/supernote')) {
+					mkdir('./assets/images/supernote', 0777, true);
+				}
+				//Mindah foto ke folder
+				if (!empty($_FILES['file']["name"])) {
+					move_uploaded_file($tempFile,"./assets/images/supernote/$fileName");
+				}else{
+					move_uploaded_file($tempFile,"./assets/images/supernote/$fileName");
+				}
+				
+				$data = array(
+					'id_post' => NULL,
+					'id_post' => $this->input->post('id_post'),
+					'foto_paket' => $targetFile,
+					'typeFoto_paket' => 'summernote'
+					);
+				$insert = $this->admin->paket_add('foto', $data);
+			}
+			echo base_url().''.$targetFile;
+		}
+	}
+
+	public function upload_data()
+	{	
+		$inputNamePicadmin = $this->session->userdata('adminSession');
+		$data['namaAdmin']  = $inputNamePicadmin['username'];
+
+		$id_post = $this->input->post('id_post');
+		$targetFile = '';
+		$file2 = $this->input->post('file2');
+		if (!empty($_FILES)) 
+		{
+			$tempFile = $_FILES['file']['tmp_name'];
+			$fileName = str_replace(' ', '', $_FILES['file']['name']);
+			$fileType = $_FILES['file']['type'];
+			$fileSize = $_FILES['file']['size'];
+			$targetPath = './assets/images/blogs/';
+			$targetFile = $targetPath . $fileName ;
+			$config["upload_path"]   = "./assets/images/blogs";
+			$config["allowed_types"] = "gif|jpg|png";
+			$config['max_size']= 1000;
+			$config['max_width']= 1024;
+			$config['max_height']= 768;
+			$config['overwrite']= TRUE;
+			$this->load->library('upload', $config);
+			//Insert to database
+			if (!$this->upload->do_upload("file")) {
+				//MAKE FOLDER
+				if (!file_exists('./assets/images/blogs')) {
+					mkdir('./assets/images/blogs', 0777, true);
+				}
+				//Mindah foto ke folder
+				if (!empty($_FILES['file']["name"])) {
+					move_uploaded_file($tempFile,"./assets/images/blogs/$fileName");
+					unlink($file2);
+				}
+				
+			}
+		}else{
+			$targetFile = $this->input->post('file2');
+		}
+
+		$data = array(
+			'title_post' => $this->input->post('title_post'),
+			'pict_post' => $targetFile,
+			'postedBy_post' => $data['namaAdmin'],
+			'date_post' => date('D, M Y'),
+			'body_post' => $this->input->post('body_post'),
+			'status_post' => 1
+			);
+		$insert = $this->admin->updateBlogs('post',$data,'id_post = '.$id_post );
+
+		redirect('Pasca_blogs', 'refresh'); 
+	}
 	
 }

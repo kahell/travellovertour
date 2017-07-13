@@ -137,43 +137,41 @@
                         <div class="ibox-content">
                             <div class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Judul</label>
+                                    <label class="col-sm-2 " control-label>Judul</label>
                                     <div class="col-sm-10">
                                         <input placeholder="Masukan judul" id="title_post" type="text" name="title_post" class="form-control">
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Tags</label>
+                                    <label class="col-sm-2 " control-label>Tags</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="tags_post" id="tags_post">
-                                        <a href="#" class="btn btn-sm btn-primary">Add</a>
+                                        <input type="text" name="tags_post" id="tags_post" class="tags_post">
+                                        <a href="#" onclick="addTags()" class="btn btn-sm btn-primary">Add</a>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Pict thumbnail</label>
+                                    <label class="col-sm-2" control-label>Category</label>
                                     <div class="col-sm-10">
-                                        <input id="pictThumb_paket" name="pictThumb_paket" type="file"  class="form-control">
+                                        <input type="text" name="category_post" id="category_post" class="tags_post">
+                                        <a href="#" onclick="addCategory()" class="btn btn-sm btn-primary">Add</a>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 " control-label>Pict thumbnail</label>
+                                    <div class="col-sm-10">
+                                        <input id="pictThumb_blogs" name="pictThumb_blogs" type="file"  class="form-control">
+                                    </div>
+                                </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
                                     <div class="col-sm-2 ">
-                                        <label control-label">Itenary</label>
+                                        <label control-label">Konten</label>
                                     </div>
                                     <div class="col-sm-10">
                                         <div id="summernote" class="click2edit wrapper p-md"></div>
-                                    </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <div class="col-sm-2 ">
-                                        <label control-label">Syarat dan Ketentuan</label>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div id="summernote2" class="click2edit2 wrapper p-md"></div>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -219,84 +217,20 @@
                      }
                  }
              });
-
-     $('#summernote2').summernote({
-                    height: 300, // set editor height
-                    minHeight: null, // set minimum height of editor
-                    maxHeight: null, // set maximum height of editor
-                    callbacks: {
-                        onImageUpload: function(files) {
-                         sendFile2(files[0]);
-                     }
-                 }
-             });
-
-     $('#table_id').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": false,
-        "ordering": true,
-        "info": false,
-        "autoWidth": true
-    });
-    $('div.dz-default.dz-message > span').show(); // Show message span
-    $('div.dz-default.dz-message').css({'opacity':1, 'background-image': 'none'});
 });
-    Dropzone.options.myAwesomeDropzone = {
-        url: "<?php echo site_url("Pasca_paket/upload")?>", // Set the url
-        autoProcessQueue: false,
-        uploadMultiple: true,
-        parallelUploads: 100,
-        addRemoveLinks: true,
-        maxFiles: 100,
-        dictDefaultMessage: " ",
-        // Dropzone settings
-        init: function() {
-            var myDropzone = this;
-            this.element.querySelector("button[type=submit]").addEventListener("click", function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                myDropzone.processQueue();
-            });
-            this.on("sendingmultiple", function(file, xhr, formData) {
-                formData.append('id_post', $("#id_post").val());
-            });
-            this.on("successmultiple", function(files, response) {
-                });
-            this.on("errormultiple", function(files, response) {
-                });
-            },
-            removedfile: function(file) {
-                var name = file.name;
-                $.ajax({
-                    type: "post",
-                    url: "<?php echo site_url("Pasca_paket/remove") ?>",
-                    data: { file: name },
-                    dataType: 'html'
-                });
-                // remove the thumbnail
-                var previewElement;
-                return (previewElement = file.previewElement) != null ? (previewElement.parentNode.removeChild(file.previewElement)) : (void 0);
-            }
-    }
     function save1(){
-        function toAngka(rp){return parseInt(rp.replace(/,.*|\D/g,''),10)}
-        var angka = toAngka($("#harga_paket").val());
-        var inputFile = document.querySelector('#pictThumb_paket');
+        var inputFile = document.querySelector('#pictThumb_blogs');
         var formData = new FormData();
         formData.append('id_post', $("#id_post").val());
-        formData.append('typeTrip_paket', $("#typeTrip_paket").val());
-        formData.append("nama_paket", $("#nama_paket").val());
+        formData.append('title_post', $("#title_post").val());
+        formData.append("tags_post", $("#tags_post").val());
+        formData.append("category_post", $("#category_post").val());
         formData.append('file2', '');
         formData.append('file', inputFile.files[0]);
-        formData.append("lokasi_paket", $("#lokasi_paket").val());
-        formData.append("harga_paket", angka);
-        formData.append("deskripsi_paket", $("#deskripsi_paket").val());
-        formData.append("syarat", $('.click2edit2').summernote('code'));
-        formData.append("itenary", $('.click2edit').summernote('code'));
+        formData.append("body_post", $('.click2edit').summernote('code'));
                 //End of Foto
                 $.ajax({
-                    url: "<?php echo site_url("Pasca_paket/upload_data")?>",
+                    url: "<?php echo site_url("Pasca_blogs/addBlogs")?>",
                     type: 'post',
                     data: formData,
                     processData: false,
@@ -312,7 +246,7 @@
                                     text: 'OK',
                                     btnClass: 'btn-green',
                                     action: function () {
-                                        location.href = "<?php echo site_url('Pasca_paket');?>"
+                                        location.href = "<?php echo site_url('Pasca_blogs');?>"
                                     }
                                 }
                             }
@@ -327,7 +261,7 @@
                 $.ajax({
                     data: data,
                     type: "POST",
-                    url: "<?php echo site_url("Pasca_paket/upload_supernote")?>",
+                    url: "<?php echo site_url("Pasca_blogs/upload_supernote")?>",
                     cache: false,
                     contentType: false,
                     processData: false,
@@ -335,28 +269,6 @@
                         var imgNode = document.createElement("IMG");
                         imgNode.setAttribute("src", url);
                         $('#summernote').summernote('insertNode', imgNode);
-                    },
-                    error: function(data) {
-                        console.log(data.responseText);
-                    }
-                });
-            }
-
-            function sendFile2(file){
-                data = new FormData();
-                data.append("file", file);
-                data.append("id_post", $("#id_post").val());
-                $.ajax({
-                    data: data,
-                    type: "POST",
-                    url: "<?php echo site_url("Pasca_paket/upload_supernote")?>",
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function(url) {
-                        var imgNode = document.createElement("IMG");
-                        imgNode.setAttribute("src", url);
-                        $('#summernote2').summernote('insertNode', imgNode);
                     },
                     error: function(data) {
                         console.log(data.responseText);
