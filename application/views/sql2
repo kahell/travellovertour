@@ -1,0 +1,104 @@
+SELECT * from (
+			SELECT a.*, ROW_NUMBER() OVER (ORDER BY rownum) AS recnum FROM (		
+				SELECT b.UUID_TASK_H, b.CUSTOMER_NAME, b.ORDER_NO, b.DEALER_NAME, b.SALES, b.BRANCH_NAME, b.SUBMIT_DATE,
+					b.ASSIGN_DATE, b.SURVEYOR_NAME, b.STATUS_TASK_DESC, b.FLAG, '6D' as flagOrder, ROW_NUMBER() OVER (
+						ORDER BY CASE WHEN '6D' = '0' THEN b.ORDER_NO
+										WHEN '6D' = '1A' THEN b.CUSTOMER_NAME 
+										WHEN '6D' = '2A' THEN b.ORDER_NO 
+										WHEN '6D' = '3A' THEN b.DEALER_NAME
+										WHEN '6D' = '4A' THEN b.SALES
+										WHEN '6D' = '5A' THEN b.BRANCH_NAME
+										WHEN '6D' = '6A' THEN CONVERT(VARCHAR, b.SUBMIT_DATE, 121)
+										WHEN '6D' = '7A' THEN CONVERT(VARCHAR, b.ASSIGN_DATE, 121)
+										WHEN '6D' = '8A' THEN b.SURVEYOR_NAME
+										WHEN '6D' = '9A' THEN b.STATUS_TASK_DESC 
+										ELSE NULL END ASC,
+								 CASE WHEN '6D' = '1D' THEN b.CUSTOMER_NAME 
+										WHEN '6D' = '2D' THEN b.ORDER_NO 
+										WHEN '6D' = '3D' THEN b.DEALER_NAME
+										WHEN '6D' = '4D' THEN b.SALES
+										WHEN '6D' = '5D' THEN b.BRANCH_NAME
+										WHEN '6D' = '6D' THEN CONVERT(VARCHAR, b.SUBMIT_DATE, 121)
+										WHEN '6D' = '7D' THEN CONVERT(VARCHAR, b.ASSIGN_DATE, 121)
+										WHEN '6D' = '8D' THEN b.SURVEYOR_NAME
+										WHEN '6D' = '9D' THEN b.STATUS_TASK_DESC 
+										ELSE NULL END DESC) AS rownum
+				FROM(
+					SELECT trth.UUID_TASK_H as UUID_TASK_H, 
+						isnull(trth.CUSTOMER_NAME,'-') CUSTOMER_NAME, 
+						isnull(trtod.ORDER_NO,'-') ORDER_NO, 
+						isnull(msd.DEALER_NAME,'-') DEALER_NAME, 
+						isnull(ammsu.FULL_NAME,'-') SALES,
+						isnull(msb.BRANCH_NAME,'-') BRANCH_NAME,
+						isnull(LEFT(CONVERT(VARCHAR, trth.SUBMIT_DATE, 113), 17),'-') as SUBMIT_DATE,
+						isnull(LEFT(CONVERT(VARCHAR, trtod.DTM_CRT, 113), 17),'-') as ASSIGN_DATE,
+						isnull(ammsu2.FULL_NAME,'-') as SURVEYOR_NAME, 
+						isnull(msst.STATUS_TASK_DESC,'-') STATUS_TASK_DESC, 
+						msb.UUID_BRANCH as UUID_BRANCH,
+						msd.UUID_DEALER as UUID_DEALER,
+						msst.STATUS_CODE as STATUS_CODE,
+						msst.IS_ACTIVE as IS_ACTIVE,
+						'1' as FLAG
+					FROM TR_TASK_H trth with (nolock) left join MS_STATUSTASK msst with (nolock) on trth.UUID_STATUS_TASK = msst.UUID_STATUS_TASK
+						left join TR_TASKORDERDATA trtod with (nolock) 
+							on trth.UUID_TASK_H = trtod.UUID_TASK_ID
+						left join (SELECT keyValue as UUID_BRANCH, BRANCH_NAME FROM dbo.getCabangByLogin('748ACAA8-50D2-4F38-B511-9D4C01BB80E4')) msb on trth.UUID_BRANCH = msb.UUID_BRANCH
+						left join MS_DEALER msd with (nolock) 
+							on trtod.DEALER_ID = msd.UUID_DEALER
+						left join AM_MSUSER ammsu with (nolock) 
+							on ammsu.UUID_MS_USER = trth.UUID_MS_USER
+							and ammsu.UUID_MS_SUBSYSTEM = 'FD32203591274A71A32DA613378CDC9'
+						left join AM_MSUSER ammsu2 with (nolock) 
+							on ammsu2.UUID_MS_USER = trtod.CA_ID
+					WHERE msb.UUID_BRANCH like UPPER('%'+ :uuidBranch +'%') 
+						AND COALESCE(msd.UUID_DEALER,'') like UPPER('%'+ :uuidDealer +'%')
+						AND trth.CUSTOMER_NAME like UPPER('%'+ :customerName +'%') 
+						AND trtod.ORDER_NO like UPPER('%'+ :orderNo +'%')
+						AND ammsu.FULL_NAME like UPPER('%'+ :salesName +'%')
+						AND COALESCE(trth.SUBMIT_DATE, '1990-01-01 00:00:00') BETWEEN (CASE WHEN :orderDateStart = '%' then '1990-01-01 00:00:00' else :orderDateStart END) 
+							AND (CASE WHEN :orderDateEnd = '%' then :currentDate else :orderDateEnd END)
+						AND COALESCE(trtod.DTM_CRT, '1990-01-01 00:00:00') BETWEEN (CASE WHEN :surveyDateStart = '%' then '1990-01-01 00:00:00' else :surveyDateStart END) 
+							AND (CASE WHEN :surveyDateEnd = '%' then :currentDate else :surveyDateEnd END)	
+						AND msst.STATUS_CODE LIKE :statusTask
+						AND msst.IS_ACTIVE = '1'
+					UNION ALL
+					SELECT trth.UUID_TASK_H as UUID_TASK_H, 
+						isnull(trth.CUSTOMER_NAME,'-') CUSTOMER_NAME, 
+						isnull(trtod.ORDER_NO,'-') ORDER_NO, 
+						isnull(msd.DEALER_NAME,'-') DEALER_NAME, 
+						isnull(ammsu.FULL_NAME,'-') SALES,
+						isnull(msb.BRANCH_NAME,'-') BRANCH_NAME,
+						isnull(LEFT(CONVERT(VARCHAR, trth.SUBMIT_DATE, 113), 17),'-') as SUBMIT_DATE,
+						isnull(LEFT(CONVERT(VARCHAR, trtod.DTM_CRT, 113), 17),'-') as ASSIGN_DATE,
+						isnull(ammsu2.FULL_NAME,'-') as SURVEYOR_NAME, 
+						isnull(msst.STATUS_TASK_DESC,'-') STATUS_TASK_DESC, 
+						msb.UUID_BRANCH as UUID_BRANCH,
+						msd.UUID_DEALER as UUID_DEALER,
+						msst.STATUS_CODE as STATUS_CODE,
+						msst.IS_ACTIVE as IS_ACTIVE,
+						'2' as FLAG
+					FROM FINAL_TR_TASK_H trth with (nolock) left join MS_STATUSTASK msst with (nolock) on trth.UUID_STATUS_TASK = msst.UUID_STATUS_TASK
+						left join FINAL_TR_TASKORDERDATA trtod with (nolock) 
+							on trth.UUID_TASK_H = trtod.UUID_TASK_ID
+						left join (SELECT keyValue as UUID_BRANCH, BRANCH_NAME FROM dbo.getCabangByLogin('748ACAA8-50D2-4F38-B511-9D4C01BB80E4')) msb on trth.UUID_BRANCH = msb.UUID_BRANCH
+						left join MS_DEALER msd with (nolock) 
+							on trtod.DEALER_ID = msd.UUID_DEALER
+						left join AM_MSUSER ammsu with (nolock) 
+							on ammsu.UUID_MS_USER = trth.UUID_MS_USER
+							and ammsu.UUID_MS_SUBSYSTEM = 'FD32203591274A71A32DA613378CDC9'
+						left join AM_MSUSER ammsu2 with (nolock) 
+							on ammsu2.UUID_MS_USER = trtod.CA_ID
+					WHERE msb.UUID_BRANCH like UPPER('%'+ :uuidBranch +'%') 
+						AND COALESCE(msd.UUID_DEALER,'') like UPPER('%'+ :uuidDealer +'%')
+						AND trth.CUSTOMER_NAME like UPPER('%'+ :customerName +'%') 
+						AND trtod.ORDER_NO like UPPER('%'+ :orderNo +'%')
+						AND ammsu.FULL_NAME like UPPER('%'+ :salesName +'%')
+						AND COALESCE(trth.SUBMIT_DATE, '1990-01-01 00:00:00') BETWEEN (CASE WHEN :orderDateStart = '%' then '1990-01-01 00:00:00' else :orderDateStart END) 
+							AND (CASE WHEN :orderDateEnd = '%' then :currentDate else :orderDateEnd END)
+						AND COALESCE(trtod.DTM_CRT, '1990-01-01 00:00:00') BETWEEN (CASE WHEN :surveyDateStart = '%' then '1990-01-01 00:00:00' else :surveyDateStart END) 
+							AND (CASE WHEN :surveyDateEnd = '%' then :currentDate else :surveyDateEnd END)	
+						AND msst.STATUS_CODE LIKE :statusTask
+						AND msst.IS_ACTIVE = '1'
+				)b
+			) a <![CDATA[ WHERE a.rownum <= :end
+		) b WHERE b.recnum >= :start ]]>
