@@ -131,80 +131,7 @@
             <!-- Row -->
             <div class="row">
             <input type="hidden" name="id_post" id="id_post" value="<?php echo $blogs;?>">
-                <!-- Col -->
-                <div class="col-lg-8">
-                    <div class="ibox-content">
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                            <label class="col-sm-2 control-label">Judul</label>
-                                <div class="col-sm-10">
-                                    <input placeholder="Masukan judul" id="title_post" type="text" name="title_post" class="form-control" value="">
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <div class="col-sm-2 ">
-                                    <label control-label">Itenary</label>
-                                </div>
-                                <div class="col-sm-10">
-                                    <div id="summernote" class="click2edit wrapper p-md"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-content">
-                                    <div class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">Tags</label>
-                                            <div class="col-sm-8">
-                                                <input placeholder="Masukan judul" id="title_post" type="text" name="title_post" class="form-control" value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-content">
-                                    <div class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">Categories</label>
-                                            <div class="col-sm-8">
-                                                <input placeholder="Masukan judul" id="title_post" type="text" name="title_post" class="form-control" value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-content">
-                                    <div class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">Pict thumbnail</label>
-                                            <div class="col-sm-8">
-                                                <input id="pictThumb_paket" name="pictThumb_paket" type="file"  class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                
+                <!-- Col -->                
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
@@ -217,12 +144,10 @@
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Tipe Trip</label>
+                                    <label class="col-sm-2 control-label">Tags</label>
                                     <div class="col-sm-10">
-                                        <select class='form-control m-b' id='typeTrip_paket' name='typeTrip_paket'>
-                                            <option selected value='1'>Open</option>
-                                            <option value='2'>Private</option>
-                                        </select>
+                                        <input type="text" name="tags_post" id="tags_post">
+                                        <a href="#" class="btn btn-sm btn-primary">Add</a>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
@@ -233,38 +158,6 @@
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Location</label>
-                                    <div class="col-sm-10">
-                                        <input placeholder="ex: Malang, Jawa Timur" id="lokasi_paket" name="lokasi_paket" type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Harga</label>
-                                    <div class="col-sm-10">
-                                        <div class="input-group m-b"><span class="input-group-addon">Rp.</span><input placeholder="Ex: 500000" id="harga_paket" name="harga_paket" type="text" class="form-control"></div>
-                                    </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Deskripsi</label>
-                                    <div class="col-sm-10">
-                                        <div class="input-group m-b">
-                                            <textarea placeholder="Deskripsikan tempat wisata tersebut" rows="8" cols="500" id="deskripsi_paket" name="deskripsi_paket" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Foto Destinasi <br><br>Note: click field and please klik button upload foto to upload file</label>
-                                    <div class="col-sm-10">
-                                        <div id="my-awesome-dropzone" class="dropzone" action="#">
-                                            <div class="dropzone-previews"></div>
-                                            <button type="submit" class="btn btn-primary pull-right">Upload foto</button>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
                                     <div class="col-sm-2 ">
