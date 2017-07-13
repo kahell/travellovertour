@@ -76,6 +76,7 @@ class Pasca_paket extends CI_Controller {
 			$this->load->view('Login'); 
 		}
 	}
+	
 	public function delete_paket(){
 		if($this->session->userdata('adminSession')){                 
 			$inputNamePicadmin = $this->session->userdata('adminSession');

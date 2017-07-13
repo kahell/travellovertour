@@ -1,12 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Jul 06, 2017 at 12:12 AM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -17,432 +8,320 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `travellovertour`
+-- Database:  travellovertour 
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Table structure for table  gallery 
 --
 
-CREATE TABLE `categories` (
-  `id_category` bigint(6) NOT NULL,
-  `name` int(255) NOT NULL
+CREATE TABLE  gallery  (
+   id_gallery  bigint(6) NOT NULL,
+   title_gallery  varchar(255) DEFAULT NULL,
+   pict_gallery  text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category_post`
+-- Table structure for table  identitas 
 --
 
-CREATE TABLE `category_post` (
-  `id_post` bigint(6) NOT NULL,
-  `id_category_post` bigint(6) NOT NULL
+CREATE TABLE  identitas  (
+   id  bigint(5) NOT NULL,
+   username  varchar(255) NOT NULL,
+   password  varchar(255) NOT NULL,
+   email  varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table  paket 
+--
+
+CREATE TABLE  paket  (
+   id_paket  smallint(6) NOT NULL,
+   nama_paket  varchar(255) NOT NULL,
+   typeTrip_paket  smallint(1) DEFAULT NULL,
+   pict_paket  text NOT NULL,
+   lokasi_paket  varchar(255) NOT NULL,
+   harga_paket  varchar(255) NOT NULL,
+   deskripsi_paket  text NOT NULL,
+   itenary_paket  text NOT NULL,
+   syarat_paket  text NOT NULL,
+   pesan_paket  text NOT NULL,
+   aktif_paket  varchar(25) NOT NULL,
+   slider_paket  smallint(1) NOT NULL,
+   popular_paket  smallint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table  post 
+--
+
+CREATE TABLE  post  (
+   id_post  bigint(6) NOT NULL,
+   postedBy_post  varchar(255) NOT NULL,
+   title_post  varchar(255) NOT NULL,
+   pict_post  text NOT NULL,
+   body_post  text NOT NULL,
+   date_post  varchar(255) NOT NULL,
+   status_post  smallint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `datatamu`
+-- Table structure for table  tags 
 --
 
-CREATE TABLE `datatamu` (
-  `id_dataTamu` bigint(5) NOT NULL,
-  `id_transaksi` bigint(5) NOT NULL,
-  `gender_tamu` varchar(3) NOT NULL,
-  `nama_tamu` varchar(255) NOT NULL
+CREATE TABLE  tags  (
+   id_tags  bigint(6) NOT NULL,
+   name  varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto`
+-- Table structure for table  tag_post 
 --
 
-CREATE TABLE `foto` (
-  `id_foto` bigint(5) NOT NULL,
-  `id_paket` smallint(6) NOT NULL,
-  `foto_paket` varchar(255) NOT NULL,
-  `typeFoto_paket` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `foto`
---
-
-INSERT INTO `foto` (`id_foto`, `id_paket`, `foto_paket`, `typeFoto_paket`) VALUES
-(3, 17, './assets/images/destinasi/IMG_0626.JPG', 'destinasi'),
-(4, 17, './assets/images/destinasi/IMG_0721.JPG', 'destinasi'),
-(5, 17, './assets/images/destinasi/IMG_0661.JPG', 'destinasi'),
-(6, 15, './assets/images/destinasi/IMG_0768.JPG', 'destinasi'),
-(7, 18, './assets/images/destinasi/IMG_0735.JPG', 'destinasi'),
-(8, 19, './assets/images/destinasi/IMG_1443.JPG', 'destinasi'),
-(9, 19, './assets/images/destinasi/IMG_1446.JPG', 'destinasi');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gallery`
---
-
-CREATE TABLE `gallery` (
-  `id_gallery` bigint(6) NOT NULL,
-  `title_gallery` varchar(255) DEFAULT NULL,
-  `pict_gallery` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `gallery`
---
-
-INSERT INTO `gallery` (`id_gallery`, `title_gallery`, `pict_gallery`) VALUES
-(4, 'Bandung', './assets/images/gallery/IMG_0626.JPG'),
-(5, 'Makasar', './assets/images/gallery/IMG_1706.JPG'),
-(6, 'Bali', './assets/images/gallery/IMGL6671.JPG');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `identitas`
---
-
-CREATE TABLE `identitas` (
-  `id` bigint(5) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `identitas`
---
-
-INSERT INTO `identitas` (`id`, `username`, `password`, `email`) VALUES
-(1, 'pasca', '804cf912e8ed99c0a693e83a4e824a9d', 'travellover.id@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `paket`
---
-
-CREATE TABLE `paket` (
-  `id_paket` smallint(6) NOT NULL,
-  `nama_paket` varchar(255) NOT NULL,
-  `typeTrip_paket` smallint(1) DEFAULT NULL,
-  `pict_paket` text NOT NULL,
-  `lokasi_paket` varchar(255) NOT NULL,
-  `harga_paket` varchar(255) NOT NULL,
-  `deskripsi_paket` text NOT NULL,
-  `itenary_paket` text NOT NULL,
-  `syarat_paket` text NOT NULL,
-  `pesan_paket` text NOT NULL,
-  `aktif_paket` varchar(25) NOT NULL,
-  `slider_paket` smallint(1) NOT NULL,
-  `popular_paket` smallint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `paket`
---
-
-INSERT INTO `paket` (`id_paket`, `nama_paket`, `typeTrip_paket`, `pict_paket`, `lokasi_paket`, `harga_paket`, `deskripsi_paket`, `itenary_paket`, `syarat_paket`, `pesan_paket`, `aktif_paket`, `slider_paket`, `popular_paket`) VALUES
-(15, 'Malang', 1, './assets/images/destinasi/IMG_0696.JPG', 'Malang, Jawa Timur', '1200000', 'Keren gan', '\r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            <p>Cool&nbsp; &nbsp;</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ', '\r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            \r\n                                            <p>Cool</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ', '', 'aktif', 1, 0),
-(17, 'Bali', 2, './assets/images/destinasi/IMG_0721.JPG', 'Bali, Bali', '2100000', 'Bali adalah bali', '\r\n                                            <p>Balii&nbsp;&nbsp;&nbsp;&nbsp;</p>                                        ', '\r\n                                            <p>Balii</p>                                        ', '', 'aktif', 1, 0),
-(18, 'Pulau pari', 2, './assets/images/destinasi/IMG_0768.JPG', 'Jakarta Timur', '2500000', 'Pulau Pari adalah', '<p>ASASAS</p>', '<p>ASASASa</p>', '', 'aktif', 0, 0),
-(19, 'Bromo', 1, './assets/images/destinasi/IMG_2052.JPG', 'Pasuruan, Jawa Timur', '599000', 'Bromo adalah gunung tertinggi di jawa timur', '<p>Loemipsum</p>', '<p>Loemipsum<br></p>', '', 'aktif', 0, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `post`
---
-
-CREATE TABLE `post` (
-  `id_post` bigint(6) NOT NULL,
-  `postedBy_post` varchar(255) NOT NULL,
-  `title_post` varchar(255) NOT NULL,
-  `pict_post` text NOT NULL,
-  `body_post` text NOT NULL,
-  `date_post` varchar(255) NOT NULL,
-  `status_post` smallint(1) NOT NULL
+CREATE TABLE  tag_post  (
+   id_tag_post  bigint(6) NOT NULL,
+   id_post  bigint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tags`
+-- Table structure for table  testimonial 
 --
 
-CREATE TABLE `tags` (
-  `id_tags` bigint(6) NOT NULL,
-  `name` varchar(255) NOT NULL
+CREATE TABLE  testimonial  (
+   id_testi  bigint(6) NOT NULL,
+   name_testi  varchar(255) DEFAULT NULL,
+   pict_testi  text,
+   desc_testi  varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+--
+-- Table structure for table  transaksi 
+--
+
+CREATE TABLE  transaksi  (
+   id_transaksi  bigint(5) NOT NULL,
+   id_paket  smallint(6) NOT NULL,
+   nama_pemesan  varchar(255) NOT NULL,
+   gender_pemesan  varchar(3) NOT NULL,
+   telpon_pemesan  varchar(25) NOT NULL,
+   email_pemesan  varchar(255) NOT NULL,
+   total_harga  int(255) NOT NULL,
+   caraBayar  varchar(25) NOT NULL,
+   status_transaksi  tinyint(1) NOT NULL,
+   time_transaksi  date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tag_post`
+-- Table structure for table  trips 
 --
 
-CREATE TABLE `tag_post` (
-  `id_tag_post` bigint(6) NOT NULL,
-  `id_post` bigint(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `testimonial`
---
-
-CREATE TABLE `testimonial` (
-  `id_testi` bigint(6) NOT NULL,
-  `name_testi` varchar(255) DEFAULT NULL,
-  `pict_testi` text,
-  `desc_testi` varchar(255) DEFAULT NULL
+CREATE TABLE  trips  (
+   id_trips  smallint(1) NOT NULL,
+   type_trips  varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `testimonial`
+-- Indexes for table  categories 
 --
-
-INSERT INTO `testimonial` (`id_testi`, `name_testi`, `pict_testi`, `desc_testi`) VALUES
-(1, 'Helfi 12344', './assets/images/testimonial/IMG_0625.JPG', 'Keren asd'),
-(2, 'Rania Akhmalia', './assets/images/testimonial/IMG_0626.JPG', 'Mantap Gan Lanjutkan'),
-(3, 'Danang', './assets/images/testimonial/IMGL6538.JPG', 'Travellover is the best'),
-(4, 'Taufic', './assets/pic/testimonial/author/1@2x.jpg', 'Mantap Gan'),
-(5, 'Dimas', './assets/pic/testimonial/author/1@2x.jpg', 'lololol');
-
--- --------------------------------------------------------
+ALTER TABLE  categories 
+  ADD PRIMARY KEY ( id_category );
 
 --
--- Table structure for table `transaksi`
+-- Indexes for table  category_post 
 --
-
-CREATE TABLE `transaksi` (
-  `id_transaksi` bigint(5) NOT NULL,
-  `id_paket` smallint(6) NOT NULL,
-  `nama_pemesan` varchar(255) NOT NULL,
-  `gender_pemesan` varchar(3) NOT NULL,
-  `telpon_pemesan` varchar(25) NOT NULL,
-  `email_pemesan` varchar(255) NOT NULL,
-  `total_harga` int(255) NOT NULL,
-  `caraBayar` varchar(25) NOT NULL,
-  `status_transaksi` tinyint(1) NOT NULL,
-  `time_transaksi` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+ALTER TABLE  category_post 
+  ADD KEY  id_post  ( id_post ),
+  ADD KEY  id_category_post  ( id_category_post );
 
 --
--- Table structure for table `trips`
+-- Indexes for table  datatamu 
 --
-
-CREATE TABLE `trips` (
-  `id_trips` smallint(1) NOT NULL,
-  `type_trips` varchar(25) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE  datatamu 
+  ADD PRIMARY KEY ( id_dataTamu ),
+  ADD KEY  id_transaksi  ( id_transaksi );
 
 --
--- Dumping data for table `trips`
+-- Indexes for table  foto 
 --
-
-INSERT INTO `trips` (`id_trips`, `type_trips`) VALUES
-(1, 'open'),
-(2, 'private');
-
---
--- Indexes for dumped tables
---
+ALTER TABLE  foto 
+  ADD PRIMARY KEY ( id_foto ),
+  ADD KEY  id_paket  ( id_paket );
 
 --
--- Indexes for table `categories`
+-- Indexes for table  gallery 
 --
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id_category`);
+ALTER TABLE  gallery 
+  ADD PRIMARY KEY ( id_gallery );
 
 --
--- Indexes for table `category_post`
+-- Indexes for table  identitas 
 --
-ALTER TABLE `category_post`
-  ADD KEY `id_post` (`id_post`),
-  ADD KEY `id_category_post` (`id_category_post`);
+ALTER TABLE  identitas 
+  ADD PRIMARY KEY ( id );
 
 --
--- Indexes for table `datatamu`
+-- Indexes for table  paket 
 --
-ALTER TABLE `datatamu`
-  ADD PRIMARY KEY (`id_dataTamu`),
-  ADD KEY `id_transaksi` (`id_transaksi`);
+ALTER TABLE  paket 
+  ADD PRIMARY KEY ( id_paket ),
+  ADD KEY  typeTrip_paket  ( typeTrip_paket );
 
 --
--- Indexes for table `foto`
+-- Indexes for table  post 
 --
-ALTER TABLE `foto`
-  ADD PRIMARY KEY (`id_foto`),
-  ADD KEY `id_paket` (`id_paket`);
+ALTER TABLE  post 
+  ADD PRIMARY KEY ( id_post );
 
 --
--- Indexes for table `gallery`
+-- Indexes for table  tags 
 --
-ALTER TABLE `gallery`
-  ADD PRIMARY KEY (`id_gallery`);
+ALTER TABLE  tags 
+  ADD PRIMARY KEY ( id_tags );
 
 --
--- Indexes for table `identitas`
+-- Indexes for table  tag_post 
 --
-ALTER TABLE `identitas`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE  tag_post 
+  ADD KEY  id_tag_post  ( id_tag_post ),
+  ADD KEY  id_post  ( id_post );
 
 --
--- Indexes for table `paket`
+-- Indexes for table  testimonial 
 --
-ALTER TABLE `paket`
-  ADD PRIMARY KEY (`id_paket`),
-  ADD KEY `typeTrip_paket` (`typeTrip_paket`);
+ALTER TABLE  testimonial 
+  ADD PRIMARY KEY ( id_testi );
 
 --
--- Indexes for table `post`
+-- Indexes for table  transaksi 
 --
-ALTER TABLE `post`
-  ADD PRIMARY KEY (`id_post`);
+ALTER TABLE  transaksi 
+  ADD PRIMARY KEY ( id_transaksi ),
+  ADD KEY  id_paket  ( id_paket );
 
 --
--- Indexes for table `tags`
+-- Indexes for table  trips 
 --
-ALTER TABLE `tags`
-  ADD PRIMARY KEY (`id_tags`);
-
---
--- Indexes for table `tag_post`
---
-ALTER TABLE `tag_post`
-  ADD KEY `id_tag_post` (`id_tag_post`),
-  ADD KEY `id_post` (`id_post`);
-
---
--- Indexes for table `testimonial`
---
-ALTER TABLE `testimonial`
-  ADD PRIMARY KEY (`id_testi`);
-
---
--- Indexes for table `transaksi`
---
-ALTER TABLE `transaksi`
-  ADD PRIMARY KEY (`id_transaksi`),
-  ADD KEY `id_paket` (`id_paket`);
-
---
--- Indexes for table `trips`
---
-ALTER TABLE `trips`
-  ADD PRIMARY KEY (`id_trips`),
-  ADD KEY `type_trips` (`type_trips`);
+ALTER TABLE  trips 
+  ADD PRIMARY KEY ( id_trips ),
+  ADD KEY  type_trips  ( type_trips );
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT for table  categories 
 --
-ALTER TABLE `categories`
-  MODIFY `id_category` bigint(6) NOT NULL AUTO_INCREMENT;
+ALTER TABLE  categories 
+  MODIFY  id_category  bigint(6) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `datatamu`
+-- AUTO_INCREMENT for table  datatamu 
 --
-ALTER TABLE `datatamu`
-  MODIFY `id_dataTamu` bigint(5) NOT NULL AUTO_INCREMENT;
+ALTER TABLE  datatamu 
+  MODIFY  id_dataTamu  bigint(5) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `foto`
+-- AUTO_INCREMENT for table  foto 
 --
-ALTER TABLE `foto`
-  MODIFY `id_foto` bigint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+ALTER TABLE  foto 
+  MODIFY  id_foto  bigint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT for table `gallery`
+-- AUTO_INCREMENT for table  gallery 
 --
-ALTER TABLE `gallery`
-  MODIFY `id_gallery` bigint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE  gallery 
+  MODIFY  id_gallery  bigint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `identitas`
+-- AUTO_INCREMENT for table  identitas 
 --
-ALTER TABLE `identitas`
-  MODIFY `id` bigint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE  identitas 
+  MODIFY  id  bigint(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `paket`
+-- AUTO_INCREMENT for table  paket 
 --
-ALTER TABLE `paket`
-  MODIFY `id_paket` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+ALTER TABLE  paket 
+  MODIFY  id_paket  smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
--- AUTO_INCREMENT for table `post`
+-- AUTO_INCREMENT for table  post 
 --
-ALTER TABLE `post`
-  MODIFY `id_post` bigint(6) NOT NULL AUTO_INCREMENT;
+ALTER TABLE  post 
+  MODIFY  id_post  bigint(6) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tags`
+-- AUTO_INCREMENT for table  tags 
 --
-ALTER TABLE `tags`
-  MODIFY `id_tags` bigint(6) NOT NULL AUTO_INCREMENT;
+ALTER TABLE  tags 
+  MODIFY  id_tags  bigint(6) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `testimonial`
+-- AUTO_INCREMENT for table  testimonial 
 --
-ALTER TABLE `testimonial`
-  MODIFY `id_testi` bigint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE  testimonial 
+  MODIFY  id_testi  bigint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `transaksi`
+-- AUTO_INCREMENT for table  transaksi 
 --
-ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` bigint(5) NOT NULL AUTO_INCREMENT;
+ALTER TABLE  transaksi 
+  MODIFY  id_transaksi  bigint(5) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `trips`
+-- AUTO_INCREMENT for table  trips 
 --
-ALTER TABLE `trips`
-  MODIFY `id_trips` smallint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE  trips 
+  MODIFY  id_trips  smallint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `category_post`
+-- Constraints for table  category_post 
 --
-ALTER TABLE `category_post`
-  ADD CONSTRAINT `category_post_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `post` (`id_post`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `category_post_ibfk_2` FOREIGN KEY (`id_category_post`) REFERENCES `categories` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE  category_post 
+  ADD CONSTRAINT  category_post_ibfk_1  FOREIGN KEY ( id_post ) REFERENCES  post  ( id_post ) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT  category_post_ibfk_2  FOREIGN KEY ( id_category_post ) REFERENCES  categories  ( id_category ) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `datatamu`
+-- Constraints for table  datatamu 
 --
-ALTER TABLE `datatamu`
-  ADD CONSTRAINT `datatamu_ibfk_1` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksi` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE  datatamu 
+  ADD CONSTRAINT  datatamu_ibfk_1  FOREIGN KEY ( id_transaksi ) REFERENCES  transaksi  ( id_transaksi ) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `foto`
+-- Constraints for table  foto 
 --
-ALTER TABLE `foto`
-  ADD CONSTRAINT `foto_ibfk_1` FOREIGN KEY (`id_paket`) REFERENCES `paket` (`id_paket`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE  foto 
+  ADD CONSTRAINT  foto_ibfk_1  FOREIGN KEY ( id_paket ) REFERENCES  paket  ( id_paket ) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `paket`
+-- Constraints for table  paket 
 --
-ALTER TABLE `paket`
-  ADD CONSTRAINT `paket_ibfk_1` FOREIGN KEY (`typeTrip_paket`) REFERENCES `trips` (`id_trips`);
+ALTER TABLE  paket 
+  ADD CONSTRAINT  paket_ibfk_1  FOREIGN KEY ( typeTrip_paket ) REFERENCES  trips  ( id_trips );
 
 --
--- Constraints for table `tag_post`
+-- Constraints for table  tag_post 
 --
-ALTER TABLE `tag_post`
-  ADD CONSTRAINT `tag_post_ibfk_1` FOREIGN KEY (`id_tag_post`) REFERENCES `tags` (`id_tags`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tag_post_ibfk_2` FOREIGN KEY (`id_post`) REFERENCES `post` (`id_post`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE  tag_post 
+  ADD CONSTRAINT  tag_post_ibfk_1  FOREIGN KEY ( id_tag_post ) REFERENCES  tags  ( id_tags ) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT  tag_post_ibfk_2  FOREIGN KEY ( id_post ) REFERENCES  post  ( id_post ) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `transaksi`
+-- Constraints for table  transaksi 
 --
-ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`id_paket`) REFERENCES `paket` (`id_paket`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE  transaksi 
+  ADD CONSTRAINT  transaksi_ibfk_1  FOREIGN KEY ( id_paket ) REFERENCES  paket  ( id_paket ) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

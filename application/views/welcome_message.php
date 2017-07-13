@@ -1,89 +1,63 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
 
-	<style type="text/css">
-
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body {
-		margin: 0 15px 0 15px;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
-</head>
-<body>
-
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
-
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-	</div>
-
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-</div>
-
-</body>
-</html>
+SELECT UUID_TASK_H, CUSTOMER_NAME, AGREEMENT_NO, BRANCH_NAME,   
+ASSIGN_DATE, SUBMIT_DATE, FULL_NAME, STATUS_TASK_DESC,   
+SEND_DATE, FLAG FROM (   
+	SELECT a.UUID_TASK_H, a.CUSTOMER_NAME, a.AGREEMENT_NO, a.BRANCH_NAME,   
+	a.ASSIGN_DATE, a.SUBMIT_DATE, a.FULL_NAME, a.STATUS_TASK_DESC,   
+	SEND_DATE, FLAG, ROW_NUMBER() OVER(ORDER BY rownum) AS recnum FROM (   
+		SELECT b.UUID_TASK_H, b.CUSTOMER_NAME, b.AGREEMENT_NO, b.BRANCH_NAME,    
+		b.ASSIGN_DATE, b.SUBMIT_DATE, b.FULL_NAME, b.STATUS_TASK_DESC,    
+		b.SEND_DATE, b.FLAG, '5D' as FLAGORDER,    
+		ROW_NUMBER() OVER ( 
+			ORDER BY WHEN FLAGORDER = '1D' THEN b.CUSTOMER_NAME
+					 WHEN FLAGORDER = '2D' THEN b.AGREEMENT_NO
+					 WHEN FLAGORDER = '3D' THEN b.BRANCH_NAME
+					 WHEN FLAGORDER = '4D' THEN b.ASSIGN_DATE
+					 WHEN FLAGORDER = '5D' THEN b.SUBMIT_DATE
+					 WHEN FLAGORDER = '6D' THEN b.FULL_NAME
+					 WHEN FLAGORDER = '7D' THEN b.STATUS_TASK_DESC
+					 WHEN FLAGORDER = '8D' THEN b.send_date
+					 ELSE NULL END DESC
+			) as rownum FROM (    
+			SELECT trth.UUID_TASK_H,    
+				isnull(trth.CUSTOMER_NAME,'-') as CUSTOMER_NAME,    
+				isnull(trth.AGREEMENT_NO,'-') as AGREEMENT_NO,    
+				isnull(msb.BRANCH_NAME,'-') as BRANCH_NAME,    
+				trth.ASSIGN_DATE as ASSIGN_DATE,    
+				trth.SUBMIT_DATE as SUBMIT_DATE,    
+				isnull(ammsu.FULL_NAME,'-') as FULL_NAME,    
+				isnull(msst.STATUS_TASK_DESC,'-') as STATUS_TASK_DESC,    
+				trth.send_date as SEND_DATE,    
+				ammsu.UUID_MS_SUBSYSTEM,    
+				trth.UUID_BRANCH as UUID_BRANCH,    
+				trth.UUID_STATUS_TASK as UUID_STATUS_TASK,    
+				'1' as FLAG		    		
+				FROM TR_TASK_H trth    
+				left join MS_STATUSTASK msst on trth.UUID_STATUS_TASK = msst.UUID_STATUS_TASK    
+				left join AM_MSUSER ammsu on ammsu.UUID_MS_USER = trth.UUID_MS_USER    
+				join (
+					SELECT keyValue as UUID_BRANCH, BRANCH_NAME 
+					FROM dbo.getCabangByLogin('748ACAA8-50D2-4F38-B511-9D4C01BB80E4') msb on trth.UUID_BRANCH = msb.UUID_BRANCH    
+					union all    
+					SELECT trth.UUID_TASK_H,    
+						isnull(trth.CUSTOMER_NAME,'-') as CUSTOMER_NAME,    
+						isnull(trth.AGREEMENT_NO,'-') as AGREEMENT_NO,    
+						isnull(msb.BRANCH_NAME,'-') as BRANCH_NAME,    
+						trth.ASSIGN_DATE as ASSIGN_DATE,    
+						trth.SUBMIT_DATE as SUBMIT_DATE,    
+						isnull(ammsu.FULL_NAME,'-') as FULL_NAME,    
+						isnull(msst.STATUS_TASK_DESC,'-') as STATUS_TASK_DESC,    
+						trth.send_date as SEND_DATE,    
+						ammsu.UUID_MS_SUBSYSTEM,    
+						trth.UUID_BRANCH as UUID_BRANCH,    
+						trth.UUID_STATUS_TASK as UUID_STATUS_TASK,    
+						'2' as FLAG	    			
+					FROM final_TR_TASK_H trth    
+						left join MS_STATUSTASK msst on trth.UUID_STATUS_TASK = msst.UUID_STATUS_TASK    
+						left join AM_MSUSER ammsu on ammsu.UUID_MS_USER = trth.UUID_MS_USER    
+						join (
+							SELECT keyValue as UUID_BRANCH, BRANCH_NAME FROM dbo.getCabangByLogin('748ACAA8-50D2-4F38-B511-9D4C01BB80E4') msb on      
+							trth.UUID_BRANCH = msb.UUID_BRANCH    
+							) b
+				where 1=1
+				
