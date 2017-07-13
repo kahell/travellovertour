@@ -144,16 +144,16 @@
                                     </div>
                                     <div class="hr-line-dashed"></div>
                                     <div class="form-group">
-                                        <label class="col-sm-2" control-label>Tags</label>
+                                        <label class="col-sm-2"  control-label>Tags</label>
                                         <div class="col-sm-10">
-                                            <input placeholder="Masukan tags" id="tags_post" type="text" name="tags_post" class="form-control">
+                                            <input data-role="tagsinput" placeholder="Masukan tags" id="tags_post" type="text" name="tags_post" class="form-control">
                                         </div>
                                     </div>
                                     <div class="hr-line-dashed"></div>
                                     <div class="form-group">
-                                        <label class="col-sm-2" control-label>Categories</label>
+                                        <label class="col-sm-2"  control-label>Categories</label>
                                         <div class="col-sm-10">
-                                            <input placeholder="Masukan Kategori" id="categories_post" type="text" name="categories_post" class="form-control">
+                                            <input data-role="tagsinput" placeholder="Masukan Kategori" id="categories_post" type="text" name="categories_post" class="form-control">
                                         </div>
                                     </div>
                                     <div class="hr-line-dashed"></div>
@@ -214,6 +214,47 @@
                        }
                    }
                });
+
+           //add 
+           $('#tags_post').on('beforeItemAdd', function(event) {
+             var tag = event.item;
+             var formData = new FormData();
+
+             formData.append('id_post', $("#id_post").val());
+             formData.append('tags_post', tag);
+
+               // Do some processing here
+               if (!event.options || !event.options.preventPost) {
+                $.ajax({
+                    url: "<?php echo site_url("Pasca_blogs/upload_tags")?>",
+                    type: 'post',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        $('#tags_post').tagsinput('add', tag, {preventPost: true});
+                    }
+                });
+              }
+            });
+
+           //reomve
+           $('#tags_post').on('beforeItemRemove', function(event) {
+                var tag = event.item;
+                var formData = new FormData();
+                formData.append('id_post', $("#id_post").val());
+                formData.append('tags_post', tag);
+                if (!event.options || !event.options.preventPost) {
+                  $.ajax('<?php echo site_url("Pasca_blogs/remove_tags")?>', formData, function(response) {
+                        if (response.failure) {
+                            //console.log(response);
+                            // Remove the tag since there was a failure
+                            // "preventPost" here will stop this ajax call from running when the tag is removed
+                            $('#tags_post').tagsinput('remove', tag, {preventPost: true});
+                        }
+                    });
+                }
+            });
        });
 
         function save1(){
@@ -243,7 +284,7 @@
                             ext: 'OK',
                             btnClass: 'btn-green',
                             action: function () {
-                                location.href = "<?php echo site_url('Pasca_paket');?>"
+                                location.href = "<?php echo site_url('Pasca_blogs');?>"
                             }
                         }
                     }

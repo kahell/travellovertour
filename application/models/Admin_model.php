@@ -166,12 +166,42 @@ Class Admin_model extends CI_Model{
         $this->db->insert($tableName, $data);
 		return $this->db->insert_id();
 	}
-
 	function updateBlogs($tableName, $where, $data)
 	{
 		$this->db->update($tableName, $data, $where);
 		return $this->db->affected_rows();
 	}
+	function getTags($data){
+        $this->db->select("*");
+        $this->db->from('tags');
+        $this->db->where('name',$data);
+        $query = $this->db->get();
+	    return $query;
+	}
+	function addTags($tableName, $data){
+        $this->db->insert($tableName, $data);
+		return $this->db->insert_id();
+	}
+	public function deleteTags($tableName, $name)
+	{
+		$this->db->where('name', $name);
+		$this->db->delete($tableName);
+	}
+
+	public function deleteTagsRel($tableName, $id_tags, $id_post){
+		$this->db->where('id_tag_post', $id_tags);
+		$this->db->where('id_post', $id_post);
+		$this->db->delete($tableName);
+	}
+	function getId($name){
+        $this->db->select("id_tags");
+        $this->db->where("name", $name);
+        $this->db->from('tags');
+        $query = $this->db->get();
+	    return $query->row()->id_tags;
+	}
+
+
     //End of Home-Model -------------------------------------------------------
 }
 ?>

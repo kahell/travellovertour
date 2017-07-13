@@ -140,14 +140,14 @@
                         <div class="ibox-content">
                             <div class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Judul</label>
+                                    <label class="col-sm-2 " control-label>Judul</label>
                                     <div class="col-sm-10">
                                         <input placeholder="Masukan nama tempat wisata" id="nama_paket" type="text" name="nama_paket" class="form-control">
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Tipe Trip</label>
+                                    <label class="col-sm-2 " control-label>Tipe Trip</label>
                                     <div class="col-sm-10">
                                         <select class='form-control m-b' id='typeTrip_paket' name='typeTrip_paket'>
                                             <option selected value='1'>Open</option>
@@ -157,28 +157,28 @@
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Pict thumbnail</label>
+                                    <label class="col-sm-2 " control-label>Pict thumbnail</label>
                                     <div class="col-sm-10">
                                         <input id="pictThumb_paket" name="pictThumb_paket" type="file"  class="form-control">
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Location</label>
+                                    <label class="col-sm-2 " control-label>Location</label>
                                     <div class="col-sm-10">
                                         <input placeholder="ex: Malang, Jawa Timur" id="lokasi_paket" name="lokasi_paket" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Harga</label>
+                                    <label class="col-sm-2 " control-label>Harga</label>
                                     <div class="col-sm-10">
                                         <div class="input-group m-b"><span class="input-group-addon">Rp.</span><input placeholder="Ex: 500000" id="harga_paket" name="harga_paket" type="text" class="form-control"></div>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Deskripsi</label>
+                                    <label class="col-sm-2 " control-label>Deskripsi</label>
                                     <div class="col-sm-10">
                                         <div class="input-group m-b">
                                             <textarea placeholder="Deskripsikan tempat wisata tersebut" rows="8" cols="500" id="deskripsi_paket" name="deskripsi_paket" class="form-control"></textarea>
@@ -187,7 +187,7 @@
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Foto Destinasi <br><br>Note: click field and please klik button upload foto to upload file</label>
+                                    <label class="col-sm-2 " control-label>Foto Destinasi <br><br>Note: click field and please klik button upload foto to upload file</label>
                                     <div class="col-sm-10">
                                         <div id="my-awesome-dropzone" class="dropzone" action="#">
                                             <div class="dropzone-previews"></div>
@@ -246,36 +246,36 @@
 <?php $this->load->view('layouts/javascript_admin');?>
 <script>
     $(document).ready(function (){
-     $('#summernote').summernote({
+       $('#summernote').summernote({
                     height: 300, // set editor height
                     minHeight: null, // set minimum height of editor
                     maxHeight: null, // set maximum height of editor
                     callbacks: {
                         onImageUpload: function(files) {
-                         sendFile(files[0]);
-                     }
-                 }
-             });
+                           sendFile(files[0]);
+                       }
+                   }
+               });
 
-     $('#summernote2').summernote({
+       $('#summernote2').summernote({
                     height: 300, // set editor height
                     minHeight: null, // set minimum height of editor
                     maxHeight: null, // set maximum height of editor
                     callbacks: {
                         onImageUpload: function(files) {
-                         sendFile2(files[0]);
-                     }
-                 }
-             });
+                           sendFile2(files[0]);
+                       }
+                   }
+               });
 
-     $('#table_id').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": false,
-        "ordering": true,
-        "info": false,
-        "autoWidth": true
-    });
+       $('#table_id').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": false,
+            "ordering": true,
+            "info": false,
+            "autoWidth": true
+        });
     $('div.dz-default.dz-message > span').show(); // Show message span
     $('div.dz-default.dz-message').css({'opacity':1, 'background-image': 'none'});
 });
@@ -316,6 +316,7 @@
                 return (previewElement = file.previewElement) != null ? (previewElement.parentNode.removeChild(file.previewElement)) : (void 0);
             }
     }
+
     function save1(){
         function toAngka(rp){return parseInt(rp.replace(/,.*|\D/g,''),10)}
         var angka = toAngka($("#harga_paket").val());
@@ -357,6 +358,7 @@
                     }
                 });
             }
+
             function sendFile(file){
                 data = new FormData();
                 data.append("file", file);
@@ -400,6 +402,7 @@
                     }
                 });
             }
+
         </script>
     </body>
     </html>

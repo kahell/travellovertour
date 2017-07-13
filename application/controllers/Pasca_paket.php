@@ -21,10 +21,8 @@ class Pasca_paket extends CI_Controller {
 			$data['namaAdmin']  = $inputNamePicadmin['username'];
 			//Delete Un Aktif Paket
 			$delete_paket = $this->admin->deleteData('paket',"aktif_paket = 'belum_aktif'");
-
 			//Nampilin Paket
 			$data['paket'] = $this->admin->getData('paket','');
-
 			$this->load->view('Admin_paket' , $data); 
 		}else{
 			$this->load->view('Login'); 
@@ -58,7 +56,6 @@ class Pasca_paket extends CI_Controller {
 		if($this->session->userdata('adminSession')){                 
 			$inputNamePicadmin = $this->session->userdata('adminSession');
 			$data['namaAdmin']  = $inputNamePicadmin['username'];
-
 			//create data
 			$data_paket = array(
 				'aktif_paket' => 'belum_aktif',
@@ -66,10 +63,8 @@ class Pasca_paket extends CI_Controller {
 				'slider_paket' => 0,
 				);
 			$paket = $this->admin->paket_add('paket', $data_paket);
-
 			//Get Paket Untuk ambil id_paket
 			$data['paket'] = $this->admin->getData('paket',"where aktif_paket = 'belum_aktif' order by id_paket desc limit 1");
-
 			//View
 			$this->load->view('Admin_addPaket' , $data); 
 		}else{

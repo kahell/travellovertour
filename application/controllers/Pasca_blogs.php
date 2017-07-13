@@ -50,9 +50,9 @@ class Pasca_blogs extends CI_Controller {
 	}
 
 	public function upload_supernote()
-	{	
+	{
 		if (!empty($_FILES)) 
-		{	
+		{
 			$tempFile = $_FILES['file']['tmp_name'];
 			$fileName = str_replace(' ', '', $_FILES['file']['name']);
 			$fileType = $_FILES['file']['type'];
@@ -140,7 +140,31 @@ class Pasca_blogs extends CI_Controller {
 			'status_post' => 1
 			);
 		$insert = $this->admin->updateBlogs('post',$data,'id_post = '.$id_post );
-
+		
 		redirect('Pasca_blogs', 'refresh'); 
+	}
+
+	public function upload_tags(){
+		$nama_tags = $this->input->post('tags_post');
+		$nameTags = array(
+			'name' => $nama_tags
+			);
+		$insertTags = $this->admin->addTags('tags',$nameTags);
+		/*
+		$dataTags = array(
+			'id_tag_post' => $insertTags,
+			'id_post' => $this->input->post('id_post')
+			);
+		$addRelationTags = $this->admin->addTags('tag_post', $dataTags);*/
+		echo json_encode($insertTags);
+	}
+
+	public function remove_tags(){
+		$name_tags = $this->input->post('tags_post');
+		$id_post = $this->input->post('id_post');
+		$getId_tags = $this->admin->getId($name_tags);
+		$delete_tags = $this->admin->deleteTags('tags',$name_tags);
+		$deleteRelation_tags = $this->admin->deleteTagsRel('tag_post',$getId_tags, $id_post);
+		echo json_encode('sukses');
 	}
 }

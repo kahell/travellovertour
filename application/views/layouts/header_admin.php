@@ -53,6 +53,8 @@
 	<meta name="application-name" content="Travellovertour">
 	<!-- Bootstrap -->
 	<link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Boootsrap Input-->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet">
 	<!-- Font awesome -->
 	<link href="<?php echo base_url(); ?>assets/css/font-awesome.css" rel="stylesheet">
 	<!-- animate -->
