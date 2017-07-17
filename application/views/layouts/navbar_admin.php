@@ -26,7 +26,7 @@
                 <a href="<?php echo site_url('Pasca_blogs');?>"><i class="fa fa-rocket"></i> <span class="nav-label">Blogs</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-line-chart"></i> <span class="nav-label">Transaksi</span></a>
+                <a href="<?php echo site_url('Pasca_transaksi');?>"><i class="fa fa-line-chart"></i> <span class="nav-label">Transaksi</span></a>
             </li>
             <li>
                 <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>

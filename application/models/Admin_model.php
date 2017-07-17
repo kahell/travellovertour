@@ -171,10 +171,29 @@ Class Admin_model extends CI_Model{
 		$this->db->update($tableName, $data, $where);
 		return $this->db->affected_rows();
 	}
+
+	//Get Tag Join
+	function getTagJoin($id){
+		$query = $this->db->query("SELECT tags.name, tag_post.id_post, tag_post.id_tag_post
+			FROM tag_post
+			INNER JOIN tags ON tag_post.id_post = '$id'
+			AND tag_post.id_tag_post = tags.id_tags");
+		return $query;
+	}
+
+	function getCategoryJoin($id){
+		$query = $this->db->query("SELECT categories.name, category_post.id_post, category_post.id_category_post
+			FROM category_post
+			INNER JOIN categories ON category_post.id_post = '$id'
+			AND category_post.id_category_post = categories.id_category");
+		return $query;
+	}
+
+	//Tags
 	function getTags($data){
         $this->db->select("*");
-        $this->db->from('tags');
         $this->db->where('name',$data);
+        $this->db->from('tags');
         $query = $this->db->get();
 	    return $query;
 	}
@@ -193,14 +212,54 @@ Class Admin_model extends CI_Model{
 		$this->db->where('id_post', $id_post);
 		$this->db->delete($tableName);
 	}
-	function getId($name){
+	function getId($tableName, $name){
         $this->db->select("id_tags");
         $this->db->where("name", $name);
-        $this->db->from('tags');
+        $this->db->from($tableName);
         $query = $this->db->get();
 	    return $query->row()->id_tags;
 	}
+	function getIdPost($tableName, $id_tags,$id_post){
+        $this->db->select("*");
+        $this->db->where("id_tag_post", $id_tags);
+        $this->db->where("id_post", $id_post);
+        $this->db->from($tableName);
+        $query = $this->db->get();
+	    return $query;
+	}
 
+	// Category
+	function getCategory($data){
+        $this->db->select("*");
+        $this->db->where('name',$data);
+        $this->db->from('categories');
+        $query = $this->db->get();
+	    return $query;
+	}
+	function addCategories($tableName, $data){
+        $this->db->insert($tableName, $data);
+		return $this->db->insert_id();
+	}
+	function getIdCategory($tableName, $name){
+        $this->db->select("id_category");
+        $this->db->where("name", $name);
+        $this->db->from($tableName);
+        $query = $this->db->get();
+	    return $query->row()->id_category;
+	}
+	function getIdPostCategory($tableName, $id_tags, $id_post){
+        $this->db->select("*");
+        $this->db->where("id_category_post", $id_tags);
+        $this->db->where("id_post", $id_post);
+        $this->db->from($tableName);
+        $query = $this->db->get();
+	    return $query;
+	}
+	function deleteCategoryRel($tableName, $id_tags, $id_post){
+		$this->db->where('id_category_post', $id_tags);
+		$this->db->where('id_post', $id_post);
+		$this->db->delete($tableName);
+	}
 
     //End of Home-Model -------------------------------------------------------
 }

@@ -76,4 +76,6 @@
     <link href="<?php echo base_url();?>assets/css/plugins/dropzone/dropzone.css" rel="stylesheet">
 	<!--  blueimp-gallery -->
     <link href="<?php echo base_url();?>assets/css/plugins/blueimp/css/blueimp-gallery.min.css" rel="stylesheet">
+    <!-- FooTable -->
+    <link href="<?php echo base_url();?>assets/css/plugins/footable/footable.core.css" rel="stylesheet">
 </head>

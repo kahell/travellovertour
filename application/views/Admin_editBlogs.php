@@ -28,7 +28,7 @@
                         <li>
                             <a href="<?php echo site_url('Pasca_gallery');?>"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span></a>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="<?php echo site_url('Pasca_blogs');?>"><i class="fa fa-rocket"></i> <span class="nav-label">Blogs</span></a>
                         </li>
                         <li>
@@ -130,90 +130,106 @@
             <div class="wrapper wrapper-content">
                 <!-- Row -->
                 <div class="row">
-                    <input type="hidden" name="id_post" id="id_post" value="<?php echo $blogs;?>">
-                    <!-- Col -->                
-                    <div class="col-lg-12">
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-content">
-                                <div class="form-horizontal">
-                                    <div class="form-group">
-                                        <label class="col-sm-2" control-label>Status</label>
-                                        <div class="col-sm-10">
-                                            <select class='form-control m-b' id='status_post' name='status_post'>
-                                                <option selected value='1'>Publish</option>
-                                                <option value='0'>Draft</option>
-                                            </select>
+                    <?php
+                    if (!empty($blogs->result())) {
+                        foreach ($blogs->result() as $row) {?>
+                        <input type="hidden" name="id_post" id="id_post" value="<?php echo $row->id_post;?>">
+                        <!-- Col -->                
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-sm-2" control-label>Status</label>
+                                            <div class="col-sm-10">
+                                                <select class='form-control m-b' id='status_post' name='status_post'>
+                                                    <?php
+                                                    if ($row->status_post == 1) {
+                                                        echo "<option selected value='1'>Publish</option>";
+                                                        echo "<option value='0'>Draft</option>";
+                                                    }else{
+                                                        echo "<option value='1'>Publish</option>";
+                                                        echo "<option selected value='0'>Draft</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2" control-label>Judul</label>
+                                            <div class="col-sm-10">
+                                                <input placeholder="Masukan judul" value="<?php echo $row->title_post;?>" id="title_post" type="text" name="title_post" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2"  control-label>Tags</label>
+                                            <div class="col-sm-10">
+                                                <input data-role="tagsinput" placeholder="Masukan tags" value="<?php foreach ($tags->result() as $tag) {echo $tag->name; echo ",";}?>" id="tags_post" type="text" name="tags_post" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2"  control-label>Categories</label>
+                                            <div class="col-sm-10">
+                                                <input data-role="tagsinput" placeholder="Masukan Kategori" value="<?php foreach ($category->result() as $category2) {echo $category2->name;echo ",";}?>" id="categories_post" type="text" name="categories_post" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2" control-label>Pict thumbnail</label>
+                                            <div class="col-sm-10">
+                                                <input id="pictThumb_blogs" name="pictThumb_blogs" type="file"  class="form-control">
+                                                <input id="file2" name="file2" type="hidden" value="<?php echo $row->pict_post;?>" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <div class="col-sm-2 ">
+                                                <label control-label>Content</label>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <div id="summernote" class="click2edit wrapper p-md"><?php echo $row->body_post;?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <div class="col-sm-2 col-sm-offset-2">
+                                                <a style="width: 100%" href="#" type="submit" name="btnSave" id="btnSave"  onclick="save1()" class="btnSave btn btn-primary">Save</a>
+                                            </div>
+                                            <div class="col-sm-2  ">
+                                                <a style="width: 100%" href="<?php echo site_url('Pasca_blogs');?>" type="button" class="btn btn-danger">Cancel</a> 
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2" control-label>Judul</label>
-                                        <div class="col-sm-10">
-                                            <input placeholder="Masukan judul" id="title_post" type="text" name="title_post" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="hr-line-dashed"></div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2"  control-label>Tags</label>
-                                        <div class="col-sm-10">
-                                            <input data-role="tagsinput" placeholder="Masukan tags" id="tags_post" type="text" name="tags_post" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="hr-line-dashed"></div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2"  control-label>Categories</label>
-                                        <div class="col-sm-10">
-                                            <input data-role="tagsinput" placeholder="Masukan Kategori" id="categories_post" type="text" name="categories_post" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="hr-line-dashed"></div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2" control-label>Pict thumbnail</label>
-                                        <div class="col-sm-10">
-                                            <input id="pictThumb_blogs" name="pictThumb_blogs" type="file"  class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="hr-line-dashed"></div>
-                                    <div class="form-group">
-                                        <div class="col-sm-2 ">
-                                            <label control-label>Content</label>
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <div id="summernote" class="click2edit wrapper p-md"></div>
-                                        </div>
-                                    </div>
-                                    <div class="hr-line-dashed"></div>
-                                    <div class="form-group">
-                                        <div class="col-sm-2 col-sm-offset-2">
-                                            <a style="width: 100%" href="#" type="submit" name="btnSave" id="btnSave"  onclick="save1()" class="btnSave btn btn-primary">Save</a>
-                                        </div>
-                                        <div class="col-sm-2  ">
-                                            <a style="width: 100%" href="<?php echo site_url('Pasca_paket');?>" type="button" class="btn btn-danger">Cancel</a> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>                        
+                                </div>                        
+                            </div>
                         </div>
-                    </div>
-                    <!-- End Of Col-->
-                </div>
-                <!-- End Of Row-->
+                        <!-- End Of Col-->
+                        <?php
+                    }
+                }
+                ?>
             </div>
-            <!-- End Of Wrap-->
-            <div class="footer">
-                <div class="pull-right">
-                    Travellover <strong>Indonesia</strong> 2017.
-                </div>
-                <div>
-                    <strong>Copyright</strong> Travellover &copy; 2017
-                </div>
+            <!-- End Of Row-->
+        </div>
+        <!-- End Of Wrap-->
+        <div class="footer">
+            <div class="pull-right">
+                Travellover <strong>Indonesia</strong> 2017.
+            </div>
+            <div>
+                <strong>Copyright</strong> Travellover &copy; 2017
             </div>
         </div>
     </div>
-    <?php $this->load->view('layouts/javascript_admin');?>
+</div>
+<?php $this->load->view('layouts/javascript_admin');?>
 
-    <script>
-        $(document).ready(function (){
-         $('#summernote').summernote({
+<script>
+    $(document).ready(function (){
+     $('#summernote').summernote({
                     height: 300, // set editor height
                     minHeight: null, // set minimum height of editor
                     maxHeight: null, // set maximum height of editor
@@ -313,15 +329,15 @@
       });
        });
 
-        function save1(){
-            var inputFile = document.querySelector('#pictThumb_blogs');
-            var formData = new FormData();
-            formData.append('id_post', $("#id_post").val());
-            formData.append('title_post', $("#title_post").val());
-            formData.append('status_post', $("#status_post").val());
-            formData.append('file2', '');
-            formData.append('file', inputFile.files[0]);
-            formData.append("body_post", $('.click2edit').summernote('code'));
+    function save1(){
+        var inputFile = document.querySelector('#pictThumb_blogs');
+        var formData = new FormData();
+        formData.append('id_post', $("#id_post").val());
+        formData.append('title_post', $("#title_post").val());
+        formData.append('status_post', $("#status_post").val());
+        formData.append('file2', $("#file2").val() );
+        formData.append('file', inputFile.files[0]);
+        formData.append("body_post", $('.click2edit').summernote('code'));
         //End of Foto
         $.ajax({
             url: "<?php echo site_url("Pasca_blogs/upload_data")?>",
@@ -348,6 +364,7 @@
             }
         });
     }
+
     function sendFile(file){
         data = new FormData();
         data.append("file", file);

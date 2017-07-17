@@ -30,7 +30,7 @@
                         <a href="<?php echo site_url('Pasca_blogs');?>"><i class="fa fa-rocket"></i> <span class="nav-label">Blogs</span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-line-chart"></i> <span class="nav-label">Transaksi</span></a>
+                        <a href="<?php echo site_url('Pasca_transaksi');?>"><i class="fa fa-line-chart"></i> <span class="nav-label">Transaksi</span></a>
                     </li>
                     <li>
                         <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
@@ -111,7 +111,7 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-content table-responsive">
                                 <table id="table_id" class="table">
-                                <a href="#" id="btnAdd_gallery" data-toggle="modal" data-target="#myModal" class="btn btn-info btnAdd_gallery"><i class="glyphicon glyphicon-plus"></i> Tambah Foto</a>
+                                <a href="#" id="btnAdd_gallery" data-toggle="modal" data-target="#myModal" class="btn btn-primary btnAdd_gallery"><i class="glyphicon glyphicon-plus"></i> Tambah Foto</a>
                                     <thead>
                                         <tr>
                                             <th>No.</th>

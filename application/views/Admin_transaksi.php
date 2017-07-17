@@ -27,10 +27,10 @@
                     <li>
                         <a href="<?php echo site_url('Pasca_gallery');?>"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span></a>
                     </li>
-                    <li  class="active">
+                    <li>
                         <a href="<?php echo site_url('Pasca_blogs');?>"><i class="fa fa-rocket"></i> <span class="nav-label">Blogs</span></a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="<?php echo site_url('Pasca_transaksi');?>"><i class="fa fa-line-chart"></i> <span class="nav-label">Transaksi</span></a>
                     </li>
                     <li>
@@ -109,50 +109,64 @@
                 <!-- Box -->
                 <div class="row">
                     <div class="col-lg-12">
+                        <div class="ibox-title">
+                            <h5>Transaksi</h5>
+                            <div class="ibox-tools">
+                                <a href="" class="btn btn-primary btn-xs">Create new project</a>
+                            </div>
+                        </div>
                         <div class="ibox float-e-margins">
                             <div class="ibox-content table-responsive">
-                                <a href="<?php echo base_url('Pasca_blogs/addBlogs');?>" class="btn btn-primary" style="width: 10%;">Add</a>
-                                <table id="table_id" class="table  table-hover">
+                                <input type="text" class="form-control input-sm m-b-xs" id="filter"
+                                placeholder="Search in table">
+                                <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15" data-filter=#filter>
                                     <thead>
                                         <tr>
-                                            <th>Tanggal</th>
-                                            <th>Status</th>
-                                            <th>Posted By</th>
-                                            <th>Title</th>
-                                            <th>Action</th>
+                                            <th class="footable-visible footable-sortable footable-first-column">Order ID<span class="footable-sort-indicator"></span></th>
+                                            <th data-hide="phone" class="footable-visible footable-sortable">Customer<span class="footable-sort-indicator"></span></th>
+                                            <th data-hide="phone" class="footable-visible footable-sortable">Jumlah Tagihan<span class="footable-sort-indicator"></span></th>
+                                            <th data-hide="phone" class="footable-visible footable-sortable">Tanggal Order<span class="footable-sort-indicator"></span></th>
+                                            <th data-hide="phone,tablet" class="footable-sortable" style="display: none;">Date modified<span class="footable-sort-indicator"></span></th>
+                                            <th data-hide="phone" class="footable-visible footable-sortable">Status<span class="footable-sort-indicator"></span></th>
+                                            <th class="text-right footable-visible footable-sortable footable-sorted footable-last-column">Action<span class="footable-sort-indicator"></span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                        foreach ($blogs->result() as $row) {
-                                            echo "<tr>";
-                                            echo "<td>$row->date_post</td>";
-                                            if ($row->status_post == '1') {
-                                                echo "<td><label class='label label-info'>Published</label></td>";
-                                            }else{
-                                                echo "<td><label class='label label-danger'>Draft</label></td>";
-                                            }
-                                            echo "<td>$row->postedBy_post</td>";
-                                            echo "<td>$row->title_post</td>";?>
-                                            <td>
+                                        <tr class="footable-even" style="display: table-row;">
+                                            <td class="footable-visible footable-first-column"><span class="footable-toggle"></span>
+                                                324
+                                            </td>
+                                            <td class="footable-visible">
+                                                Customer example
+                                            </td>
+                                            <td class="footable-visible">
+                                                $320.00
+                                            </td>
+                                            <td class="footable-visible">
+                                                12/04/2015
+                                            </td>
+                                            <td class="" style="display: none;">
+                                                21/07/2015
+                                            </td>
+                                            <td class="footable-visible">
+                                                <span class="label label-warning">Expired</span>
+                                            </td>
+                                            <td class="text-right footable-visible footable-last-column">
                                                 <div class="btn-group">
-                                                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Action <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu">
-                                                        <li>
-                                                            <?php
-                                                            echo "<a href='http://localhost/travellovertour/Pasca_blogs/edit_post/$row->id_post' class='btn' type='button'><i class='glyphicon glyphicon-pencil'></i> Edit</a>";
-                                                            ?>
-                                                        </li>
-                                                        <li><a href="#" class='btn'onclick="deletePost(<?php echo $row->id_post;?>)"><i class='glyphicon glyphicon-remove'> </i> Delete</a>
-                                                        </li>
-                                                    </ul>
+                                                    <button class="btn-white btn btn-xs">View</button>
+                                                    <button class="btn-white btn btn-xs">Edit</button>
+                                                    <button class="btn-white btn btn-xs">Delete</button>
                                                 </div>
                                             </td>
-                                            <?php
-                                            echo "</tr>";
-                                        }
-                                        ?>
+                                        </tr>
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="7" class="footable-visible">
+                                                <ul class="pagination pull-right"><li class="footable-page-arrow"><a data-page="first" href="#first">«</a></li><li class="footable-page-arrow"><a data-page="prev" href="#prev">‹</a></li><li class="footable-page"><a data-page="0" href="#">1</a></li><li class="footable-page active"><a data-page="1" href="#">2</a></li><li class="footable-page"><a data-page="2" href="#">3</a></li><li class="footable-page-arrow"><a data-page="next" href="#next">›</a></li><li class="footable-page-arrow"><a data-page="last" href="#last">»</a></li></ul>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>
@@ -164,19 +178,13 @@
             <?php $this->load->view('layouts/footer_admin');?>
         </div>
     </div>
-    
+
     <?php $this->load->view('layouts/javascript_admin');?>
 
     <script>
+
         $(document).ready(function () {
-            $('#table_id').DataTable({
-              "paging": true,
-              "lengthChange": false,
-              "searching": true,
-              "ordering": true,
-              "info": false,
-              "autoWidth": true
-          });
+            $('.footable').footable({});
         });
         function deletePost(id_post){
             $.confirm({
