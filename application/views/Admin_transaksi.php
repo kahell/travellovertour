@@ -32,7 +32,7 @@
                     </li>
                     <li class="active">
                         <a href="<?php echo site_url('Pasca_transaksi');?>"><i class="fa fa-line-chart"></i> <span class="nav-label">Transaksi</span></a>
-                    </li>
+                    </li><!--
                     <li>
                         <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
                         <ul class="nav nav-second-level collapse">
@@ -41,7 +41,7 @@
                             <li><a href="mail_compose.html">Compose email</a></li>
                             <li><a href="email_template.html">Email templates</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </nav>
@@ -109,13 +109,13 @@
                 <!-- Box -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="ibox-title">
-                            <h5>Transaksi</h5>
-                            <div class="ibox-tools">
-                                <a href="" class="btn btn-primary btn-xs">Create new project</a>
-                            </div>
-                        </div>
                         <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Transaksi</h5>
+                                <!--<div class="ibox-tools">
+                                    <a href="" class="btn btn-primary btn-xs">Create new project</a>
+                                </div>-->
+                            </div>
                             <div class="ibox-content table-responsive">
                                 <input type="text" class="form-control input-sm m-b-xs" id="filter"
                                 placeholder="Search in table">
@@ -126,118 +126,87 @@
                                             <th data-hide="phone" class="footable-visible footable-sortable">Customer<span class="footable-sort-indicator"></span></th>
                                             <th data-hide="phone" class="footable-visible footable-sortable">Jumlah Tagihan<span class="footable-sort-indicator"></span></th>
                                             <th data-hide="phone" class="footable-visible footable-sortable">Tanggal Order<span class="footable-sort-indicator"></span></th>
-                                            <th data-hide="phone,tablet" class="footable-sortable" style="display: none;">Date modified<span class="footable-sort-indicator"></span></th>
+                                            <th data-hide="phone" class="footable-visible footable-sortable">Tanggal Bayar<span class="footable-sort-indicator"></span></th>
+                                            <th data-hide="phone,tablet" class="footable-sortable" style="display: none;">Catatan Pesan<span class="footable-sort-indicator"></span></th>
                                             <th data-hide="phone" class="footable-visible footable-sortable">Status<span class="footable-sort-indicator"></span></th>
                                             <th class="text-right footable-visible footable-sortable footable-sorted footable-last-column">Action<span class="footable-sort-indicator"></span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="footable-even" style="display: table-row;">
-                                            <td class="footable-visible footable-first-column"><span class="footable-toggle"></span>
-                                                324
-                                            </td>
-                                            <td class="footable-visible">
-                                                Customer example
-                                            </td>
-                                            <td class="footable-visible">
-                                                $320.00
-                                            </td>
-                                            <td class="footable-visible">
-                                                12/04/2015
-                                            </td>
-                                            <td class="" style="display: none;">
-                                                21/07/2015
-                                            </td>
-                                            <td class="footable-visible">
-                                                <span class="label label-warning">Expired</span>
-                                            </td>
-                                            <td class="text-right footable-visible footable-last-column">
-                                                <div class="btn-group">
-                                                    <button class="btn-white btn btn-xs">View</button>
-                                                    <button class="btn-white btn btn-xs">Edit</button>
-                                                    <button class="btn-white btn btn-xs">Delete</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="7" class="footable-visible">
-                                                <ul class="pagination pull-right"><li class="footable-page-arrow"><a data-page="first" href="#first">«</a></li><li class="footable-page-arrow"><a data-page="prev" href="#prev">‹</a></li><li class="footable-page"><a data-page="0" href="#">1</a></li><li class="footable-page active"><a data-page="1" href="#">2</a></li><li class="footable-page"><a data-page="2" href="#">3</a></li><li class="footable-page-arrow"><a data-page="next" href="#next">›</a></li><li class="footable-page-arrow"><a data-page="last" href="#last">»</a></li></ul>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
+                                        <?php
+                                        if (!empty($transaksi->result())) {
+                                            foreach ($transaksi->result() as $row) {?>
+                                            <tr class="footable-even" style="display: table-row;">
+                                                <td class="footable-visible footable-first-column"><span class="footable-toggle"></span>
+                                                    <?php echo $row->id_transaksi;?>
+                                                </td>
+                                                <td class="footable-visible">
+                                                    <?php echo $row->nama_pemesan?>
+                                                </td>
+                                                <td class="footable-visible">
+                                                    Rp. <?php echo number_format($row->total_harga);?>
+                                                </td>
+                                                <td class="footable-visible">
+                                                    <?php echo $row->time_order?>
+                                                </td>
+                                                <td class="footable-visible">
+                                                    <?php echo $row->time_transaksi?>
+                                                </td>
+                                                <td class="" style="display: none;">
+                                                    <?php echo $row->catatan_transaksi?>
+                                                </td>
+                                                <td class="footable-visible">
+                                                    <span class="label label-warning">
+                                                        <?php 
+                                                        if ($row->status_transaksi == '1') {
+                                                            echo "Lunas";
+                                                        }elseif($row->status_transaksi == '0'){
+                                                            echo "Pending";
+                                                        }
+                                                        ?>
+                                                    </span>
+                                                </td>
+                                                <td class="text-right footable-visible footable-last-column">
+                                                    <div class="btn-group">
+                                                        <?php
+                                                        echo "<a class='btn-white btn btn-xs' href='http://localhost/travellovertour/Pasca_transaksi/getView/$row->id_transaksi'>View</a>";
+                                                        ?>
+                                                        <!--
+                                                        <button class="btn-white btn btn-xs" onclick="btnEdit(<?php echo $row->id_transaksi;?>)">Edit</button>-->
+                                                        <!--<button class="btn-white btn btn-xs">Delete</button>-->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="7" class="footable-visible">
+                                            <ul class="pagination pull-right"><li class="footable-page-arrow"><a data-page="first" href="#first">«</a></li><li class="footable-page-arrow"><a data-page="prev" href="#prev">‹</a></li><li class="footable-page"><a data-page="0" href="#">1</a></li><li class="footable-page active"><a data-page="1" href="#">2</a></li><li class="footable-page"><a data-page="2" href="#">3</a></li><li class="footable-page-arrow"><a data-page="next" href="#next">›</a></li><li class="footable-page-arrow"><a data-page="last" href="#last">»</a></li></ul>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
-                    <!-- End Of Row-->
                 </div>
-                <!-- End of Box-->
+                <!-- End Of Row-->
             </div>
-            <?php $this->load->view('layouts/footer_admin');?>
+            <!-- End of Box-->
         </div>
+        <?php $this->load->view('layouts/footer_admin');?>
     </div>
+</div>
 
-    <?php $this->load->view('layouts/javascript_admin');?>
+<?php $this->load->view('layouts/javascript_admin');?>
 
-    <script>
-
-        $(document).ready(function () {
-            $('.footable').footable({});
-        });
-        function deletePost(id_post){
-            $.confirm({
-                title: 'Delete Post?',
-                content: 'Apakah kamu yakin menghapus post?',
-                type: 'red',
-                typeAnimated: true,
-                buttons: {
-                    deleteUser: {
-                        text: 'Delete',
-                        btnClass: 'btn-red',
-                        action: function () {
-                            var formData = new FormData();
-                            formData.append("id_post", id_post);
-                            console.log(id_post);
-                            $.ajax({
-                                url: "<?php echo site_url("Pasca_blogs/deletePost")?>",
-                                type: 'post',
-                                data: formData,
-                                processData: false,
-                                contentType: false,
-                                success: function(data) {
-                                    console.log(data);
-                                    $.alert({
-                                        title: 'SUKSES!',
-                                        content: 'Data berhasil di hapus.',
-                                        type: 'green',
-                                        typeAnimated: true,
-                                        buttons: {
-                                            ok: {
-                                                text: 'OK',
-                                                btnClass: 'btn-green',
-                                                action: function () {
-                                                    location.reload();
-                                                }
-                                            }
-                                        }
-                                    });
-                                },
-                                error: function (jqXHR, textStatus, errorThrown)
-                                {
-                                    console.log(data.responseText);
-                                    console.log(data);
-                                }
-                            });
-                        }
-                    },
-                    cancel: function () {
-                        $.alert('Menghapus post di batalkan');
-                    }
-                }
-            });   
-        }
-    </script>
+<script>
+    $(document).ready(function () {
+        $('.footable').footable({});
+    });
+</script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <?php $this->load->view('layouts/header_admin');?>
 <body>
@@ -31,7 +32,7 @@
                     </li>
                     <li>
                         <a href="<?php echo site_url('Pasca_transaksi');?>"><i class="fa fa-line-chart"></i> <span class="nav-label">Transaksi</span></a>
-                    </li>
+                    </li><!--
                     <li>
                         <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
                         <ul class="nav nav-second-level collapse">
@@ -40,7 +41,7 @@
                             <li><a href="mail_compose.html">Compose email</a></li>
                             <li><a href="email_template.html">Email templates</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </nav>
@@ -53,48 +54,6 @@
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
                             <span class="m-r-sm text-muted welcome-message">Welcome <?php echo $namaAdmin ?>.</span>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-alerts">
-                                <li>
-                                    <a href="mailbox.html">
-                                        <div>
-                                            <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="profile.html">
-                                        <div>
-                                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                            <span class="pull-right text-muted small">12 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="grid_options.html">
-                                        <div>
-                                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="text-center link-block">
-                                        <a href="notifications.html">
-                                            <strong>See All Alerts</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <a href="<?php echo site_url("Pasca/logout"); ?>">
@@ -112,14 +71,11 @@
                             <div class="ibox-title">
                                 <h5>Paket</h5>
                                 <div class="ibox-tools">
-                                    <a class="collapse-link">
-                                        <i class="fa fa-chevron-up"></i>
-                                    </a>
+                                    <a href="<?php echo site_url('Pasca_paket/add_paket');?>" class="btn btn-primary btn-xs">Create new pakets</a>
                                 </div>
                             </div>
                             <div class="ibox-content table-responsive">
                                 <table id="table_id" class="table table-hover">
-                                    <a href="<?php echo site_url('Pasca_paket/add_paket');?>" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Tambah Paket</a>
                                     <thead>
                                         <tr>
                                             <th>id</th>
@@ -127,58 +83,56 @@
                                             <th>Nama Paket</th>
                                             <th>Lokasi Paket</th>
                                             <th>Harga</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody style="text-align: left;">
-
                                         <?php 
                                         $count = 1;
                                         foreach($paket->result() as $row){?>
                                         <tr>
                                            <td><?php echo $count++;?></td>
                                            <td><?php
-                                                if ($row->typeTrip_paket == '1') {
-                                                    echo "<label class='label label-primary'>Open Trip</label>";
-                                                }else{
-                                                    echo "<label class='label label-success'>Private Trip</label>";
-                                                }
-                                            ?></td>
-                                           <td><?php echo $row->nama_paket;?></td>
-                                           <td><?php echo $row->lokasi_paket;?></td>
-                                           <td>Rp. <?php echo number_format($row->harga_paket);?></td>
-                                           <?php   echo "<td>";
-                                           echo "<a href='http://localhost/travellovertour/Pasca_paket/edit_paket/$row->id_paket' style='text-align: right;'class='btn btn-info' type='button'> <i class='glyphicon glyphicon-pencil'></i></a>";
-                                           echo "</td>";
-                                           echo "<td>";
-                                           echo "<a href='#' style='text-align: right;' class='btn btn-danger' onclick='delete_paket($row->id_paket)' type='button'> <i class='glyphicon glyphicon-remove'></i></a>";
-                                           echo "</td>";
-                                           ?>
-                                       </tr>
-                                       <?php }?>
-                                   </tbody>
-                               </table>
-                           </div>
-                       </div>
-                   </div>
-                   <!-- End Of Row-->
-               </div>
-           </div>
-           <div class="footer">
-            <div class="pull-right">
-                Travellover <strong>Indonesia</strong> 2017.
+                                            if ($row->typeTrip_paket == '1') {
+                                                echo "<label class='label label-primary'>Open Trip</label>";
+                                            }else{
+                                                echo "<label class='label label-success'>Private Trip</label>";
+                                            }
+                                            ?>
+                                        </td>
+                                        <td><?php echo $row->nama_paket;?></td>
+                                        <td><?php echo $row->lokasi_paket;?></td>
+                                        <td>Rp. <?php echo number_format($row->harga_paket);?></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Action <span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <?php
+                                                        echo "<a href='http://localhost/travellovertour/Pasca_paket/edit_paket/$row->id_paket' class='btn' type='button'> <i class='glyphicon glyphicon-pencil'></i> Edit</a>";
+                                                        ?>
+                                                    </li>
+                                                    <li><a href="#" class='btn' onclick="delete_paket('$row->id_paket')"><i class='glyphicon glyphicon-remove'> </i> Delete</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php }?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Of Row-->
             </div>
-            <div>
-                <strong>Copyright</strong> Travellover &copy; 2017
-            </div>
+            <!-- End of Box-->
         </div>
+        <?php $this->load->view('layouts/footer_admin');?>
     </div>
 </div>
 
-
 <?php $this->load->view('layouts/javascript_admin');?>
-
 <script>
     $(document).ready(function () {
         $('#table_id').DataTable({

@@ -34,6 +34,7 @@
                         <li>
                             <a href="<?php echo site_url('Pasca_transaksi');?>"><i class="fa fa-line-chart"></i> <span class="nav-label">Transaksi</span></a>
                         </li>
+                        <!--
                         <li>
                             <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
                             <ul class="nav nav-second-level collapse">
@@ -42,7 +43,7 @@
                                 <li><a href="mail_compose.html">Compose email</a></li>
                                 <li><a href="email_template.html">Email templates</a></li>
                             </ul>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
             </nav>

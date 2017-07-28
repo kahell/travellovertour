@@ -14,48 +14,6 @@
                         <li>
                             <span class="m-r-sm text-muted welcome-message">Welcome <?php echo $namaAdmin ?>.</span>
                         </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-alerts">
-                                <li>
-                                    <a href="mailbox.html">
-                                        <div>
-                                            <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="profile.html">
-                                        <div>
-                                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                            <span class="pull-right text-muted small">12 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="grid_options.html">
-                                        <div>
-                                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="text-center link-block">
-                                        <a href="notifications.html">
-                                            <strong>See All Alerts</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
                         <li>
                             <a href="<?php echo site_url("Pasca/logout"); ?>">
                                 <i class="fa fa-sign-out"></i> Log out
@@ -95,33 +53,33 @@
                                         if (empty($slider)) {
                                             echo "";
                                         }else{
-                                        foreach($slider->result() as $row){?>
-                                        <tr>
-                                         <td><?php echo $count++;?></td>
-                                         <td><?php echo $row->nama_paket;?></td>
-                                         <td><img style="display: inline; height: 30px; width: 30px;" class='responsive-img' alt='<?php echo base_url();
-                                            echo $row->pict_paket; ?>' src="<?php echo base_url($row->pict_paket);?>"></td>
-                                            <td>Rp. <?php echo number_format($row->harga_paket);?></td>
-                                            <td>
-                                                <?php
+                                            foreach($slider->result() as $row){?>
+                                            <tr>
+                                               <td><?php echo $count++;?></td>
+                                               <td><?php echo $row->nama_paket;?></td>
+                                               <td><img style="display: inline; height: 30px; width: 30px;" class='responsive-img' alt='<?php echo base_url();
+                                                echo $row->pict_paket; ?>' src="<?php echo base_url($row->pict_paket);?>"></td>
+                                                <td>Rp. <?php echo number_format($row->harga_paket);?></td>
+                                                <td>
+                                                    <?php
                                                 //echo $sumSlider;
-                                                if ($sumSlider >= 5) {
-                                                    if ($row->slider_paket == 1) {
-                                                        echo "<button class='btn btn-success btn-sm' onclick='sliderOff($row->id_paket)'>On</button>";
+                                                    if ($sumSlider >= 5) {
+                                                        if ($row->slider_paket == 1) {
+                                                            echo "<button class='btn btn-success btn-sm' onclick='sliderOff($row->id_paket)'>On</button>";
+                                                        }else{
+                                                            echo "<button class='btn btn-danger btn-sm' onclick='sliderFalse($row->id_paket)'>Off</button>";
+                                                        }
                                                     }else{
-                                                        echo "<button class='btn btn-danger btn-sm' onclick='sliderFalse($row->id_paket)'>Off</button>";
-                                                    }
-                                                }else{
-                                                    if ($row->slider_paket == 1) {
-                                                        echo "<button class='btn btn-success btn-sm' onclick='sliderOff($row->id_paket)'>On</button>";
-                                                    }else{
-                                                        echo "<button class='btn btn-danger btn-sm' onclick='sliderOn($row->id_paket)'>Off</button>";
-                                                    }
-                                                }                                                
-                                                ?>
-                                            </td>
-                                        </tr>
-                                        <?php }
+                                                        if ($row->slider_paket == 1) {
+                                                            echo "<button class='btn btn-success btn-sm' onclick='sliderOff($row->id_paket)'>On</button>";
+                                                        }else{
+                                                            echo "<button class='btn btn-danger btn-sm' onclick='sliderOn($row->id_paket)'>Off</button>";
+                                                        }
+                                                    }                                                
+                                                    ?>
+                                                </td>
+                                            </tr>
+                                            <?php }
                                         }?>
 
                                     </tbody>
@@ -162,32 +120,32 @@
                                         if (empty($slider)) {
                                             echo "";
                                         }else{
-                                        foreach($slider->result() as $row){?>
-                                        <tr>
-                                            <td><?php echo $count++;?></td>
-                                            <td><?php echo $row->nama_paket;?></td>
-                                            <td><img style="display: inline; height: 30px; width: 30px;" class='responsive-img' alt='<?php echo base_url();
-                                                echo $row->pict_paket; ?>' src="<?php echo base_url($row->pict_paket);?>"></td>
-                                                <td>Rp. <?php echo number_format($row->harga_paket);?></td>
-                                                <td>
-                                                    <?php
-                                                    if ($sumPopularPost >= 8) {
-                                                        if ($row->popular_paket == 1) {
-                                                            echo "<button class='btn btn-success btn-sm' onclick='popularOff($row->id_paket)'>On</button>";
+                                            foreach($slider->result() as $row){?>
+                                            <tr>
+                                                <td><?php echo $count++;?></td>
+                                                <td><?php echo $row->nama_paket;?></td>
+                                                <td><img style="display: inline; height: 30px; width: 30px;" class='responsive-img' alt='<?php echo base_url();
+                                                    echo $row->pict_paket; ?>' src="<?php echo base_url($row->pict_paket);?>"></td>
+                                                    <td>Rp. <?php echo number_format($row->harga_paket);?></td>
+                                                    <td>
+                                                        <?php
+                                                        if ($sumPopularPost >= 8) {
+                                                            if ($row->popular_paket == 1) {
+                                                                echo "<button class='btn btn-success btn-sm' onclick='popularOff($row->id_paket)'>On</button>";
+                                                            }else{
+                                                                echo "<button class='btn btn-danger btn-sm' onclick='popularFalse($row->id_paket)'>Off</button>";
+                                                            }
                                                         }else{
-                                                            echo "<button class='btn btn-danger btn-sm' onclick='popularFalse($row->id_paket)'>Off</button>";
-                                                        }
-                                                    }else{
-                                                        if ($row->popular_paket == 1) {
-                                                            echo "<button class='btn btn-success btn-sm' onclick='popularOff($row->id_paket)'>On</button>";
-                                                        }else{
-                                                            echo "<button class='btn btn-danger btn-sm' onclick='popularOn($row->id_paket)'>Off</button>";
-                                                        }
-                                                    }                                                
-                                                    ?>
-                                                </td>
-                                            </tr>
-                                            <?php }
+                                                            if ($row->popular_paket == 1) {
+                                                                echo "<button class='btn btn-success btn-sm' onclick='popularOff($row->id_paket)'>On</button>";
+                                                            }else{
+                                                                echo "<button class='btn btn-danger btn-sm' onclick='popularOn($row->id_paket)'>Off</button>";
+                                                            }
+                                                        }                                                
+                                                        ?>
+                                                    </td>
+                                                </tr>
+                                                <?php }
                                             }?>
                                         </tbody>
                                     </table>
@@ -232,67 +190,67 @@
                                                 <td>-</td>
                                             </tr>
                                             <?php
-                                            }else{
-                                                foreach($testimonial->result() as $row){?>
-                                                <tr>
-                                                    <td><?php echo $count++;?></td>
-                                                    <td><?php echo $row->name_testi;?></td>
-                                                    <td><img style="display: inline; height: 30px; width: 30px;" class='responsive-img' alt='<?php echo base_url();
-                                                        echo $row->pict_testi; ?>' src="<?php echo base_url($row->pict_testi);?>"></td>
-                                                        <td><?php echo $row->desc_testi;?></td>
-                                                        <td>
-                                                            <a id="btnEdit_testi" data-toggle="modal" data-target="#myModal" class="btn btn-info btnEdit_testi" href="#" ><i class="fa fa-edit"></i>
-                                                                <input type="hidden" name="id_testi" id="id_testi" value="<?php echo $row->id_testi?>">
-                                                                <input type="hidden" name="name_testi" id="name_testi" value="<?php echo $row->name_testi?>">
-                                                                <input type="hidden" name="pict_testi" id="pict_testi" value="<?php echo $row->pict_testi?>">
-                                                                <input type="hidden" name="desc_testi" id="desc_testi" value="<?php echo $row->desc_testi?>">
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <?php 
-                                                }
-                                            }?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        }else{
+                                            foreach($testimonial->result() as $row){?>
+                                            <tr>
+                                                <td><?php echo $count++;?></td>
+                                                <td><?php echo $row->name_testi;?></td>
+                                                <td><img style="display: inline; height: 30px; width: 30px;" class='responsive-img' alt='<?php echo base_url();
+                                                    echo $row->pict_testi; ?>' src="<?php echo base_url($row->pict_testi);?>"></td>
+                                                    <td><?php echo $row->desc_testi;?></td>
+                                                    <td>
+                                                        <a id="btnEdit_testi" data-toggle="modal" data-target="#myModal" class="btn btn-info btnEdit_testi" href="#" ><i class="fa fa-edit"></i>
+                                                            <input type="hidden" name="id_testi" id="id_testi" value="<?php echo $row->id_testi?>">
+                                                            <input type="hidden" name="name_testi" id="name_testi" value="<?php echo $row->name_testi?>">
+                                                            <input type="hidden" name="pict_testi" id="pict_testi" value="<?php echo $row->pict_testi?>">
+                                                            <input type="hidden" name="desc_testi" id="desc_testi" value="<?php echo $row->desc_testi?>">
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <?php 
+                                            }
+                                        }?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <!-- End Of Row-->
                     </div>
-                    <!-- End Of Box-->
+                    <!-- End Of Row-->
                 </div>
-                <?php $this->load->view('layouts/footer_admin');?>
+                <!-- End Of Box-->
             </div>
+            <?php $this->load->view('layouts/footer_admin');?>
         </div>
+    </div>
 
-        <?php $this->load->view('layouts/javascript_admin');?>
-        
-        <script>
-            $(document).ready(function () {
-                $('#table_id').DataTable({
-                  "paging": true,
-                  "lengthChange": true,
-                  "searching": false,
-                  "ordering": true,
-                  "info": false,
-                  "autoWidth": true
-              });
-                $('#table2_id').DataTable({
-                  "paging": true,
-                  "lengthChange": true,
-                  "searching": false,
-                  "ordering": true,
-                  "info": false,
-                  "autoWidth": true
-              });
-                $('#table3_id').DataTable({
-                  "paging": false,
-                  "lengthChange": true,
-                  "searching": false,
-                  "ordering": false,
-                  "info": false,
-                  "autoWidth": true
-              });
+    <?php $this->load->view('layouts/javascript_admin');?>
+    
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+              "paging": true,
+              "lengthChange": true,
+              "searching": false,
+              "ordering": true,
+              "info": false,
+              "autoWidth": true
+          });
+            $('#table2_id').DataTable({
+              "paging": true,
+              "lengthChange": true,
+              "searching": false,
+              "ordering": true,
+              "info": false,
+              "autoWidth": true
+          });
+            $('#table3_id').DataTable({
+              "paging": false,
+              "lengthChange": true,
+              "searching": false,
+              "ordering": false,
+              "info": false,
+              "autoWidth": true
+          });
 
             //Testimonial
             $('.btnEdit_testi').each(function(){
@@ -338,15 +296,15 @@
                             title: "Sukses!",
                             text: "Berhasil mengubah testimonial",
                             type: "success" },
-                        function (isConfirm) {
-                            $('#modalId_testi').val('');
-                            $('#nama_testi').val('');
-                            $('#mpictCadangan_testi').val('');
-                            $('#mdesc_testi').val('');
-                            setTimeout(function(){
-                                location.reload();
-                            },500);
-                        });
+                            function (isConfirm) {
+                                $('#modalId_testi').val('');
+                                $('#nama_testi').val('');
+                                $('#mpictCadangan_testi').val('');
+                                $('#mdesc_testi').val('');
+                                setTimeout(function(){
+                                    location.reload();
+                                },500);
+                            });
                     },
                     error: function(data){
                         console.log(data.responseText);
@@ -355,83 +313,83 @@
             });
         });
 
-            function sliderOn($id_paket){
-                swal({
-                    title: "Are you sure?",
-                    text: "Jadikan paket ini sebagai slider home?",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#1c84c6",
-                    confirmButtonText: "Ya",
-                    cancelButtonText: "Cancel",
-                    closeOnConfirm: false,
-                    closeOnCancel: false },
-                    function (isConfirm) {
-                        if (isConfirm) {
-                            $.ajax({
-                                url: "<?php echo site_url('Pasca_admin/sliderOn/') ?>/" + $id_paket,
-                                type: "POST",
-                                dataType: "JSON",
-                                success: function (data)
-                                {
-                                    setTimeout(function(){
-                                        location.reload();
-                                    },1500);
-                                    swal("Sukses!", "Paket telah menjadi slider home.", "success");
-                                },
-                                error: function (jqXHR, textStatus, errorThrown)
-                                {
-                                    alert('Error get data from ajax');
-                                }
-                            });
-                        } else {
-                            swal("Cancelled", "Paket dibatalkan menjadi slider home", "error");
-                        }
-                    });
-            }
-
-            function sliderOff($id_paket){
-                swal({
-                    title: "Are you sure?",
-                    text: "Menghilangkan status slider di home?",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#1c84c6",
-                    confirmButtonText: "Ya",
-                    cancelButtonText: "Cancel",
-                    closeOnConfirm: false,
-                    closeOnCancel: false },
-                    function (isConfirm) {
-                        if (isConfirm) {
-                            $.ajax({
-                                url: "<?php echo site_url('Pasca_admin/sliderOff/') ?>/" + $id_paket,
-                                type: "POST",
-                                dataType: "JSON",
-                                success: function (data)
-                                {
-                                    setTimeout(function(){
-                                        location.reload();
-                                    },1500);
-                                    swal("Sukses!", "Paket telah menjadi di off kan dari slider home.", "success");
-                                },
-                                error: function (jqXHR, textStatus, errorThrown)
-                                {
-                                    alert('Error get data from ajax');
-                                }
-                            });
-                        } else {
-                            swal("Cancelled", "Paket dibatalkan off dari slider home", "error");
-                        }
-                    });
-            }
-
-            function sliderFalse($id_paket){
-                swal({
-                    title: "Error. Slider aktif lebih dari 5",
-                    text: "Silahkan off kan slider terlebih dahulu.",
-                    type: "warning",
+        function sliderOn($id_paket){
+            swal({
+                title: "Are you sure?",
+                text: "Jadikan paket ini sebagai slider home?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#1c84c6",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Cancel",
+                closeOnConfirm: false,
+                closeOnCancel: false },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: "<?php echo site_url('Pasca_admin/sliderOn/') ?>/" + $id_paket,
+                            type: "POST",
+                            dataType: "JSON",
+                            success: function (data)
+                            {
+                                setTimeout(function(){
+                                    location.reload();
+                                },1500);
+                                swal("Sukses!", "Paket telah menjadi slider home.", "success");
+                            },
+                            error: function (jqXHR, textStatus, errorThrown)
+                            {
+                                alert('Error get data from ajax');
+                            }
+                        });
+                    } else {
+                        swal("Cancelled", "Paket dibatalkan menjadi slider home", "error");
+                    }
                 });
-            }
+        }
+
+        function sliderOff($id_paket){
+            swal({
+                title: "Are you sure?",
+                text: "Menghilangkan status slider di home?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#1c84c6",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Cancel",
+                closeOnConfirm: false,
+                closeOnCancel: false },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: "<?php echo site_url('Pasca_admin/sliderOff/') ?>/" + $id_paket,
+                            type: "POST",
+                            dataType: "JSON",
+                            success: function (data)
+                            {
+                                setTimeout(function(){
+                                    location.reload();
+                                },1500);
+                                swal("Sukses!", "Paket telah menjadi di off kan dari slider home.", "success");
+                            },
+                            error: function (jqXHR, textStatus, errorThrown)
+                            {
+                                alert('Error get data from ajax');
+                            }
+                        });
+                    } else {
+                        swal("Cancelled", "Paket dibatalkan off dari slider home", "error");
+                    }
+                });
+        }
+
+        function sliderFalse($id_paket){
+            swal({
+                title: "Error. Slider aktif lebih dari 5",
+                text: "Silahkan off kan slider terlebih dahulu.",
+                type: "warning",
+            });
+        }
 
         //Popular Paket
         function popularOn($id_paket){
@@ -511,38 +469,38 @@
                 type: "warning",
             });
         }
-        </script>
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" id="title">Tittle</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <!-- Testi -->
-                            <label id="lnama_testi">Nama</label>
-                            <input type="text" id="nama_testi" name="nama_testi" class="form-control" placeholder="Masukan Nama" value="">
-                            <label id="lpict_testi">Foto</label>
-                            <input type="file" id="mpict_testi" name="mpict_testi" class="form-control">
-                            <input type="hidden" id="mpictCadangan_testi" name="mpictCadangan_testi" class="form-control" value="">
-                            <label id="ldesc_testi">Deskripsi</label>
-                            <input type="text" id="mdesc_testi" name="mdesc_testi" class="form-control" placeholder="Masukan deskripsi" value="">
+    </script>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="title">Tittle</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <!-- Testi -->
+                        <label id="lnama_testi">Nama</label>
+                        <input type="text" id="nama_testi" name="nama_testi" class="form-control" placeholder="Masukan Nama" value="">
+                        <label id="lpict_testi">Foto</label>
+                        <input type="file" id="mpict_testi" name="mpict_testi" class="form-control">
+                        <input type="hidden" id="mpictCadangan_testi" name="mpictCadangan_testi" class="form-control" value="">
+                        <label id="ldesc_testi">Deskripsi</label>
+                        <input type="text" id="mdesc_testi" name="mdesc_testi" class="form-control" placeholder="Masukan deskripsi" value="">
 
-                            <!-- Input Hidden-->
-                            <input type="hidden" id="modalId_testi" class="form-control" value="">   
-                        </div>
+                        <!-- Input Hidden-->
+                        <input type="hidden" id="modalId_testi" class="form-control" value="">   
                     </div>
-                    <div class="modal-footer" >
-                        <a href="#" id="delete" data-dismiss="modal" style="display: none" class="btn btn-flat btn-warning">Delete</a>
-                        <a href="#" id="saveChange" data-dismiss="modal" style="display: none" class="btn btn-flat btn-primary">Update</a>
-                        <a href="#" id="addButton" data-dismiss="modal" style="display: none" class="btn btn-flat btn-primary">Tambah</a>
-                        <a href="#" id="cancelButton" data-dismiss="modal" class="btn btn-flat btn-default">Cancel</a>
-                    </div>
+                </div>
+                <div class="modal-footer" >
+                    <a href="#" id="delete" data-dismiss="modal" style="display: none" class="btn btn-flat btn-warning">Delete</a>
+                    <a href="#" id="saveChange" data-dismiss="modal" style="display: none" class="btn btn-flat btn-primary">Update</a>
+                    <a href="#" id="addButton" data-dismiss="modal" style="display: none" class="btn btn-flat btn-primary">Tambah</a>
+                    <a href="#" id="cancelButton" data-dismiss="modal" class="btn btn-flat btn-default">Cancel</a>
                 </div>
             </div>
         </div>
-    </body>
-    </html>
+    </div>
+</body>
+</html>

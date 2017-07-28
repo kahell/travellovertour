@@ -101,6 +101,7 @@ Class Admin_model extends CI_Model{
 	}
 
 	//- Foto Paket in Admin for CRUD
+	
 	public function paket_add($tableName, $data)
 	{
 		$this->db->insert($tableName, $data);
@@ -112,7 +113,18 @@ Class Admin_model extends CI_Model{
 		$this->db->update($tableName, $data, $where);
 		return $this->db->affected_rows();
 	}
-
+	public function getPaketNews()
+	{	
+		$query = $this->db->query("
+			SELECT * FROM paket WHERE '1' ORDER BY id_paket DESC limit 4");
+		return $query;
+	}
+	public function getPopularPost()
+	{	
+		$query = $this->db->query("
+			SELECT * FROM paket WHERE popular_paket = '1' ORDER BY id_paket ASC limit 8");
+		return $query;
+	}
 	public function paket_by_id($tableName, $id)
 	{
 		$this->db->where('id', $id);
@@ -159,6 +171,15 @@ Class Admin_model extends CI_Model{
 	function getBlogs(){
         $this->db->select("*");
         $this->db->from('post');
+        $query = $this->db->get();
+	    return $query;
+	}
+	function getBlogsHome(){
+        $this->db->select("*");
+        $this->db->from("post");
+        $this->db->where('status_post','1');
+        $this->db->limit('4', '0');
+        $this->db->order_by("id_post", "desc");
         $query = $this->db->get();
 	    return $query;
 	}
@@ -260,7 +281,34 @@ Class Admin_model extends CI_Model{
 		$this->db->where('id_post', $id_post);
 		$this->db->delete($tableName);
 	}
-
+	//Transaksi Model
+	function getDataTransaksi(){
+		$this->db->select("*");
+        $this->db->from('transaksi');
+        $query = $this->db->get();
+		return $query;
+	}
+	function getDataTransaksiById($id){
+		$this->db->select("*");
+        $this->db->from('transaksi');
+        $this->db->where('id_transaksi', $id);
+        $query = $this->db->get();
+		return $query;
+	}
+	function getDataTamu(){
+		$this->db->select("id_dataTamu, nama_tamu, gender_tamu");
+        $this->db->from('datatamu');
+        $query = $this->db->get();
+		return $query;
+	}
+	function transaksi_update($where, $data){
+		$this->db->update('transaksi', $data, $where);
+		return $this->db->affected_rows();
+	}
+	function dataTamu_update($where, $data){
+		$this->db->update('datatamu', $data, $where);
+		return $this->db->affected_rows();
+	}
     //End of Home-Model -------------------------------------------------------
 }
 ?>

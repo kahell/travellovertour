@@ -16,7 +16,7 @@ public function __construct() {
 }
 
 public function index() {
-	if($this->session->userdata('adminSession')){                 
+	if($this->session->userdata('adminSession')){               
 		$inputNamePicadmin = $this->session->userdata('adminSession');
 		$data['namaAdmin']  = $inputNamePicadmin['username'];
 		//Select Slider
@@ -126,8 +126,8 @@ public function update_Testimonial(){
 
 public function ajax_edit($id)
 {
-$data = $this->admin->get_by_id($id);
-echo json_encode($data);
+	$data = $this->admin->get_by_id($id);
+	echo json_encode($data);
 }
 
 private function do_upload()
@@ -141,16 +141,13 @@ private function do_upload()
 		$temp = $_FILES["file"]["tmp_name"];
 		//Taro hanya untuk di folder itu
 		$foto = "assets/images/slider/".$file1;
-
 		$config['upload_path'] = "./assets/images/slider";
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']= 1000;
 		$config['max_width']= 1024;
 		$config['max_height']= 768;
 		$config['overwrite']= TRUE;
-				
 		$library = $this->load->library('upload', $config);
-
 		if (!$this->upload->do_upload("file")) {
 			//MAKE FOLDER
 			if (!file_exists('./assets/images/slider')) {
@@ -166,18 +163,17 @@ private function do_upload()
 				'pricePic' => $this->input->post('pricePic'),
 			);
 			$insert = $this->admin->slider_add($data);
-			
 		}
 	}
-	
 }
+
 public function sliderAdd()
-{	
+{
     $this->do_upload();
 }
 
 public function sliderUpdate()
-{	
+{
 	//POST
 	$inputNamePic = $this->input->post('namePic');
 	$inputPicSebelum = $this->input->post('picSebelum');
@@ -231,8 +227,6 @@ public function slider_delete($id)
 {
 	//manggil nama file gambar
 	$file = $this->admin->get_by_id($id);
-	
-
 	//Hapus Gambar dari FOLDER
 	if (file_exists($file->pic)) {
 		$this->admin->delete_by_id($id);

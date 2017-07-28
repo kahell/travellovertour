@@ -32,7 +32,7 @@
                     </li>
                     <li>
                         <a href="<?php echo site_url('Pasca_transaksi');?>"><i class="fa fa-line-chart"></i> <span class="nav-label">Transaksi</span></a>
-                    </li>
+                    </li><!--
                     <li>
                         <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
                         <ul class="nav nav-second-level collapse">
@@ -41,7 +41,7 @@
                             <li><a href="mail_compose.html">Compose email</a></li>
                             <li><a href="email_template.html">Email templates</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </nav>
@@ -54,48 +54,6 @@
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
                             <span class="m-r-sm text-muted welcome-message">Welcome <?php echo $namaAdmin ?>.</span>
-                        </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-alerts">
-                                <li>
-                                    <a href="mailbox.html">
-                                        <div>
-                                            <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="profile.html">
-                                        <div>
-                                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                            <span class="pull-right text-muted small">12 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="grid_options.html">
-                                        <div>
-                                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="text-center link-block">
-                                        <a href="notifications.html">
-                                            <strong>See All Alerts</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <a href="<?php echo site_url("Pasca/logout"); ?>">
@@ -110,8 +68,13 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Blogs</h5>
+                                <div class="ibox-tools">
+                                    <a href="<?php echo base_url('Pasca_blogs/addBlogs');?>" class="btn btn-primary btn-xs">Create new blogs</a>
+                                </div>
+                            </div>
                             <div class="ibox-content table-responsive">
-                                <a href="<?php echo base_url('Pasca_blogs/addBlogs');?>" class="btn btn-primary" style="width: 10%;">Add</a>
                                 <table id="table_id" class="table  table-hover">
                                     <thead>
                                         <tr>
@@ -171,7 +134,7 @@
         $(document).ready(function () {
             $('#table_id').DataTable({
               "paging": true,
-              "lengthChange": false,
+              "lengthChange": true,
               "searching": true,
               "ordering": true,
               "info": false,
