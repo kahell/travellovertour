@@ -56,48 +56,6 @@
                         <li>
                             <span class="m-r-sm text-muted welcome-message">Welcome <?php echo $namaAdmin ?>.</span>
                         </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-alerts">
-                                <li>
-                                    <a href="mailbox.html">
-                                        <div>
-                                            <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="profile.html">
-                                        <div>
-                                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                            <span class="pull-right text-muted small">12 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="grid_options.html">
-                                        <div>
-                                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="text-center link-block">
-                                        <a href="notifications.html">
-                                            <strong>See All Alerts</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
                         <li>
                             <a href="<?php echo site_url("Pasca/logout"); ?>">
                                <i class="fa fa-sign-out"></i> Log out
@@ -160,9 +118,11 @@
                                                             <select id="gender_pemesan" class="form-control" onChange="save2('gender_pemesan')">
                                                                 <?php
                                                                 if ($row->gender_pemesan == 'Pria') {
+                                                                    echo "<option value='' class=''>Pilih Gender</option>";
                                                                     echo "<option class='active' value='Pria'>Pria</option>";
                                                                     echo "<option class='' value='Wanita'>Wanita</option>";
                                                                 }else{
+                                                                    echo "<option value='' class=''>Pilih Gender</option>";
                                                                     echo "<option class='' value='Pria'>Pria</option>";
                                                                     echo "<option class='active' value='Wanita'>Wanita</option>";
                                                                 }
@@ -192,11 +152,11 @@
                                                             <select id="status_transaksi" onChange="save2('status_transaksi')" class="form-control">
                                                                 <?php
                                                                 if ($row->status_transaksi == '1') {
-                                                                    echo "<option class='active' value='1'>Lunas</option>";
+                                                                    echo "<option class='active' selected value='1'>Lunas</option>";
                                                                     echo "<option class='' value='0'>Pending</option>";
                                                                 }else{
                                                                     echo "<option class='' value='1'>Lunas</option>";
-                                                                    echo "<option class='active' value='0'>Pending</option>";
+                                                                    echo "<option class='active' selected value='0'>Pending</option>";
                                                                 }
                                                                 ?>
                                                             </select>
@@ -244,12 +204,18 @@
                                                             <td>
                                                                 <select id="gender_dataTamu" onChange="save1('<?php echo $row->id_dataTamu;?>')" class="form-control">
                                                                     <?php
-                                                                    if ($row->gender_tamu == 'Wanita') {
-                                                                        echo "<option value='Wanita' class='active'>Wanita</option>";
-                                                                        echo "<option value='Pria' class=''>Pria</option>";
-                                                                    }else if($row->gender_tamu == 'Pria') {
-                                                                        echo "<option value='Wanita' class=''>Wanita</option>";
-                                                                        echo "<option value='Pria' class='active'>Pria</option>"; 
+                                                                    if ($row->gender_tamu == 'pria') {
+                                                                        echo "<option value='' class=''>Pilih Gender</option>";
+                                                                        echo "<option value='wanita' class=''>Wanita</option>";
+                                                                        echo "<option value='pria' selected>Pria</option>"; 
+                                                                    }else if ($row->gender_tamu == 'wanita'){
+                                                                        echo "<option value='' class=''>Pilih Gender</option>";
+                                                                        echo "<option value='wanita' selected>Wanita</option>";
+                                                                        echo "<option value='pria' class=''>Pria</option>";
+                                                                    }else{
+                                                                        echo "<option value='' selected>Pilih Gender</option>";
+                                                                        echo "<option value='wanita' class=''>Wanita</option>";
+                                                                        echo "<option value='pria' class=''>Pria</option>";
                                                                     }
                                                                     ?>
                                                                 </select>
@@ -312,7 +278,7 @@
         }else if($atribut == 'catatan_transaksi'){
             formData.append('data_save', $("#catatan_transaksi").val());
         }
-
+        var id_transaksi = $("#id_transaksi").val();
         formData.append('atribut', $atribut);
         formData.append('id_transaksi', $("#id_transaksi").val());
         $.ajax({
@@ -330,7 +296,7 @@
     function save1($id_dataTamu){
         var formData = new FormData();
         formData.append('id_dataTamu', $id_dataTamu);
-        formData.append('gender', $("#gender_dataTamu").val());
+        formData.append('gender_tamu', $("#gender_dataTamu").val());
         console.log('Gender: ' + $("#gender_dataTamu").val());
         console.log("data Tamu : " + $id_dataTamu);
         $.ajax({

@@ -56,48 +56,6 @@
                         <li>
                             <span class="m-r-sm text-muted welcome-message">Welcome <?php echo $namaAdmin ?>.</span>
                         </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-alerts">
-                                <li>
-                                    <a href="mailbox.html">
-                                        <div>
-                                            <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="profile.html">
-                                        <div>
-                                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                            <span class="pull-right text-muted small">12 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="grid_options.html">
-                                        <div>
-                                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="text-center link-block">
-                                        <a href="notifications.html">
-                                            <strong>See All Alerts</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
                         <li>
                             <a href="<?php echo site_url("Pasca/logout"); ?>">
                                <i class="fa fa-sign-out"></i> Log out
@@ -151,16 +109,16 @@
                                     <div class="col-sm-10">
                                         <?php 
                                         foreach ($paket->result() as $row) {
-                                            if ($row->typeTrip_paket == 1) {
+                                            if ($row->typeTrip_paket == 'open') {
                                                 echo "<select class='form-control m-b' id='typeTrip_paket' name='typeTrip_paket'>
-                                                        <option selected value='1'>Open</option>
-                                                        <option value='2'>Private</option>
-                                                    </select>";
+                                                <option selected value='open'>Open</option>
+                                                <option value='private'>Private</option>
+                                                </select>";
                                             }else{
                                                 echo "<select class='form-control m-b' id='typeTrip_paket' name='typeTrip_paket'>
-                                                        <option value='1'>Open</option>
-                                                        <option selected value='2'>Private</option>
-                                                    </select>";
+                                                <option value='open'>Open</option>
+                                                <option selected value='private'>Private</option>
+                                                </select>";
                                             }
                                         }
                                         ?>
@@ -172,8 +130,12 @@
                                     <div class="col-sm-10">
                                         <?php
                                         foreach ($paket->result() as $row) {
-                                            echo "<input id='pictThumbCadangan_paket' name='pictThumbCadangan_paket' type='hidden' value='$row->pict_paket' class='form-control'>";?>
-                                            <input id="pictThumb_paket" name="pictThumb_paket" type="file"  class="form-control">
+                                            echo "<input id='pictThumbCadangan_paket' name='pictThumbCadangan_paket' type='hidden' value='$row->pict_paket' class='form-control'>";
+                                            echo "<input id='pictThumb_paket' name='pictThumb_paket' type='hidden' value='$row->pictThumb_paket' class='form-control'>";
+                                            echo "<input id='pictThumb2_paket' name='pictThumb2_paket' type='hidden' value='$row->pictThumb2_paket' class='form-control'>";
+                                            echo "<input id='pictSlider_paket' name='pictSlider_paket' type='hidden' value='$row->pictSlider_paket' class='form-control'>";
+                                            ?>
+                                            <input id="pict_paket" name="pict_paket" type="file"  class="form-control">
                                             <?php
                                         }
                                         ?>
@@ -268,7 +230,7 @@
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group">
                                     <div class="col-sm-2 col-sm-offset-2">
-                                        <a style="width: 100%" href="#" type="submit" name="btnSave" id="btnSave"  onclick="save1()" class="btnSave btn btn-primary">Submit</a>
+                                        <a style="width: 100%" href="#" type="submit" name="btnSave" id="btnSave"  onClick="save1()" class="btnSave btn btn-primary">Submit</a>
                                     </div>
                                     <div class="col-sm-2  ">
                                         <a style="width: 100%" href="<?php echo site_url('Pasca_paket');?>" type="button" class="btn btn-danger">Cancel</a> 
@@ -314,7 +276,7 @@
             maxHeight: null, // set maximum height of editor
             callbacks: {
                 onImageUpload: function(files) {
-                sendFile2(files[0]);
+                    sendFile2(files[0]);
                 }
             }
         });
@@ -327,9 +289,7 @@
             "info": false,
             "autoWidth": true
         });
-
-        $('div.dz-default.dz-message > span').show(); // Show message span
-        $('div.dz-default.dz-message').css({'opacity':1, 'background-image': 'none'});
+        $("div.dz-default.dz-message").removeClass("dz-message");
     });
 
     Dropzone.options.myAwesomeDropzone = {
@@ -339,7 +299,6 @@
             parallelUploads: 100,
             addRemoveLinks: true,
             maxFiles: 100,
-            dictDefaultMessage: " ",
             // Dropzone settings
             init: function() {
                 var myDropzone = this;
@@ -352,8 +311,42 @@
                     formData.append('id_paket', $("#id_paket").val());
                 });
                 this.on("successmultiple", function(files, response) {
+                    //console.log(files);
+                    var res = JSON.parse(response);
+                    var cek = res.cek;
+                    var data = res.data;
+                    if (cek == false) {
+                        $.alert({
+                            title: 'ERROR',
+                            content: data,
+                            type: 'red',
+                            typeAnimated: true,
+                            buttons: {
+                                ok: {
+                                    text: 'OK',
+                                    btnClass: 'btn-red'
+                                }
+                            }
+                        });
+                    }else{
+                        $.alert({
+                            title: 'SUCCESS',
+                            content: 'Data berhasil di upload',
+                            type: 'green',
+                            typeAnimated: true,
+                            buttons: {
+                                ok: {
+                                    text: 'OK',
+                                    btnClass: 'btn-green'
+                                }
+                            }
+                        });
+                    }
+                    console.log(response);       
                 });
                 this.on("errormultiple", function(files, response) {
+                    console.log(files);
+                    console.log(response);
                 });
             },
             removedfile: function(file) {
@@ -362,7 +355,10 @@
                     type: "post",
                     url: "<?php echo site_url("Pasca_paket/remove") ?>",
                     data: { file: name },
-                    dataType: 'html'
+                    dataType: 'html',
+                    error: function(data){
+                        console.log(data);
+                    }
                 });
                 // remove the thumbnail
                 var previewElement;
@@ -370,127 +366,155 @@
             }
         }
 
-    function delete_foto($id){
-        data = new FormData();
-        data.append("id_foto", $id);
-        data.append("path_foto", document.getElementById($id).src)
+        function delete_foto($id){
+            data = new FormData();
+            data.append("id_foto", $id);
+            data.append("path_foto", document.getElementById($id).src)
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "<?php echo site_url("Pasca_paket/delete_foto")?>",
+                cache: false,
+                contentType: false,
+                processData: false,
+                dictDefaultMessage: 'nope',
+                success: function(data) {
+                    $.alert({
+                        title: 'SUKSES!',
+                        content: 'Data berhasil di hapus.',
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            ok: {
+                                text: 'OK',
+                                btnClass: 'btn-red',
+                                action: function () {
+                                    location.reload();
+                                }
+                            }
+                        }
+                    });
+                },
+                error: function(data) {
+                    console.log(data.responseText);
+                }
+            });
+        }
+
+        function sendFile(file){
+            data = new FormData();
+            data.append("file", file);
+            data.append("id_paket", $("#id_paket").val());
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "<?php echo site_url("Pasca_paket/upload_supernote")?>",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(url) {
+                    var imgNode = document.createElement("IMG");
+                    imgNode.setAttribute("src", url);
+                    $('#summernote').summernote('insertNode', imgNode);
+                },
+                error: function(data) {
+                    console.log(data.responseText);
+                }
+            });
+        }
+
+        function sendFile2(file){
+            data = new FormData();
+            data.append("file", file);
+            data.append("id_paket", $("#id_paket").val());
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "<?php echo site_url("Pasca_paket/upload_supernote")?>",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(url) {
+                    var imgNode = document.createElement("IMG");
+                    imgNode.setAttribute("src", url);
+                    $('#summernote2').summernote('insertNode', imgNode);
+                },
+                error: function(data) {
+                    console.log(data.responseText);
+                }
+            });
+        }
+
+        function save1(){
+            function toAngka(rp){return parseInt(rp.replace(/,.*|\D/g,''),10)}
+            var angka = toAngka($("#harga_paket").val());
+            var inputFile = document.querySelector('#pict_paket');
+            var inputFileNew = $("#pictThumbCadangan_paket").val();
+            var pictThumbPaket = $("#pictThumb_paket").val();
+            var pictThumbPaket2 = $("#pictThumb2_paket").val();
+            var pictSliderPaket2 = $("#pictSlider_paket").val();
+            var formData = new FormData();
+            formData.append('pictThumb_paket', pictThumbPaket);
+            formData.append('pictThumb2_paket', pictThumbPaket2);
+            formData.append('pictSlider_paket', pictSliderPaket2);
+            formData.append('file2', inputFileNew);
+            formData.append('file', inputFile.files[0]);
+            formData.append('typeTrip_paket', $("#typeTrip_paket").val());
+            formData.append('id_paket', $("#id_paket").val());
+            formData.append("nama_paket", $("#nama_paket").val());
+            formData.append("lokasi_paket", $("#lokasi_paket").val());
+            formData.append("harga_paket", angka);
+            formData.append("deskripsi_paket", $("#deskripsi_paket").val());
+            formData.append("syarat", $('.click2edit2').summernote('code'));
+            formData.append("itenary", $('.click2edit').summernote('code'));
+        //End of Foto
         $.ajax({
-            data: data,
-            type: "POST",
-            url: "<?php echo site_url("Pasca_paket/delete_foto")?>",
-            cache: false,
-            contentType: false,
+            url: "<?php echo site_url("Pasca_paket/upload_data")?>",
+            type: 'post',
+            data: formData,
             processData: false,
+            contentType: false,
             success: function(data) {
-                $.alert({
+                var res = JSON.parse(data);
+                var cek = res.cek;
+                var cek2 = res.data;     
+
+                if(cek == false){
+                    $.alert({
+                        title: 'ERROR',
+                        content: cek2,
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            ok: {
+                                text: 'OK',
+                                btnClass: 'btn-red'
+                            }
+                        }
+                    });
+                }else{
+                 $.alert({
                     title: 'SUKSES!',
-                    content: 'Data berhasil di hapus.',
-                    type: 'red',
+                    content: 'Data berhasil di ubah.',
+                    type: 'green',
                     typeAnimated: true,
                     buttons: {
                         ok: {
                             text: 'OK',
-                            btnClass: 'btn-red',
+                            btnClass: 'btn-green',
                             action: function () {
-                                location.reload();
+                                location.href = "<?php echo site_url('Pasca_paket');?>"
                             }
                         }
                     }
-                });
-            },
-            error: function(data) {
-                console.log(data.responseText);
-            }
-        });
+                }); 
+             }
+         },
+         error: function(data){
+            console.log(data);
+        }
+    });
     }
-
-    function sendFile(file){
-        data = new FormData();
-        data.append("file", file);
-        data.append("id_paket", $("#id_paket").val());
-        $.ajax({
-            data: data,
-            type: "POST",
-            url: "<?php echo site_url("Pasca_paket/upload_supernote")?>",
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(url) {
-                var imgNode = document.createElement("IMG");
-                imgNode.setAttribute("src", url);
-                $('#summernote').summernote('insertNode', imgNode);
-            },
-            error: function(data) {
-                console.log(data.responseText);
-            }
-        });
-    }
-
-    function sendFile2(file){
-        data = new FormData();
-        data.append("file", file);
-        data.append("id_paket", $("#id_paket").val());
-        $.ajax({
-            data: data,
-            type: "POST",
-            url: "<?php echo site_url("Pasca_paket/upload_supernote")?>",
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(url) {
-                var imgNode = document.createElement("IMG");
-                imgNode.setAttribute("src", url);
-                $('#summernote2').summernote('insertNode', imgNode);
-            },
-            error: function(data) {
-                console.log(data.responseText);
-            }
-        });
-    }
-
-    function save1(){
-        function toAngka(rp){return parseInt(rp.replace(/,.*|\D/g,''),10)}
-        var angka = toAngka($("#harga_paket").val());
-        var inputFile = document.querySelector('#pictThumb_paket');
-        var inputFileNew = $("#pictThumbCadangan_paket").val();
-        var formData = new FormData();
-        formData.append('file2', inputFileNew);
-        formData.append('file', inputFile.files[0]);
-        formData.append('typeTrip_paket', $("#typeTrip_paket").val());
-        formData.append('id_paket', $("#id_paket").val());
-        formData.append("nama_paket", $("#nama_paket").val());
-        formData.append("lokasi_paket", $("#lokasi_paket").val());
-        formData.append("harga_paket", angka);
-        formData.append("deskripsi_paket", $("#deskripsi_paket").val());
-        formData.append("syarat", $('.click2edit2').summernote('code'));
-        formData.append("itenary", $('.click2edit').summernote('code'));
-                //End of Foto
-                $.ajax({
-                    url: "<?php echo site_url("Pasca_paket/upload_data")?>",
-                    type: 'post',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(data) {
-
-                        $.alert({
-                            title: 'SUKSES!',
-                            content: 'Data berhasil di ubah.',
-                            type: 'green',
-                            typeAnimated: true,
-                            buttons: {
-                                ok: {
-                                    text: 'OK',
-                                    btnClass: 'btn-green',
-                                    action: function () {
-                                        location.href = "<?php echo site_url('Pasca_paket');?>"
-                                    }
-                                }
-                            }
-                        });
-                    }
-                });
-            }
-        </script>
-    </body>
-    </html>
+</script>
+</body>
+</html>

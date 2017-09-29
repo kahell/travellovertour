@@ -13,7 +13,7 @@
                 <?php
                   echo "<a href='http://localhost/travellovertour/Paket/pesan/$row->id_paket'>";
                 ?>
-                  <img style="height: 310px; width: 370px;" src="<?php foreach ($foto->result() as $row2){if ($row2->id_paket == $row->id_paket){echo base_url();echo $row2->foto_paket; break;}}?>" data-at2x="<?php foreach ($foto->result() as $row2){if ($row2->id_paket == $row->id_paket){ echo base_url();echo $row2->foto_paket; break;}}?>" alt>
+                  <img style="max-height: 310px; max-width: 370px;" src="<?php foreach ($foto->result() as $row2){if ($row2->id_paket == $row->id_paket){echo base_url();echo $row2->foto_paket; break;}}?>" data-at2x="<?php foreach ($foto->result() as $row2){if ($row2->id_paket == $row->id_paket){ echo base_url();echo $row2->foto_paket; break;}}?>" alt>
                 </a>
                 <div class="hover-effect"></div>
                 <!-- item content-->
@@ -22,7 +22,7 @@
                 ?>
                   <h3 class="portfolio-title"><?php echo $row->nama_paket;?></h3>
                   <div class="item-content"> 
-                    <p>Rp. <?php echo $row->harga_paket;?></p>
+                    <p>IDR <?php echo number_format($row->harga_paket, 0, ',', '.');?></p>
                   </div>
                 </a>
                 <div class="links">

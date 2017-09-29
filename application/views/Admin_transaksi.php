@@ -55,48 +55,6 @@
                         <li>
                             <span class="m-r-sm text-muted welcome-message">Welcome <?php echo $namaAdmin ?>.</span>
                         </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-alerts">
-                                <li>
-                                    <a href="mailbox.html">
-                                        <div>
-                                            <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="profile.html">
-                                        <div>
-                                            <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                            <span class="pull-right text-muted small">12 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="grid_options.html">
-                                        <div>
-                                            <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                            <span class="pull-right text-muted small">4 minutes ago</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <div class="text-center link-block">
-                                        <a href="notifications.html">
-                                            <strong>See All Alerts</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
                         <li>
                             <a href="<?php echo site_url("Pasca/logout"); ?>">
                                 <i class="fa fa-sign-out"></i> Log out
@@ -156,15 +114,15 @@
                                                     <?php echo $row->catatan_transaksi?>
                                                 </td>
                                                 <td class="footable-visible">
-                                                    <span class="label label-warning">
+                                                    
                                                         <?php 
                                                         if ($row->status_transaksi == '1') {
-                                                            echo "Lunas";
+                                                            echo "<span class='label label-success'>Lunas</span>";
                                                         }elseif($row->status_transaksi == '0'){
-                                                            echo "Pending";
+                                                            echo "<span class='label label-warning'>Pending</span>";
                                                         }
                                                         ?>
-                                                    </span>
+                                                    
                                                 </td>
                                                 <td class="text-right footable-visible footable-last-column">
                                                     <div class="btn-group">

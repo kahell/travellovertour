@@ -1,70 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="canonical" href="http://www.travellovertour.com">
-  <link rel="alternate" href="http://www.travellovertour.com" hreflang="en-id">
-  <meta name="robots" content="index,nofollow" />
-  <meta name="copyright" content="Copyright © 2017" />
-  <title>Travellovertour</title>
-  <meta name="google" content="notranslate" />
-  <meta name="google-site-verification" content="">
-  <meta name="keywords" content="cari travel, pesan travel, cari tempat wisata, pesan tempat wisata" />
-  <meta name="url" content="http://travellovertour.com" />
-  <meta name="language" content="English">
-  <meta name="description" content="Travellovertour jagonya travel" />
-  <meta name="author" content="Helfi Pangestu">
-  <meta name="csrf-token" content="" />
-  <meta name="revisit-after" content="7">
-  <meta name="webcrawlers" content="all">
-  <meta name="rating" content="general">
-  <meta name="spiders" content="all">
-  <meta itemprop="name" content="Travellovertour">
-  <meta itemprop="description" content="Travellovertour jagonya travel">
-  <meta name="twitter:card" content="Travellovertour">
-  <meta name="twitter:site" content="@travellovertour">
-  <meta name="twitter:title" content="Travellovertour">
-  <meta name="twitter:description" content="Travellovertour jagonya travel">
-  <meta name="twitter:creator" content="@travellovertour">
-  <meta property="og:url" content="http://travellovertour.com" />
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="Travellovertour jagonya travel" />
-  <meta property="og:description" content="Travellovertour jagonya travel" />
-  <meta property="og:site_name" content="Travellover jagonya travel">
-  <meta property="og:title" content="Travellover jagonya travel">
-  <meta property="og:type" content="Travellover jagonya travel">
-  <meta property="og:url" content="http://www.travellovertour.com">
-  <link rel="apple-touch-icon" sizes="57x57" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url(); ?>assets/images/fav/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="<?php echo base_url(); ?>assets/ images/fav/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>assets/images/fav/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url(); ?>assets/images/fav/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/images/fav/favicon-16x16.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
-  <meta name="apple-mobile-web-app-title" content="Travellovertour">
-  <meta name="application-name" content="Travellovertour">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/reset.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/font-awesome.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/owl.carousel.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery.fancybox.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/fonts/fi/flaticon.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/flexslider.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/travellovertour.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/css/indent.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/rs-plugin/css/settings.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/rs-plugin/css/layers.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/rs-plugin/css/navigation.css">
+  <?php $this->load->view('layouts/head_home');?>
 </head>
 <body>
   <!-- header page-->
@@ -102,7 +39,6 @@
             </li>
             <!-- End Item-->
             <!-- Search-->
-
             <li class="search"><a href="#" class="mn-has-sub">Search</a>
               <ul class="search-sub">
                 <li>
@@ -127,21 +63,20 @@
     </nav>
     <!-- End Navigation panel-->
   </header>
-  <!-- ! header page-->
   <div class="content-body">
     <div class="tp-banner-container">
       <div class="tp-banner-slider">
         <ul>
-          <?php 
+          <?php
           foreach ($slider->result() as $row) {?>
-          <li data-masterspeed="700" data-slotamount="7" data-transition="fade"><img src="<?php echo base_url();?><?php echo $row->pict_paket;?>" data-lazyload="<?php echo base_url();?><?php echo $row->pict_paket;?>" data-bgposition="center" alt="" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10">
+          <li data-masterspeed="700" data-slotamount="7" data-transition="fade"><img src="<?php echo base_url()?><?php echo $row->pict_paket?>" data-lazyload="<?php echo base_url()?><?php echo $row->pict_paket?>" data-bgposition="center" alt="" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10">
             <div data-x="['center','center','center','center']" data-y="center" data-transform_in="x:-150px;opacity:0;s:1500;e:Power3.easeInOut;" data-transform_out="x:150px;opacity:0;s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-start="400" class="tp-caption sl-content">
-              <div class="sl-title-top">Welcome to</div>
+              <div class="sl-title-top"><?php echo $row->typeTrip_paket?> TRIP</div>
               <div class="sl-title"><?php echo $row->nama_paket?></div>
-              <div class="sl-title-bot">Starting <span>Rp. <?php echo number_format($row->harga_paket);?></span></div>
+              <div class="sl-title-bot">IDR <span><?php echo number_format($row->harga_paket, 0, ',', '.')?></span></div>
             </div>
           </li>
-          <?php  
+          <?php    
         }
         ?>
       </ul>
@@ -150,24 +85,26 @@
     <div class="slider-info-wrap clearfix">
       <div class="slider-info-content">
         <?php
-        if (!empty($sliderNews->result())) {
-          foreach ($sliderNews->result() as $row) {?>
-          <div class="slider-info-item">
-            <div class="info-item-media"><img src="<?php echo base_url();?><?php echo $row->pict_paket;?>" data-at2x="<?php echo base_url();?><?php echo $row->pict_paket;?>" alt="<?php echo $row->nama_paket;?>">
-              <div class="info-item-text">
-                <div class="info-price font-4"><span>Rp.</span> <?php echo number_format($row->harga_paket);?></div>
-                <p class="info-text"><?php echo $row->deskripsi_paket;?></p>
-              </div>
-            </div>
-            <div class="info-item-content">
-              <div class="main-title">
-                <h3 class="title"><span class="font-4"><?php echo $row->lokasi_paket;?></span>Indonesia</h3>
-                <div class="price"><span>Rp. <?php echo number_format($row->harga_paket);?></span> <?php echo $row->typeTrip_paket?></div><a href="#" class="button">Details</a>
-              </div>
+        foreach ($sliderNews->result() as $row) {?>
+        <div class="slider-info-item">
+          <div class="info-item-media"><img src="<?php echo base_url()?><?php echo $row->pict_paket?>" data-at2x="<?php echo base_url()?><?php echo $row->pict_paket?>" alt>
+            <div class="info-item-text">
+              <div class="info-price font-4"><span>Harga</span>IDR <?php echo number_format($row->harga_paket, 0, ',', '.');?></div>
+              <div class="info-temp font-4"><span>Tipe Trip</span> <?php echo $row->typeTrip_paket;?></div>
+              <p class="info-text"><?php echo $row->deskripsi_paket;?></p>
             </div>
           </div>
-          <?php
-        }
+          <div class="info-item-content">
+            <div class="main-title">
+              <h3 class="title"><span class="font-4"><?php echo $row->lokasi_paket?></span> <?php echo $row->nama_paket?></h3>
+              <div class="price"><b><span>IDR  <?php echo number_format($row->harga_paket, 0, ',', '.');?></span></b></div>
+              <?php
+              echo "<a class='button' href='http://localhost/travellovertour/Paket/pesan/$row->id_paket'>Details</a>";
+              ?>
+            </div>
+          </div>
+        </div>
+        <?php  
       }
       ?>
     </div>
@@ -182,7 +119,7 @@
         <h6 class="title-section-top font-4">Special offers</h6>
         <h2 class="title-section"><span>Popular</span> Destinations</h2>
         <div class="cws_divider mb-25 mt-5"></div>
-        <p>Berikut adalah destinasi wisata terpopuler di Travellovertour</p>
+        <p>Nullam ac dolor id nulla finibus pharetra. Sed sed placerat mauris. Pellentesque lacinia imperdiet interdum. Ut nec nulla in purus consequat lobortis. Mauris lobortis a nibh sed convallis.</p>
       </div>
       <div class="col-md-4"><img src="<?php echo base_url();?>assets/pic/promo-1.png" data-at2x="<?php echo base_url();?>assets/pic/promo-1@2x.png" alt class="mt-md-0 mt-minus-70"></div>
     </div>
@@ -190,76 +127,79 @@
   <div class="features-tours-full-width">
     <div class="features-tours-wrap clearfix">
       <?php
-      if(!empty($popular_post->result())){
-        foreach ($popular_post->result() as $row) {?>
-        <div class="features-tours-item">
-          <div class="features-media"><img src="<?php echo base_url();?><?php echo $row->pict_paket;?>" data-at2x="<?php echo base_url();?><?php echo $row->pict_paket;?>" alt="<?php echo $row->nama_paket;?>">
-            <div class="features-info-top">
-              <div class="info-price font-4"><span>start price</span> Rp. <?php echo number_format($row->harga_paket);?></div>
-              <p class="info-text"><?php echo $row->lokasi_paket;?>, Indonesia.</p>
-            </div>
-            <div class="features-info-bot">
-              <h4 class="title"><span class="font-4"><?php echo $row->lokasi_paket;?></span> Indonesia</h4><a href="#" class="button">Details</a>
+      foreach ($popular_post->result() as $row) {?>
+      <div class="features-tours-item"  style="overflow: hidden;">
+        <div class="features-media"><img src="<?php echo base_url();?><?php echo $row->pict_paket?>" data-at2x="<?php echo base_url();?><?php echo $row->pict_paket?>" alt>
+          <div class="features-info-top">
+            <div class="info-price font-4"><span>Harga</span> IDR <?php echo number_format($row->harga_paket, 0, ',', '.');?></div>
+            <div class="info-temp font-4"><span>Tipe Trip</span> <?php echo $row->typeTrip_paket;?></div>
+            <p class="info-text" ><?php echo $row->deskripsi_paket;?></p>
+          </div>
+          <div class="features-info-bot">
+            <h4 class="title"><span class="font-4"><?php echo $row->lokasi_paket?></span> <?php echo $row->nama_paket?>
+              <?php
+              echo "<a class='button' href='http://localhost/travellovertour/Paket/pesan/$row->id_paket'>Details</a>";
+              ?>
             </div>
           </div>
         </div>
         <?php
       }
-    }
-    ?>     
+      ?>
+    </div>
   </div>
-</div>
 </section>
 <!-- ! page section-->
-<!-- page services-->
-<section class="page-section cws_prlx_section pb-100 bg-gray-60" id="cws_prlx_section_993030094111"><img src="<?php echo base_url();?>pic/parallax-5.jpg" alt="" class="cws_prlx_layer" id="cws_prlx_layer_639447629024" style="transform: translate(-50%, 0px);">
+<!-- counter section -->
+<section class="small-section">
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
-        <h2 class="title-section alt"><span>Our</span> Services</h2>
-        <div class="cws_divider mb-25 mt-5"></div>
-        <p class="color-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet. </p>
-      </div>
-    </div>
-    <div class="row">
-      <!-- ! service item-->
-      <div class="col-md-4 col-sm-6 mb-40">
-        <div class="service-item icon-center color-icon border"><i class="flaticon-suntour-hotel cws-icon type-1 color-2"></i>
-          <h3>Info &amp; Guides</h3>
-          <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet.</p>
+      <div class="col-md-3 col-xs-6 mb-md-30">
+        <div class="counter-block"><i class="counter-icon flaticon-suntour-world"></i>
+          <div class="counter-name-wrap">
+            <div data-count="345" class="counter">0</div>
+            <div class="counter-name">Tours</div>
+          </div>
         </div>
       </div>
-      <!-- ! service item-->
-      <!-- ! service item-->
-      <div class="col-md-4 col-sm-6 mb-40">
-        <div class="service-item icon-center color-icon border"><i class="flaticon-suntour-car cws-icon type-1 color-2"></i>
-          <h3>Sewa Mobil</h3>
-          <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet.</p>
+      <div class="col-md-3 col-xs-6 mb-md-30">
+        <div class="counter-block with-divider"><i class="counter-icon flaticon-suntour-fireworks"></i>
+          <div class="counter-name-wrap">
+            <div data-count="438" class="counter">0</div>
+            <div class="counter-name">Holidays</div>
+          </div>
         </div>
       </div>
-      <!-- ! service item-->
-      <!-- ! service item-->
-      <div class="col-md-4 col-sm-6 mb-40">
-        <div class="service-item icon-center color-icon border"><i class="flaticon-suntour-fireworks cws-icon type-1 color-2"></i>
-          <h3>Paket Tour</h3>
-          <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet.</p>
+      <div class="col-md-3 col-xs-6 mb-md-30">
+        <div class="counter-block with-divider"><i class="counter-icon flaticon-suntour-hotel"></i>
+          <div class="counter-name-wrap">
+            <div data-count="526" class="counter">0</div>
+            <div class="counter-name">Hotels</div>
+          </div>
         </div>
       </div>
-      <!-- ! service item-->
+      <div class="col-md-3 col-xs-6">
+        <div class="counter-block with-divider"><i class="counter-icon flaticon-suntour-car"></i>
+          <div class="counter-name-wrap">
+            <div data-count="675" class="counter">0</div>
+            <div class="counter-name">Cars</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
-<!-- ! page services-->
+<!-- ! counter section-->
 <!-- page section parallax-->
-<section class="small-section cws_prlx_section bg-gray-40"><img src="<?php echo base_url();?>assets/pic/parallax-1.jpg" alt class="cws_prlx_layer">
+<section class="small-section cws_prlx_section bg-gray-40"><img src="<?php echo base_url();?>assets/images/bg/imageBg_home.jpeg" alt class="cws_prlx_layer">
   <div class="container">
     <div class="row">
       <div class="col-md-5">
         <h2 class="title-section-top alt">About</h2>
-        <h2 class="title-section alt mb-20"><span>Travel</span>lovertour</h2>
-        <p class="color-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a vestibulum leo. Mauris rhoncus libero at sagittis tincidunt. Quisque convallis semper aliquet. Mauris mi tortor, mattis sed dignissim quis, posuere ut orci. Duis lorem mi, varius et augue ut, pellentesque porta ligula. Aenean mollis neque ut mi ultricies, id pulvinar urna tristique. Proin ut commodo eros. Suspendisse laoreet velit ante, eu feugiat enim posuere ut. Quisque aliquet ipsum a felis fringilla egestas. Maecenas sit amet velit id metus auctor suscipit id non diam.</p>
+        <h2 class="title-section alt mb-20"><span>Travelover</span>Tour</h2>
+        <p class="color-white">Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf.</p>
         <div class="cws_divider short mb-30 mt-30"></div>
-        <h3 class="font-5 color-white font-medium">Pasca</h3>
+        <h3 class="font-5 color-white font-medium">Muhammad Pasca</h3>
       </div>
       <div class="col-md-7">
         <div class="embed-responsive embed-responsive-16by9">
@@ -276,52 +216,44 @@
     <div class="row">
       <div class="col-md-8">
         <h6 class="title-section-top font-4">Top rated</h6>
-        <h2 class="title-section"><span>Recomended</span> Hotels</h2>
+        <h2 class="title-section"><span>News</span> Our Blogs</h2>
         <div class="cws_divider mb-25 mt-5"></div>
-        <p>Berikut adalah hotel-hotel rekomendasi di UB.</p>
+        <p>Maecenas commodo odio ut vulputate cursus. Integer in egestas lectus. Nam volutpat feugiat mi vitae mollis. Aenean tristique dolor bibendum mi scelerisque ultrices non at lorem.</p>
       </div>
       <div class="col-md-4"><i class="flaticon-suntour-hotel title-icon"></i></div>
     </div>
     <div class="row">
-    <?php
-    if(!empty($blogs->result())){
-      foreach ($blogs->result() as $row) {
-        ?>
-
-          <!-- Recomended item-->
-          <div class="col-md-6">
-            <!-- Blog item-->
-            <div class="blog-item clearfix">
-              <!-- Blog Image-->
-              <div class="blog-media"><a href="blog-single.html">
-                <div class="pic"><img src="<?php echo base_url();?><?php echo $row->pict_post;?>" data-at2x="<?php echo base_url();?><?php echo $row->pict_post;?>" alt></div></a>
-              </div>
-              <!-- blog body-->
-              <div class="blog-item-body clearfix">
-                <!-- title-->
-                <a href="blog-single.html">
-                  <h6 class="blog-title"><?php echo $row->title_post;?></h6>
-                </a>
-                <div class="blog-item-data"><?php echo $row->date_post;?></div>
-                <!-- Text Intro-->
-                <p></p>
-                <a href="blog-single.html" class="blog-button">Read more</a>
-              </div>
-            </div>
-            <!-- ! Blog item-->
+      <?php
+      foreach ($blogs->result() as $row) {?>
+      <!-- Recomended item-->
+      <div class="col-md-6">
+        <div class="recom-item">
+          <div  class="recom-media"><a href="#">
+            <div style="max-height: 240px;"  class="pic" ><img src="<?php echo base_url();?><?php echo $row->pict_post?>" data-at2x="<?php echo base_url();?><?php echo $row->pict_post?>" alt="<?php echo $row->title_post?>"></div></a>
+            <div class="location">By <?php echo $row->postedBy_post?></div>
           </div>
-          <!-- ! Recomended item-->
-        
-        <?php
-      }
+          <!-- Recomended Content-->
+          <div class="recom-item-body"><a href="hotels-details.html">
+            <h6 class="blog-title"><?php echo $row->date_post?></h6></a>
+            <!--<div class="stars stars-4"></div>-->
+            <div class="recom-price"><span class="font-4"><?php echo $row->title_post?></span></div>
+            <p  class="mb-30" ><?php echo $row->deskripsi_post;?></p>
+            <a href="#" class="cws-button small alt">Read more</a>
+            <!--<div class="action font-2">20%</div>-->
+          </div>
+          <!-- Recomended Image-->
+        </div>
+      </div>
+      <!-- ! Recomended item-->
+      <?php
     }
     ?>
-    </div>
   </div>
+</div>
 </section>
 <!-- ! recomended section-->
 <!-- testimonials section-->
-<section class="small-section cws_prlx_section bg-blue-40"><img src="<?php echo base_url();?>assets/pic/parallax-2.jpg" alt class="cws_prlx_layer">
+<section class="small-section cws_prlx_section bg-blue-40"><img src="<?php echo base_url()?>assets/images/bg/imageBg_home2.jpeg" alt class="cws_prlx_layer">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
@@ -333,62 +265,28 @@
     <div class="row">
       <!-- testimonial carousel-->
       <div class="owl-three-item">
+        <?php
+        foreach ($testimonial_post->result() as $row) {?>
         <!-- testimonial item-->
-        <div class="testimonial-item">
+        <div class="testimonial-item" style="height: 345px;">
           <div class="testimonial-top"><a href="#">
-            <div class="pic"><img src="<?php echo base_url();?>assets/pic/testimonial/top-bg/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/testimonial/top-bg/1@2x.jpg" alt></div></a>
-            <div class="author"> <img src="<?php echo base_url();?>assets/pic/testimonial/author/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/testimonial/author/1@2x.jpg" alt></div>
+            <div class="pic"><img src="<?php echo base_url();?><?php echo $row->pictBg_testi;?>" data-at2x="<?php echo base_url();?><?php echo $row->pictBg_testi;?>" alt></div></a>
+            <div class="author" > <img src="<?php echo base_url();?><?php echo $row->pict_testi;?>" data-at2x="<?php echo base_url();?><?php echo $row->pict_testi;?>" alt></div>
           </div>
           <!-- testimonial content-->
           <div class="testimonial-body">
-            <h5 class="title"><span>Helfi</span> Pangestu</h5>
+            <h5 class="title"><span><?php echo $row->name_testi?></span></h5>
             <div class="stars stars-5"></div>
-            <p class="align-center">Travellover benar-benar rekomended!.</p><a href="#" class="testimonial-button">Read more</a>
+            <p class="align-center"><?php echo $row->desc_testi;?></p>
           </div>
         </div>
-        <!-- testimonial item-->
-        <div class="testimonial-item">
-          <div class="testimonial-top"><a href="#">
-            <div class="pic"><img src="<?php echo base_url();?>assets/pic/testimonial/top-bg/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/testimonial/top-bg/1@2x.jpg" alt></div></a>
-            <div class="author"> <img src="<?php echo base_url();?>assets/pic/testimonial/author/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/testimonial/author/1@2x.jpg" alt></div>
-          </div>
-          <!-- testimonial content-->
-          <div class="testimonial-body">
-            <h5 class="title"><span>Helfi</span> Pangestu</h5>
-            <div class="stars stars-5"></div>
-            <p class="align-center">Travellover benar-benar rekomended!.</p><a href="#" class="testimonial-button">Read more</a>
-          </div>
-        </div>
-        <!-- testimonial item-->
-        <div class="testimonial-item">
-          <div class="testimonial-top"><a href="#">
-            <div class="pic"><img src="<?php echo base_url();?>assets/pic/testimonial/top-bg/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/testimonial/top-bg/1@2x.jpg" alt></div></a>
-            <div class="author"> <img src="<?php echo base_url();?>assets/pic/testimonial/author/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/testimonial/author/1@2x.jpg" alt></div>
-          </div>
-          <!-- testimonial content-->
-          <div class="testimonial-body">
-            <h5 class="title"><span>Helfi</span> Pangestu</h5>
-            <div class="stars stars-5"></div>
-            <p class="align-center">Travellover benar-benar rekomended!.</p><a href="#" class="testimonial-button">Read more</a>
-          </div>
-        </div>
-        <!-- testimonial item-->
-        <div class="testimonial-item">
-          <div class="testimonial-top"><a href="#">
-            <div class="pic"><img src="<?php echo base_url();?>assets/pic/testimonial/top-bg/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/testimonial/top-bg/1@2x.jpg" alt></div></a>
-            <div class="author"> <img src="<?php echo base_url();?>assets/pic/testimonial/author/1.jpg" data-at2x="<?php echo base_url();?>assets/pic/testimonial/author/1@2x.jpg" alt></div>
-          </div>
-          <!-- testimonial content-->
-          <div class="testimonial-body">
-            <h5 class="title"><span>Helfi</span> Pangestu</h5>
-            <div class="stars stars-5"></div>
-            <p class="align-center">Travellover benar-benar rekomended!.</p><a href="#" class="testimonial-button">Read more</a>
-          </div>
-        </div>
-        <!-- testimonial item-->
-      </div>
+        <!-- End testimonial item-->
+        <?php
+      }
+      ?>
     </div>
   </div>
+</div>
 </section>
 <!-- ! testimonials section-->
 <!-- gallery section-->
@@ -399,190 +297,33 @@
         <h6 class="title-section-top font-4">Happy Memories</h6>
         <h2 class="title-section"><span>Photo</span> Gallery</h2>
         <div class="cws_divider mb-25 mt-5"></div>
-        <p>Berikut adalah gallery travellover.</p>
+        <p>Vestibulum feugiat vitae tortor ut venenatis. Sed cursus, purus eu euismod bibendum, diam nisl suscipit odio, vitae ultrices mauris dolor quis mauris. Curabitur ac metus id leo maximus porta.</p>
       </div>
       <div class="col-md-4"><i class="flaticon-suntour-photo title-icon"></i></div>
     </div>
     <div class="row portfolio-grid">
-      <!-- portfolio item-->
-      <div class="col-md-6 col-sm-12 col-xs-12">
-        <div class="portfolio-item big">
-          <!-- portfolio image--><a href="<?php echo base_url();?>assets/pic/portfolio/580x285-1@2x.jpg" class="fancy">
-          <div class="portfolio-media"><img src="<?php echo base_url();?>assets/pic/portfolio/580x285-1.jpg" data-at2x="<?php echo base_url();?>assets/pic/portfolio/580x285-1@2x.jpg" alt></div></a>
-          <div class="links"><a href="<?php echo base_url();?>assets/pic/portfolio/580x285-1@2x.jpg" class="fancy"><i class="fa fa-expand"></i></a></div>
-        </div>
-      </div>
+      <?php
+      foreach ($gallery->result() as $row) {?>
       <!-- portfolio item-->
       <div class="col-md-3 col-sm-6 col-xs-6">
         <div class="portfolio-item">
-          <!-- portfolio image--><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy">
-          <div class="portfolio-media"><img src="<?php echo base_url();?>assets/pic/portfolio/285x285-1.jpg" data-at2x="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" alt></div></a>
-          <div class="links"><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy"><i class="fa fa-expand"></i></a></div>
+          <!-- portfolio image-->
+          <a href="<?php echo base_url();?><?php echo $row->pict_gallery?>" class="fancy">
+            <div class="portfolio-media"><img src="<?php echo base_url();?><?php echo $row->pict_gallery?>" data-at2x="<?php echo base_url();?><?php echo $row->pict_gallery?>" alt></div></a>
+            <div class="links"><a href="<?php echo base_url();?><?php echo $row->pict_gallery?>" class="fancy"><i class="fa fa-expand"></i></a></div>
+          </div>
         </div>
-      </div>
-      <!-- portfolio item-->
-      <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="portfolio-item">
-          <!-- portfolio image--><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy">
-          <div class="portfolio-media"><img src="<?php echo base_url();?>assets/pic/portfolio/285x285-1.jpg" data-at2x="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" alt></div></a>
-          <div class="links"><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy"><i class="fa fa-expand"></i></a></div>
-        </div>
-      </div>
-      <!-- portfolio item-->
-      <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="portfolio-item">
-          <!-- portfolio image--><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy">
-          <div class="portfolio-media"><img src="<?php echo base_url();?>assets/pic/portfolio/285x285-1.jpg" data-at2x="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" alt></div></a>
-          <div class="links"><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy"><i class="fa fa-expand"></i></a></div>
-        </div>
-      </div>
-      <!-- portfolio item-->
-      <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="portfolio-item">
-          <!-- portfolio image--><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy">
-          <div class="portfolio-media"><img src="<?php echo base_url();?>assets/pic/portfolio/285x285-1.jpg" data-at2x="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" alt></div></a>
-          <div class="links"><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy"><i class="fa fa-expand"></i></a></div>
-        </div>
-      </div>
-      <!-- portfolio item-->
-      <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="portfolio-item">
-          <!-- portfolio image--><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy">
-          <div class="portfolio-media"><img src="<?php echo base_url();?>assets/pic/portfolio/285x285-1.jpg" data-at2x="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" alt></div></a>
-          <div class="links"><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy"><i class="fa fa-expand"></i></a></div>
-        </div>
-      </div>
-      <!-- portfolio item-->
-      <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="portfolio-item">
-          <!-- portfolio image--><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy">
-          <div class="portfolio-media"><img src="<?php echo base_url();?>assets/pic/portfolio/285x285-1.jpg" data-at2x="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" alt></div></a>
-          <div class="links"><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy"><i class="fa fa-expand"></i></a></div>
-        </div>
-      </div>
-      <!-- portfolio item-->
-      <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="portfolio-item">
-          <!-- portfolio image--><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy">
-          <div class="portfolio-media"><img src="<?php echo base_url();?>assets/pic/portfolio/285x285-1.jpg" data-at2x="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" alt></div></a>
-          <div class="links"><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy"><i class="fa fa-expand"></i></a></div>
-        </div>
-      </div>
-      <!-- portfolio item-->
-      <div class="col-md-3 col-sm-6 col-xs-6">
-        <div class="portfolio-item">
-          <!-- portfolio image--><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy">
-          <div class="portfolio-media"><img src="<?php echo base_url();?>assets/pic/portfolio/285x285-1.jpg" data-at2x="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" alt></div></a>
-          <div class="links"><a href="<?php echo base_url();?>assets/pic/portfolio/285x285-1@2x.jpg" class="fancy"><i class="fa fa-expand"></i></a></div>
-        </div>
-      </div>
-      <!-- portfolio item-->
-      <div class="col-md-6 col-sm-12 col-xs-12">
-        <div class="portfolio-item big">
-          <!-- portfolio image--><a href="<?php echo base_url();?>assets/pic/portfolio/580x285-1@2x.jpg" class="fancy">
-          <div class="portfolio-media"><img src="<?php echo base_url();?>assets/pic/portfolio/580x285-1.jpg" data-at2x="<?php echo base_url();?>assets/pic/portfolio/580x285-1@2x.jpg" alt></div></a>
-          <div class="links"><a href="<?php echo base_url();?>assets/pic/portfolio/580x285-1@2x.jpg" class="fancy"><i class="fa fa-expand"></i></a></div>
-        </div>
-      </div>
+        <!-- End portfolio item-->
+        <?php
+      }
+      ?>
     </div>
   </div>
 </section>
 <!-- ! gallery section-->
-<!-- call out section-->
-<section class="page-section pt-90 pb-80 bg-main pattern relative">
-  <div class="container">
-    <div class="call-out-box clearfix with-icon">
-      <div class="row call-out-wrap">
-        <div class="col-md-5">
-          <h6 class="title-section-top gray font-4">subscribe today</h6>
-          <h2 class="title-section alt-2"><span>Get</span> Latest offers</h2><i class="flaticon-suntour-email call-out-icon"></i>
-        </div>
-        <div class="col-md-7">
-          <form action="php/contacts-process.php" method="post" class="form contact-form mt-10">
-            <div class="input-container">
-              <input type="text" placeholder="Enter your email" value="" name="email" class="newsletter-field mb-0 form-row"><i class="flaticon-suntour-email icon-left"></i>
-              <button type="submit" class="subscribe-submit"><i class="flaticon-suntour-arrow icon-right"></i></button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ! call out section-->
 </div>
-<!-- footer-->
-<footer class="footer footer-fixed">
-  <div class="container">
-    <div class="row pb-100 pb-md-40">
-      <!-- widget footer-->
-      <div class="col-md-6 col-sm-6 mb-sm-30">
-        <div class="logo-soc clearfix">
-          <div class="footer-logo"><a href="#"><img src="<?php echo base_url();?>assets/img/logo-white.png" data-at2x="<?php echo base_url();?>assets/img/logo-white@2x.png" alt></a></div>
-        </div>
-        <p class="color-g2 mt-10">Berdiri sejak 19 Juli 1967, Travellovertour dipercaya sebagai salah satu travel agent terbesar di Indonesia. Dibawah nama brand Travllover, kami memiliki lebih dari 90 cabang yang tersebar di kota-kota besar Indonesia. Setiap tahunnya beberapa penghargaan bergengsi berhasil didapatkan oleh Travellover, diantaranya adalah "Top Travel Agent" oleh beberapa maskapai penerbangan terkemuka dunia.</p>
-        <!-- social-->
-        <div class="social-link dark"><a href="#" class="cws-social fa fa-twitter"></a><a href="#" class="cws-social fa fa-facebook"></a><a href="#" class="cws-social fa fa-google-plus"></a><a href="#" class="cws-social fa fa-linkedin"></a></div>
-        <!-- ! social-->
-      </div>
-      <!-- ! widget footer-->
-      <!-- widget footer-->
-      <div class="col-md-6 col-sm-6 mb-sm-30">
-        <div class="widget-footer">
-          <h4>Tag cloud</h4>
-          <div class="widget-tags-wrap"><a href="#" rel="tag" class="tag">Adventure</a><a href="#" rel="tag" class="tag">Romantic</a><a href="#" rel="tag" class="tag">Wildlife</a><a href="#" rel="tag" class="tag">Beach</a><a href="#" rel="tag" class="tag">Honeymoon</a><a href="#" rel="tag" class="tag">Island</a><a href="#" rel="tag" class="tag">Parks</a><a href="#" rel="tag" class="tag">Family</a><a href="#" rel="tag" class="tag">Travel</a></div>
-        </div>
-      </div>
-      <!-- end widget footer-->
-    </div>
-  </div>
-  <!-- copyright-->
-  <div class="copyright"> 
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6">
-          <p>© Copyright 2017 <span>Travellover</span> &nbsp;&nbsp;|&nbsp;&nbsp; All Rights Reserved</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- end copyright-->
-  <!-- scroll top-->
-</footer>
+<?php $this->load->view('layouts/footer_home');?>
 <div id="scroll-top"><i class="fa fa-angle-up"></i></div>
-<!-- ! footer-->
-
-<script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
-<script src="<?php echo base_url();?>assets/js/jquery-ui.min.js"></script>
-<script src="<?php echo base_url();?>assets/js/bootstrap.js"></script>
-<script src="<?php echo base_url();?>assets/js/owl.carousel.js"></script>
-<script src="<?php echo base_url();?>assets/js/jquery.sticky.js"></script>
-<script src="<?php echo base_url();?>assets/js/TweenMax.min.js"></script>
-<script src="<?php echo base_url();?>assets/js/cws_parallax.js"></script>
-<script src="<?php echo base_url();?>assets/js/jquery.fancybox.pack.js"></script>
-<script src="<?php echo base_url();?>assets/js/jquery.fancybox-media.js"></script>
-<script src="<?php echo base_url();?>assets/js/isotope.pkgd.min.js"></script>
-<script src="<?php echo base_url();?>assets/js/imagesloaded.pkgd.min.js"></script>
-<script src="<?php echo base_url();?>assets/js/masonry.pkgd.min.js"></script>
-<script src="<?php echo base_url();?>assets/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-<script src="<?php echo base_url();?>assets/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.slideanims.min.js"></script>
-<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js"></script>
-<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.navigation.min.js"></script>
-<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.parallax.min.js"></script>
-<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.video.min.js"></script>
-<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.actions.min.js"></script>
-<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.kenburn.min.js"></script>
-<script src="<?php echo base_url();?>assets/rs-plugin/js/extensions/revolution.extension.migration.min.js"></script>
-<script src="<?php echo base_url();?>assets/js/jquery.validate.min.js"></script>
-<script src="<?php echo base_url();?>assets/js/jquery.form.min.js"></script>
-<script src="<?php echo base_url();?>assets/js/script.js"></script>
-<script src="<?php echo base_url();?>assets/js/bg-video/cws_self_vimeo_bg.js"></script>
-<script src="<?php echo base_url();?>assets/js/bg-video/jquery.vimeo.api.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/bg-video/cws_YT_bg.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery.tweet.js"></script>
-<script src="<?php echo base_url();?>assets/js/jquery.scrollTo.min.js"></script>
-<script src="<?php echo base_url();?>assets/js/jquery.flexslider.js"></script>
-<script src="<?php echo base_url();?>assets/js/retina.min.js"></script>
+<?php $this->load->view('layouts/javascript_home');?>
 </body>
 </html>

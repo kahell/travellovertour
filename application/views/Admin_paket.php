@@ -93,7 +93,7 @@
                                         <tr>
                                            <td><?php echo $count++;?></td>
                                            <td><?php
-                                            if ($row->typeTrip_paket == '1') {
+                                            if ($row->typeTrip_paket == 'open') {
                                                 echo "<label class='label label-primary'>Open Trip</label>";
                                             }else{
                                                 echo "<label class='label label-success'>Private Trip</label>";
@@ -102,7 +102,10 @@
                                         </td>
                                         <td><?php echo $row->nama_paket;?></td>
                                         <td><?php echo $row->lokasi_paket;?></td>
-                                        <td>Rp. <?php echo number_format($row->harga_paket);?></td>
+                                        <td>Rp. <?php 
+                                            if(!empty($row->harga_paket)){
+                                                echo number_format((double)$row->harga_paket);
+                                            }?></td>
                                         <td>
                                             <div class="btn-group">
                                                 <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Action <span class="caret"></span></button>
@@ -112,7 +115,7 @@
                                                         echo "<a href='http://localhost/travellovertour/Pasca_paket/edit_paket/$row->id_paket' class='btn' type='button'> <i class='glyphicon glyphicon-pencil'></i> Edit</a>";
                                                         ?>
                                                     </li>
-                                                    <li><a href="#" class='btn' onclick="delete_paket('$row->id_paket')"><i class='glyphicon glyphicon-remove'> </i> Delete</a>
+                                                    <li><a href="#" class='btn' onclick="delete_paket(<?php echo $row->id_paket?>)"><i class='glyphicon glyphicon-remove'> </i> Delete</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -138,7 +141,7 @@
         $('#table_id').DataTable({
           "paging": true,
           "lengthChange": true,
-          "searching": false,
+          "searching": true,
           "ordering": true,
           "info": false,
           "autoWidth": true

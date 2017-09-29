@@ -46,7 +46,7 @@ class Pasca_transaksi extends CI_Controller {
 			$inputNamePicadmin = $this->session->userdata('adminSession');
 			$data['namaAdmin']  = $inputNamePicadmin['username'];
 			//ambil data tamu
-			$gender = $this->input->post('gender');
+			$gender = $this->input->post('gender_tamu');
 			$id_dataTamu = $this->input->post('id_dataTamu');
 			$data_tamu = array(
 				'gender_tamu' => $gender,

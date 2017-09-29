@@ -57,60 +57,18 @@
                             <li>
                                 <span class="m-r-sm text-muted welcome-message">Welcome <?php echo $namaAdmin ?>.</span>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-alerts">
-                                    <li>
-                                        <a href="mailbox.html">
-                                            <div>
-                                                <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                                <span class="pull-right text-muted small">4 minutes ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="profile.html">
-                                            <div>
-                                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                                <span class="pull-right text-muted small">12 minutes ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="grid_options.html">
-                                            <div>
-                                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                                <span class="pull-right text-muted small">4 minutes ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <div class="text-center link-block">
-                                            <a href="notifications.html">
-                                                <strong>See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
                             <li>
                                 <a href="<?php echo site_url("Pasca/logout"); ?>">
-                                   <i class="fa fa-sign-out"></i> Log out
-                               </a>
-                           </li>
-                       </ul>
-                   </nav>
-               </div>
-               <!-- Judul -->
-               <div class="row wrapper border-bottom white-bg page-heading">
+                                 <i class="fa fa-sign-out"></i> Log out
+                             </a>
+                         </li>
+                     </ul>
+                 </nav>
+             </div>
+             <!-- Judul -->
+             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>Tambah Paket</h2>
+                    <h2>Tambah Post</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="<?php echo site_url('Pasca_admin');?>">Home</a>
@@ -175,6 +133,15 @@
                                     </div>
                                     <div class="hr-line-dashed"></div>
                                     <div class="form-group">
+                                        <label class="col-sm-2 ">Deskripsi</label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group m-b">
+                                                <textarea rows="4" cols="500" id="deskripsi_post" name="deskripsi_post" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hr-line-dashed"></div>
+                                    <div class="form-group">
                                         <div class="col-sm-2 ">
                                             <label control-label>Content</label>
                                         </div>
@@ -214,25 +181,25 @@
 
     <script>
         $(document).ready(function (){
-         $('#summernote').summernote({
+           $('#summernote').summernote({
                     height: 300, // set editor height
                     minHeight: null, // set minimum height of editor
                     maxHeight: null, // set maximum height of editor
                     callbacks: {
                         onImageUpload: function(files) {
-                         sendFile(files[0]);
-                     }
-                 }
-             });
+                           sendFile(files[0]);
+                       }
+                   }
+               });
 
             //add  Categories
             $('#categories_post').on('beforeItemAdd', function(event) {
-               var category = event.item;
-               var formData = new FormData();
+             var category = event.item;
+             var formData = new FormData();
 
-               formData.append('id_post', $("#id_post").val());
-               formData.append('categories_post', category);
-               console.log(category);
+             formData.append('id_post', $("#id_post").val());
+             formData.append('categories_post', category);
+             console.log(category);
                // Do some processing here
                if (!event.options || !event.options.preventPost) {
                 $.ajax({
@@ -273,10 +240,10 @@
 
            //add Tags
            $('#tags_post').on('beforeItemAdd', function(event) {
-               var tag = event.item;
-               var formData = new FormData();
-               formData.append('id_post', $("#id_post").val());
-               formData.append('tags_post', tag);
+             var tag = event.item;
+             var formData = new FormData();
+             formData.append('id_post', $("#id_post").val());
+             formData.append('tags_post', tag);
 
                // Do some processing here
                if (!event.options || !event.options.preventPost) {
@@ -322,6 +289,7 @@
             formData.append('status_post', $("#status_post").val());
             formData.append('file2', '');
             formData.append('file', inputFile.files[0]);
+            formData.append('deskripsi_post', $("#deskripsi_post").val());
             formData.append("body_post", $('.click2edit').summernote('code'));
         //End of Foto
         $.ajax({
@@ -331,23 +299,41 @@
             processData: false,
             contentType: false,
             success: function(data) {
-                $.alert({
+                var res = JSON.parse(data);
+                var cek = res.cek;
+                var cek2 = res.data;     
+                if(cek == false){
+                    $.alert({
+                        title: 'ERROR',
+                        content: cek2,
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            ok: {
+                                text: 'OK',
+                                btnClass: 'btn-red'
+                            }
+                        }
+                    });
+                }else{
+                 $.alert({
                     title: 'SUKSES!',
-                    content: 'Data berhasil di tambahkan.',
+                    content: 'Data berhasil di tambahkan',
                     type: 'green',
                     typeAnimated: true,
-                    buttons:{
-                       ok:{
-                        ext: 'OK',
-                        btnClass: 'btn-green',
-                        action: function () {
-                            location.href = "<?php echo site_url('Pasca_blogs');?>"
+                    buttons: {
+                        ok: {
+                            text: 'OK',
+                            btnClass: 'btn-green',
+                            action: function () {
+                                location.href = "<?php echo site_url('Pasca_blogs');?>"
+                            }
                         }
                     }
-                }
-            });
-            }
-        });
+                }); 
+             }
+         }
+     });
     }
     function sendFile(file){
         data = new FormData();

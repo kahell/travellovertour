@@ -150,17 +150,43 @@
                 processData: false,
                 contentType: false,
                 success: function(data,response) {
-                    swal({
-                        title: "Sukses!",
-                        text: "Foto berhasil di tambahkan",
-                        type: "success" },
-                        function (isConfirm) {
-                            $('#title_gallery').val('');
-                            $('#pict_gallery').val('');
-                            setTimeout(function(){
-                                location.reload();
-                            },500);
+                    var res = JSON.parse(data);
+                    var cek = res.cek;
+                    var cek2 = res.data; 
+                    if(cek == false){
+                        $.alert({
+                            title: 'ERROR',
+                            content: cek2,
+                            type: 'red',
+                            typeAnimated: true,
+                            buttons: {
+                                ok: {
+                                    text: 'OK',
+                                    btnClass: 'btn-red'
+                                }
+                            }
                         });
+                    }else{
+                       $.alert({
+                        title: 'SUKSES!',
+                        content: 'Data berhasil di tambahkan.',
+                        type: 'green',
+                        typeAnimated: true,
+                        buttons: {
+                            ok: {
+                                text: 'OK',
+                                btnClass: 'btn-green',
+                                action: function () {
+                                    $('#title_gallery').val('');
+                                    $('#pict_gallery').val('');
+                                    setTimeout(function(){
+                                        location.reload();
+                                    },500);
+                                }
+                            }
+                        }
+                    }); 
+                   }
                 },
                 error: function(data){
                     console.log(data.responseText);

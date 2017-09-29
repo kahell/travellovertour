@@ -1,11 +1,9 @@
 /*-----------------------------------------------------------------------------------
-
     Author Name: Helfi Pangestu
     Role       : CSS
     Instaggram : https://www.instagram.com/helfipangestu/
     Facebook   : https://www.facebook.com/hellfip
-    Web        : helfipangestu12.blogspot.co.id
-    
+    Web        : helfipangestu12.blogspot.co.idf   
 --------------------------------------------------------------------------------
 */
 
@@ -78,7 +76,7 @@ body {
 
 html, body {
     font-family: 'Hind Siliguri', sans-serif;
-    color: #b5b5b5;
+    color: #404040;
     line-height: 1.75;
     font-size: 15px;
     -webkit-font-smoothing: antialiased;
@@ -236,7 +234,7 @@ ins.alt-5 {
 }
 
 .color-g2 {
-    color: #a9b5c1;
+    color: #ffffff;
 }
 
 .color-white {
@@ -341,7 +339,7 @@ ul li {
     padding-left: 15px;
     position: relative;
     margin-left: 10px;
-    color: #b5b5b5;
+    color: #191919;
 }
 
 ul.inline li {
@@ -5409,7 +5407,7 @@ body .tparrows {
     line-height: 20px;
     min-width: 130px;
     padding: 10px 20px;
-    color: #939ea9;
+    color: #f91549;
     background: #ffffff;
     border: 2px solid #f91549;
     text-transform: uppercase;
@@ -7355,7 +7353,7 @@ body .tparrows {
 }
 
 .tabs .block-tabs-btn .tabs-btn.active {
-    color: #f91549;
+    color: #ffffff;
     background: #424d58;
     border-color: #424d58;
 }
@@ -7611,7 +7609,7 @@ body .tparrows {
 
 .pagination li:first-child a,
   .pagination li:last-child a {
-    background: #f0f4f7;
+    background: #f91549;
 }
 
 .pagination li a:hover,
@@ -8398,7 +8396,7 @@ aside .owl-single-item .pic img {
 /* footer */
 /*  */
 footer.footer {
-    background-image: url(../pic/footer/footer-bg.jpeg);
+    background-image: url(../images/bg/imageBg_home4.jpeg);
     color: #ffffff;
     font-size: 15px;
     -webkit-background-size: cover;
@@ -11687,7 +11685,7 @@ form.form .subscribe-submit {
 }
 
 .shop-item .shop-item-body .action.sale {
-    background: #F56363;
+    background: #f91549;
     right: -100%;
     top: 30px;
 }
@@ -14641,7 +14639,6 @@ p.error:before {
 }
 
 /* CSS Untuk view Konfirmasi*/
-
 
 
 

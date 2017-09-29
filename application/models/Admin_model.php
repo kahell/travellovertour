@@ -1,62 +1,62 @@
 <?php
 Class Admin_model extends CI_Model{
-    public function __construct()
-    {
-        parent::__construct();
-        $this->load->database();
-    }
-    
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->database();
+	}
+
     //1. Login - Model ---------------------------------------------------------
-   	function getDataLogin($username, $password){
-        $array = array('username' => $username , 'password' => $password);
-        $array2 = array('email' => $username, 'password' => $password);
-        
-        $this->db->select('*');
-        $this->db->from('identitas');
-        $this->db->where($array);
-        $this->db->or_where($array2);
-        $this->db->limit(1);
-        $query = $this->db->get();
-	    if($query->num_rows() > 0){
+	function getDataLogin($username, $password){
+		$array = array('username' => $username , 'password' => $password);
+		$array2 = array('email' => $username, 'password' => $password);
+
+		$this->db->select('*');
+		$this->db->from('identitas');
+		$this->db->where($array);
+		$this->db->or_where($array2);
+		$this->db->limit(1);
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
 			return $query->result();
-	    }else{
+		}else{
 			return false;
-	    }
+		}
 	}
     //End of Login-Model -------------------------------------------------------
-    
+
     //2. Home - Model ----------------------------------------------------------
     // - Slider
-    function getDataSlider(){
-        $this->db->select('id_paket, pict_paket, harga_paket, nama_paket, lokasi_paket, slider_paket, popular_paket');
-        $this->db->where("aktif_paket = 'aktif'");
-        $this->db->from('paket');
-        $query = $this->db->get();
-	    if($query->num_rows() > 0){
+	function getDataSlider(){
+		$this->db->select('id_paket, pict_paket, harga_paket, nama_paket, lokasi_paket, slider_paket, popular_paket, typeTrip_paket');
+		$this->db->where("aktif_paket = 'aktif'");
+		$this->db->from('paket');
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
 			return $query;
-	    }else{
+		}else{
 			return false;
-	    }
+		}
 	}
 
 	function sumDataSlider(){
-        $this->db->select("SUM(slider_paket = '1') as slider_paket");
-        $this->db->where("aktif_paket = 'aktif'");
-        $this->db->from('paket');
-        $query = $this->db->get();
-	    return $query->row()->slider_paket;
+		$this->db->select("SUM(slider_paket = '1') as slider_paket");
+		$this->db->where("aktif_paket = 'aktif'");
+		$this->db->from('paket');
+		$query = $this->db->get();
+		return $query->row()->slider_paket;
 	}
 
 	function sumDataPopular(){
-        $this->db->select("SUM(popular_paket = '1') as popular_paket");
-        $this->db->where("aktif_paket = 'aktif'");
-        $this->db->from('paket');
-        $query = $this->db->get();
-	    return $query->row()->popular_paket;
+		$this->db->select("SUM(popular_paket = '1') as popular_paket");
+		$this->db->where("aktif_paket = 'aktif'");
+		$this->db->from('paket');
+		$query = $this->db->get();
+		return $query->row()->popular_paket;
 	}
-    
+
     // - Slider in Admin for CRUD
- 
+
 	var $table = 'home';
 
 	public function get_by_id($id)
@@ -64,7 +64,7 @@ Class Admin_model extends CI_Model{
 		$this->db->from($this->table);
 		$this->db->where('id',$id);
 		$query = $this->db->get();
-        
+
 		return $query->row();
 	}
 
@@ -101,7 +101,6 @@ Class Admin_model extends CI_Model{
 	}
 
 	//- Foto Paket in Admin for CRUD
-	
 	public function paket_add($tableName, $data)
 	{
 		$this->db->insert($tableName, $data);
@@ -113,6 +112,7 @@ Class Admin_model extends CI_Model{
 		$this->db->update($tableName, $data, $where);
 		return $this->db->affected_rows();
 	}
+	
 	public function getPaketNews()
 	{	
 		$query = $this->db->query("
@@ -136,15 +136,20 @@ Class Admin_model extends CI_Model{
 		$this->db->where('foto_paket', $foto);
 		$this->db->delete($tableName);
 	}
-
+	function getDataPaketForCheckout($id_paket){
+		$this->db->select("nama_paket, typeTrip_paket, lokasi_paket");
+		$this->db->from('paket');
+		$query = $this->db->get();
+		return $query;
+	}
 	// - Testimonial
 	public function getDataTesti(){
 		$query = $this->db->query("select * from testimonial where 1");
-	    if($query->num_rows() > 0){
+		if($query->num_rows() > 0){
 			return $query;
-	    }else{
+		}else{
 			return false;
-	    }
+		}
 	}
 
 	public function testi_update($tableName, $where, $data)
@@ -161,30 +166,44 @@ Class Admin_model extends CI_Model{
 		$query = $this->db->get();
 		return $query->row()->pict_gallery;
 	}
+	function getGallery(){
+		$this->db->select("*");
+		$this->db->from("gallery");
+		$this->db->limit('12', '0');
+		$this->db->order_by("id_gallery", "desc");
+		$query = $this->db->get();
+		return $query;
+	}
 	public function gallery_add($tableName, $data)
 	{
 		$this->db->insert($tableName, $data);
 		return $this->db->insert_id();
 	}
+	public function gallery_update($tableName, $data, $where)
+	{
+		$this->db->update($tableName, $data, $where);
+		return $this->db->affected_rows();
+	}
 
 	// Blogs
 	function getBlogs(){
-        $this->db->select("*");
-        $this->db->from('post');
-        $query = $this->db->get();
-	    return $query;
+		$this->db->select("*");
+		$this->db->from('post');
+		$this->db->order_by("id_post", "desc");
+		$query = $this->db->get();
+		return $query;
 	}
 	function getBlogsHome(){
-        $this->db->select("*");
-        $this->db->from("post");
-        $this->db->where('status_post','1');
-        $this->db->limit('4', '0');
-        $this->db->order_by("id_post", "desc");
-        $query = $this->db->get();
-	    return $query;
+		$this->db->select("*");
+		$this->db->from("post");
+		$this->db->where('status_post','1');
+		$this->db->limit('4', '0');
+		$this->db->order_by("id_post", "desc");
+		$query = $this->db->get();
+		return $query;
 	}
 	function addBlogs($tableName, $data){
-        $this->db->insert($tableName, $data);
+		$this->db->insert($tableName, $data);
 		return $this->db->insert_id();
 	}
 	function updateBlogs($tableName, $where, $data)
@@ -212,14 +231,14 @@ Class Admin_model extends CI_Model{
 
 	//Tags
 	function getTags($data){
-        $this->db->select("*");
-        $this->db->where('name',$data);
-        $this->db->from('tags');
-        $query = $this->db->get();
-	    return $query;
+		$this->db->select("*");
+		$this->db->where('name',$data);
+		$this->db->from('tags');
+		$query = $this->db->get();
+		return $query;
 	}
 	function addTags($tableName, $data){
-        $this->db->insert($tableName, $data);
+		$this->db->insert($tableName, $data);
 		return $this->db->insert_id();
 	}
 	public function deleteTags($tableName, $name)
@@ -234,47 +253,47 @@ Class Admin_model extends CI_Model{
 		$this->db->delete($tableName);
 	}
 	function getId($tableName, $name){
-        $this->db->select("id_tags");
-        $this->db->where("name", $name);
-        $this->db->from($tableName);
-        $query = $this->db->get();
-	    return $query->row()->id_tags;
+		$this->db->select("id_tags");
+		$this->db->where("name", $name);
+		$this->db->from($tableName);
+		$query = $this->db->get();
+		return $query->row()->id_tags;
 	}
 	function getIdPost($tableName, $id_tags,$id_post){
-        $this->db->select("*");
-        $this->db->where("id_tag_post", $id_tags);
-        $this->db->where("id_post", $id_post);
-        $this->db->from($tableName);
-        $query = $this->db->get();
-	    return $query;
+		$this->db->select("*");
+		$this->db->where("id_tag_post", $id_tags);
+		$this->db->where("id_post", $id_post);
+		$this->db->from($tableName);
+		$query = $this->db->get();
+		return $query;
 	}
 
 	// Category
 	function getCategory($data){
-        $this->db->select("*");
-        $this->db->where('name',$data);
-        $this->db->from('categories');
-        $query = $this->db->get();
-	    return $query;
+		$this->db->select("*");
+		$this->db->where('name',$data);
+		$this->db->from('categories');
+		$query = $this->db->get();
+		return $query;
 	}
 	function addCategories($tableName, $data){
-        $this->db->insert($tableName, $data);
+		$this->db->insert($tableName, $data);
 		return $this->db->insert_id();
 	}
 	function getIdCategory($tableName, $name){
-        $this->db->select("id_category");
-        $this->db->where("name", $name);
-        $this->db->from($tableName);
-        $query = $this->db->get();
-	    return $query->row()->id_category;
+		$this->db->select("id_category");
+		$this->db->where("name", $name);
+		$this->db->from($tableName);
+		$query = $this->db->get();
+		return $query->row()->id_category;
 	}
 	function getIdPostCategory($tableName, $id_tags, $id_post){
-        $this->db->select("*");
-        $this->db->where("id_category_post", $id_tags);
-        $this->db->where("id_post", $id_post);
-        $this->db->from($tableName);
-        $query = $this->db->get();
-	    return $query;
+		$this->db->select("*");
+		$this->db->where("id_category_post", $id_tags);
+		$this->db->where("id_post", $id_post);
+		$this->db->from($tableName);
+		$query = $this->db->get();
+		return $query;
 	}
 	function deleteCategoryRel($tableName, $id_tags, $id_post){
 		$this->db->where('id_category_post', $id_tags);
@@ -284,21 +303,22 @@ Class Admin_model extends CI_Model{
 	//Transaksi Model
 	function getDataTransaksi(){
 		$this->db->select("*");
-        $this->db->from('transaksi');
-        $query = $this->db->get();
+		$this->db->from('transaksi');
+		$query = $this->db->get();
 		return $query;
 	}
 	function getDataTransaksiById($id){
 		$this->db->select("*");
-        $this->db->from('transaksi');
-        $this->db->where('id_transaksi', $id);
-        $query = $this->db->get();
+		$this->db->from('transaksi');
+		$this->db->where('id_transaksi', $id);
+		$query = $this->db->get();
 		return $query;
 	}
-	function getDataTamu(){
+	function getDataTamu($id){
 		$this->db->select("id_dataTamu, nama_tamu, gender_tamu");
-        $this->db->from('datatamu');
-        $query = $this->db->get();
+		$this->db->where('id_transaksi', $id);
+		$this->db->from('datatamu');
+		$query = $this->db->get();
 		return $query;
 	}
 	function transaksi_update($where, $data){

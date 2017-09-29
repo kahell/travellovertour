@@ -13,6 +13,8 @@ class Pasca_blogs extends CI_Controller {
 		$this->load->helper('html');
 		$this->load->library('form_validation');
 		$this->load->library('session');
+		$this->load->library('upload');
+		$this->load->library('image_lib');
 	}
 
 	public function index() {
@@ -34,11 +36,10 @@ class Pasca_blogs extends CI_Controller {
 		if($this->session->userdata('adminSession')){
 			$inputNamePicadmin = $this->session->userdata('adminSession');
 			$data['namaAdmin']  = $inputNamePicadmin['username'];
-
 			//create data
 			$data_post = array(
 				'status_post' => 0
-				);
+			);
 			
 			$blogs = $this->admin->addBlogs('post', $data_post);
 			$data['blogs'] = $blogs;
@@ -73,6 +74,12 @@ class Pasca_blogs extends CI_Controller {
 			//Delete post
 			$id_post = $this->input->post('id_post');
 			$select_post = $this->admin->getData('foto', 'where id_post = '. $id_post);
+			$selectTablePost = $this->admin->getData('post', 'where id_post = '. $id_post);
+			//Delete Foto di dalam folder destinasi
+			foreach ($selectTablePost->result() as $row) {
+				unlink($row->pict_post);
+				unlink($row->pictThumb_post);
+			}
 			//Delete Foto di dalam post unlink
 			if (!empty($select_post->result())) {
 				foreach ($select_post->result() as $row) {
@@ -90,46 +97,116 @@ class Pasca_blogs extends CI_Controller {
 			$this->load->view('Login'); 
 		}
 	}
+	
+	public function randomName() {
+		$alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+	    $pass = array(); //remember to declare $pass as an array
+	    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+	    for ($i = 0; $i < 8; $i++) {
+	    	$n = rand(0, $alphaLength);
+	    	$pass[] = $alphabet[$n];
+	    }
+    	return implode($pass); //turn the array into a string
+    }
 
 	public function upload_supernote()
-	{
+	{	
+		//MAKE FOLDER
+		if (!file_exists('./assets/images/supernote')) {
+			mkdir('./assets/images/supernote', 0777, true);
+		}
 		if (!empty($_FILES)) 
 		{
 			$tempFile = $_FILES['file']['tmp_name'];
-			$fileName = str_replace(' ', '', $_FILES['file']['name']);
+			$fileName = $this->randomName() . str_replace(str_split(' ()\\/,:*?"<>|'), '', $_FILES['file']['name']);
 			$fileType = $_FILES['file']['type'];
 			$fileSize = $_FILES['file']['size'];
-			$targetPath = './assets/images/supernote/';
+			$targetPath = 'assets/images/supernote/';
 			$targetFile = $targetPath . $fileName ;
 			$config["upload_path"]   = "./assets/images/supernote";
 			$config["allowed_types"] = "gif|jpg|png";
-			$config['max_size']= 1000;
-			$config['max_width']= 1024;
-			$config['max_height']= 768;
+			$config['file_name']= $fileName;
+			$config['max_size']= 10000;
+			$config['max_width']= 10000;
+			$config['max_height']= 10000;
 			$config['overwrite']= TRUE;
-			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
 			//Insert to database
 			if (!$this->upload->do_upload("file")) {
-				//MAKE FOLDER
-				if (!file_exists('./assets/images/supernote')) {
-					mkdir('./assets/images/supernote', 0777, true);
-				}
-				//Mindah foto ke folder
-				if (!empty($_FILES['file']["name"])) {
-					move_uploaded_file($tempFile,"./assets/images/supernote/$fileName");
-				}else{
-					move_uploaded_file($tempFile,"./assets/images/supernote/$fileName");
-				}
-				
 				$data = array(
-					'id_post' => $this->input->post('id_post'),
-					'foto_post' => $targetFile,
-					'typeFoto_post' => 'summernote'
+					'data' => $this->upload->display_errors(),
+					'cek' => false,
+				);
+				echo json_encode($data);
+				die;				
+			}else{
+				$data = $this->upload->do_upload();
+				//Resize
+				$insert  = '';
+				$conf['image_library'] = 'gd2';
+				$conf['source_image'] = "./assets/images/supernote/".$fileName;
+				$conf['create_thumb'] = FALSE;
+				$conf['maintain_ratio'] = TRUE;
+				$conf['quality'] = '100%';
+				$conf['width'] = 1280;
+				$conf['height'] = 720;
+				$conf['new_image'] = "./assets/images/supernote/";
+				$conf['overwrite']= TRUE;
+				$filePath = $conf['new_image'] . $fileName;
+				$this->image_lib->clear();
+				$this->image_lib->initialize($conf);
+				if (!$this->image_lib->resize())
+				{
+					$data = $this->image_lib->display_errors();
+					echo json_encode($data);
+					die;
+				}else{
+					$data = array(
+						'id_post' => $this->input->post('id_post'),
+						'foto_post' => $targetFile,
+						'typeFoto_post' => 'summernote',
 					);
-				$insert = $this->admin->paket_add('foto', $data);
+					$insert = $this->admin->paket_add('foto', $data);
+				}
 			}
 			echo base_url().''.$targetFile;
 		}
+	}
+
+	public function resizeImg($height, $width, $fileName, $path, $ratio, $id_post){
+		$insert  = '';
+		$config['image_library'] = 'gd2';
+		$config['source_image'] = "./assets/images/blogs/".$fileName;
+		$config['create_thumb'] = FALSE;
+		$config['maintain_ratio'] = $ratio;
+		$config['quality'] = '100%';
+		$config['width'] = $width;
+		$config['height'] = $height;
+		$config['new_image'] = "assets/images/blogs/$path";
+		$config['overwrite']= TRUE;
+		$filePath = $config['new_image'] . $fileName;
+		$this->image_lib->initialize($config);
+		if (!$this->image_lib->resize())
+		{
+			$data = $this->image_lib->display_errors();
+			echo json_encode($data);
+			die;
+		}else{
+			$image_data = '';
+			if ($path == "thumb/") {
+				$image_data = array(
+					'pictThumb_post' => $filePath
+				);
+			}else{
+				$image_data = array(
+					'pict_post' => $filePath
+				);
+			}
+			
+			$insert = $this->admin->updateBlogs('post',"id_post = '$id_post'",$image_data);
+		}
+		$this->image_lib->clear();
+		return $insert;
 	}
 
 	public function upload_data()
@@ -140,32 +217,42 @@ class Pasca_blogs extends CI_Controller {
 		$targetFile = '';
 		$file2 = $this->input->post('file2');
 		if (!empty($_FILES)) 
-		{
-			$tempFile = $_FILES['file']['tmp_name'];
-			$fileName = str_replace(' ', '', $_FILES['file']['name']);
-			$fileType = $_FILES['file']['type'];
-			$fileSize = $_FILES['file']['size'];
-			$targetPath = './assets/images/blogs/';
+		{	
+			//MAKE FOLDER
+			if (!file_exists('./assets/images/blogs')) {
+				mkdir('./assets/images/blogs', 0777, true);
+			}
+			$fileName = $this->randomName() . str_replace(str_split(' ()\\/,:*?"<>|'), '', $_FILES['file']['name']);
+			$targetPath = 'assets/images/blogs/';
 			$targetFile = $targetPath . $fileName ;
+			$config['file_name'] = $fileName;
 			$config["upload_path"]   = "./assets/images/blogs";
 			$config["allowed_types"] = "gif|jpg|png";
-			$config['max_size']= 1000;
-			$config['max_width']= 1024;
-			$config['max_height']= 768;
+			$config['max_size']= 10000;
+			$config['max_width']= 10000;
+			$config['max_height']= 10000;
 			$config['overwrite']= TRUE;
-			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
 			//Insert to database
 			if (!$this->upload->do_upload("file")) {
-				//MAKE FOLDER
-				if (!file_exists('./assets/images/blogs')) {
-					mkdir('./assets/images/blogs', 0777, true);
-				}
-				//Mindah foto ke folder
-				if (!empty($_FILES['file']["name"])) {
-					move_uploaded_file($tempFile,"./assets/images/blogs/$fileName");
+				$data = array(
+					'data' => $this->upload->display_errors(),
+					'cek' => false,
+				);
+				echo json_encode($data);
+				die;
+			}else{
+				$data = $this->upload->do_upload();
+				if(!empty($file2) && !empty($pictThumb_blogs)){
 					unlink($file2);
+					unlink($pictThumb_blogs);
 				}
 			}
+			//Resize
+			$path = 'thumb/';
+			$resizeThumb = $this->resizeImg(240,770, $fileName, $path,  FALSE, $id_post);
+			$path2 = '';
+			$resizeThumb = $this->resizeImg(720,1280, $fileName, $path2, TRUE, $id_post);
 		}else{
 			$targetFile = $this->input->post('file2');
 		}
@@ -175,12 +262,13 @@ class Pasca_blogs extends CI_Controller {
 			'pict_post' => $targetFile,
 			'postedBy_post' => $data['namaAdmin'],
 			'date_post' => date('d M Y'),
+			'deskripsi_post' => $this->input->post('deskripsi_post'),
 			'body_post' => $this->input->post('body_post'),
 			'status_post' => $this->input->post('status_post')
-			);
+		);
 		$insert = $this->admin->updateBlogs('post','id_post = '.$id_post,$data);
-		
-		echo $insert;
+
+		echo json_encode($insert);
 	}
 
 	public function upload_tags(){
@@ -188,16 +276,16 @@ class Pasca_blogs extends CI_Controller {
 		$id_post = $this->input->post('id_post');
 		//Cek nama_tags di tags
 		$cekTags = $this->admin->getTags($nama_tags);
-		
+
 		if (empty($cekTags->result())) {
 			$nameTags = array(
 				'name' => $nama_tags
-				);
+			);
 			$insertTags = $this->admin->addTags('tags',$nameTags);
 			$dataTags = array(
 				'id_tag_post' => $insertTags,
 				'id_post' => $this->input->post('id_post')
-				);
+			);
 			$addRelationTags = $this->admin->addTags('tag_post', $dataTags);
 		}else{
 			//tambah di relationshipnya aja
@@ -208,7 +296,7 @@ class Pasca_blogs extends CI_Controller {
 				$dataTags = array(
 					'id_tag_post' => $getId_tags,
 					'id_post' => $id_post
-					);
+				);
 				$addRelationTags = $this->admin->addTags('tag_post', $dataTags);
 			}
 		}
@@ -229,16 +317,16 @@ class Pasca_blogs extends CI_Controller {
 		$id_post = $this->input->post('id_post');
 		//Cek nama_tags di tags
 		$cekCategory = $this->admin->getCategory($nama_category);
-		
+
 		if (empty($cekCategory->result())) {
 			$nameTags = array(
 				'name' => $nama_category
-				);
+			);
 			$insertTags = $this->admin->addCategories('categories',$nameTags);
 			$dataTags = array(
 				'id_category_post' => $insertTags,
 				'id_post' => $id_post
-				);
+			);
 			$addRelationTags = $this->admin->addCategories('category_post', $dataTags);
 		}else{
 			//tambah di relationshipnya aja
@@ -249,12 +337,12 @@ class Pasca_blogs extends CI_Controller {
 				$dataTags = array(
 					'id_category_post' => $getId_tags,
 					'id_post' => $id_post
-					);
+				);
 				$addRelationTags = $this->admin->addCategories('category_post', $dataTags);
 			}
 			//echo json_encode($getId_tags);
 		}
-		
+
 		echo json_encode($cekCategory->result());
 	}
 

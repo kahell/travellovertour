@@ -28,7 +28,7 @@
                         <li>
                             <a href="<?php echo site_url('Pasca_gallery');?>"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span></a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="<?php echo site_url('Pasca_blogs');?>"><i class="fa fa-rocket"></i> <span class="nav-label">Blogs</span></a>
                         </li>
                         <li>
@@ -56,48 +56,6 @@
                             <li>
                                 <span class="m-r-sm text-muted welcome-message">Welcome <?php echo $namaAdmin ?>.</span>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-alerts">
-                                    <li>
-                                        <a href="mailbox.html">
-                                            <div>
-                                                <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                                <span class="pull-right text-muted small">4 minutes ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="profile.html">
-                                            <div>
-                                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                                <span class="pull-right text-muted small">12 minutes ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="grid_options.html">
-                                            <div>
-                                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                                <span class="pull-right text-muted small">4 minutes ago</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <div class="text-center link-block">
-                                            <a href="notifications.html">
-                                                <strong>See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
                             <li>
                                 <a href="<?php echo site_url("Pasca/logout"); ?>">
                                    <i class="fa fa-sign-out"></i> Log out
@@ -109,7 +67,7 @@
                <!-- Judul -->
                <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>Tambah Paket</h2>
+                    <h2>Tambah Post</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="<?php echo site_url('Pasca_admin');?>">Home</a>
@@ -181,6 +139,15 @@
                                             <div class="col-sm-10">
                                                 <input id="pictThumb_blogs" name="pictThumb_blogs" type="file"  class="form-control">
                                                 <input id="file2" name="file2" type="hidden" value="<?php echo $row->pict_post;?>" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 ">Deskripsi</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group m-b">
+                                                    <textarea rows="4" cols="200" id="deskripsi_post" name="deskripsi_post" class="form-control"><?php echo $row->deskripsi_post;?></textarea>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="hr-line-dashed"></div>
@@ -335,6 +302,7 @@
         formData.append('id_post', $("#id_post").val());
         formData.append('title_post', $("#title_post").val());
         formData.append('status_post', $("#status_post").val());
+        formData.append('deskripsi_post', $("#deskripsi_post").val());
         formData.append('file2', $("#file2").val() );
         formData.append('file', inputFile.files[0]);
         formData.append("body_post", $('.click2edit').summernote('code'));
@@ -346,23 +314,44 @@
             processData: false,
             contentType: false,
             success: function(data) {
-                $.alert({
+                var res = JSON.parse(data);
+                var cek = res.cek;
+                var cek2 = res.data;     
+                if(cek == false){
+                    $.alert({
+                        title: 'ERROR',
+                        content: cek2,
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            ok: {
+                                text: 'OK',
+                                btnClass: 'btn-red'
+                            }
+                        }
+                    });
+                }else{
+                 $.alert({
                     title: 'SUKSES!',
-                    content: 'Data berhasil di tambahkan.',
+                    content: 'Data berhasil di ubah.',
                     type: 'green',
                     typeAnimated: true,
-                    buttons:{
-                       ok:{
-                        ext: 'OK',
-                        btnClass: 'btn-green',
-                        action: function () {
-                            location.href = "<?php echo site_url('Pasca_blogs');?>"
+                    buttons: {
+                        ok: {
+                            text: 'OK',
+                            btnClass: 'btn-green',
+                            action: function () {
+                                location.href = "<?php echo site_url('Pasca_blogs');?>"
+                            }
                         }
                     }
-                }
-            });
-            }
-        });
+                }); 
+             }
+         },
+         error: function(response){
+            console.log(response);
+        }
+    });
     }
 
     function sendFile(file){

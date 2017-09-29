@@ -23,9 +23,12 @@ class Home extends CI_Controller {
         $data['popular_post'] = $this->admin->getPopularPost();
         //Select Testimonial
         $data['blogs'] = $this->admin->getBlogsHome();
+        //Gallery
+        $data['gallery'] = $this->admin->getGallery();
         //Popular post
         $data['testimonial_post'] = $this->admin->getDataTesti();
         //End of slider
+        
        $this->load->view('Home' , $data);
     }
 }
